@@ -1,18 +1,16 @@
-name: Theme repository checks
+name: CI
 
 on:
   pull_request:
   push:
     branches:
-      - bootstrap
       - main
 
 permissions:
   contents: read
 
 jobs:
-  repository:
-    name: Theme repository
+  baseline:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
