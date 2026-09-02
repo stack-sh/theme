@@ -3,6 +3,9 @@ name: Theme repository checks
 on:
   pull_request:
   push:
+    branches:
+      - bootstrap
+      - main
 
 permissions:
   contents: read
