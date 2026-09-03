@@ -259,7 +259,7 @@ export async function validateCatalog(
   const themeIds = new Set();
   const reservedIds = new Set(catalog.reservedThemeIds);
   const iconSubjects = new Map();
-  const assetPaths = new Set();
+  const assetPaths = new Map();
 
   for (const theme of catalog.themes) {
     if (themeIds.has(theme.id)) {
@@ -287,10 +287,15 @@ export async function validateCatalog(
       iconSubjects.set(icon.id, icon.subject);
       icons.set(icon.id, icon);
 
-      if (assetPaths.has(icon.asset.path)) {
-        fail(`icon asset path is used more than once: ${icon.asset.path}`);
+      const assetIdentity = JSON.stringify({ id: icon.id, asset: icon.asset });
+      const existingAssetIdentity = assetPaths.get(icon.asset.path);
+      if (
+        existingAssetIdentity !== undefined &&
+        existingAssetIdentity !== assetIdentity
+      ) {
+        fail(`icon asset path has conflicting metadata: ${icon.asset.path}`);
       }
-      assetPaths.add(icon.asset.path);
+      assetPaths.set(icon.asset.path, assetIdentity);
 
       const distribution = icon.asset.provenance.redistribution;
       if (Object.values(distribution).some((permitted) => !permitted)) {
@@ -358,9 +363,13 @@ export async function catalogRevision(catalog, root = repositoryRoot) {
   hash.update("stack-theme-catalog-v1\0");
   hash.update(formatJson(catalog));
 
-  const assetPaths = catalog.themes
-    .flatMap((theme) => theme.icons.map((icon) => icon.asset.path))
-    .sort();
+  const assetPaths = [
+    ...new Set(
+      catalog.themes.flatMap((theme) =>
+        theme.icons.map((icon) => icon.asset.path),
+      ),
+    ),
+  ].sort();
   for (const assetPath of assetPaths) {
     hash.update("asset\0");
     hash.update(assetPath);

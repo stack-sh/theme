@@ -50,6 +50,37 @@ test("unknown fallback icons are rejected", async () => {
   );
 });
 
+test("themes may share one asset for the same logical icon", async () => {
+  const fixture = await readJson(
+    path.join(repositoryRoot, "tests/fixtures/catalog/valid.json"),
+  );
+  const sharedTheme = structuredClone(fixture.themes[0]);
+  sharedTheme.id = "fixture_shared";
+  sharedTheme.name = "Shared fixture";
+  fixture.themes.push(sharedTheme);
+
+  await validateCatalog(fixture);
+});
+
+test("shared asset paths reject conflicting icon metadata", async () => {
+  const fixture = await readJson(
+    path.join(repositoryRoot, "tests/fixtures/catalog/valid.json"),
+  );
+  const conflictingTheme = structuredClone(fixture.themes[0]);
+  conflictingTheme.id = "fixture_conflict";
+  conflictingTheme.name = "Conflicting fixture";
+  conflictingTheme.icons[0].id = "different";
+  for (const fallback of Object.values(conflictingTheme.nodeKindFallbacks)) {
+    fallback.fallbackIconId = "different";
+  }
+  fixture.themes.push(conflictingTheme);
+
+  await assert.rejects(
+    validateCatalog(fixture, { validateAssets: false }),
+    /icon asset path has conflicting metadata/,
+  );
+});
+
 const nodeKinds = [
   "actor",
   "client",
