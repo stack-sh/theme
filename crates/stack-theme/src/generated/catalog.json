@@ -1,0 +1,8 @@
+{
+  "$schema": "https://raw.githubusercontent.com/stack-sh/theme/main/schemas/catalog.schema.json",
+  "schemaVersion": "1.0",
+  "catalogVersion": "0.1.0",
+  "reservedThemeIds": [],
+  "fontMetrics": [],
+  "themes": []
+}

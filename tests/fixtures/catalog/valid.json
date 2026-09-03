@@ -1,0 +1,199 @@
+{
+  "$schema": "https://raw.githubusercontent.com/stack-sh/theme/main/schemas/catalog.schema.json",
+  "schemaVersion": "1.0",
+  "catalogVersion": "0.0.0",
+  "reservedThemeIds": [
+    "retired"
+  ],
+  "fontMetrics": [
+    {
+      "id": "fixture_font",
+      "family": "Fixture Sans",
+      "version": "1",
+      "unitsPerEm": 1000,
+      "ascent": 800,
+      "descent": -200,
+      "lineGap": 100,
+      "defaultAdvance": 600,
+      "glyphAdvances": {
+        "U+0020": 250,
+        "U+0041": 650
+      },
+      "provenance": {
+        "sourceUrl": "https://github.com/stack-sh/theme",
+        "sourceRevision": "repository-authored fixture",
+        "copyright": "Stack contributors",
+        "licenseSpdx": "Apache-2.0",
+        "licenseFile": "LICENSE",
+        "modified": false,
+        "redistribution": {
+          "cargo": true,
+          "npm": true,
+          "wasm": true,
+          "commercialApplications": true
+        }
+      }
+    }
+  ],
+  "themes": [
+    {
+      "id": "fixture",
+      "name": "Fixture",
+      "description": "A complete catalog contract fixture.",
+      "palette": {
+        "canvas": "#FFFFFF",
+        "surface": "#F8FAFC",
+        "surfaceMuted": "#E2E8F0",
+        "text": "#0F172A",
+        "textMuted": "#475569",
+        "border": "#94A3B8",
+        "accent": "#2563EB",
+        "danger": "#DC2626",
+        "connector": "#334155"
+      },
+      "typography": {
+        "fontMetricsId": "fixture_font",
+        "nodeLabelSizeMilliPx": 14000,
+        "nodeDetailSizeMilliPx": 12000,
+        "groupLabelSizeMilliPx": 13000,
+        "edgeLabelSizeMilliPx": 11000,
+        "lineHeightPermille": 1400,
+        "labelWeight": 600,
+        "detailWeight": 400
+      },
+      "nodeKindFallbacks": {
+        "actor": {
+          "shape": "circle",
+          "fill": "surface",
+          "stroke": "border",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 0,
+          "fallbackIconId": "generic"
+        },
+        "client": {
+          "shape": "rounded-rectangle",
+          "fill": "surface",
+          "stroke": "border",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 8000,
+          "fallbackIconId": "generic"
+        },
+        "service": {
+          "shape": "rounded-rectangle",
+          "fill": "surface",
+          "stroke": "border",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 8000,
+          "fallbackIconId": "generic"
+        },
+        "function": {
+          "shape": "hexagon",
+          "fill": "surface",
+          "stroke": "border",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 0,
+          "fallbackIconId": "generic"
+        },
+        "worker": {
+          "shape": "capsule",
+          "fill": "surface",
+          "stroke": "border",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 16000,
+          "fallbackIconId": "generic"
+        },
+        "database": {
+          "shape": "cylinder",
+          "fill": "surface",
+          "stroke": "border",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 0,
+          "fallbackIconId": "generic"
+        },
+        "cache": {
+          "shape": "cylinder",
+          "fill": "surfaceMuted",
+          "stroke": "border",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 0,
+          "fallbackIconId": "generic"
+        },
+        "queue": {
+          "shape": "capsule",
+          "fill": "surfaceMuted",
+          "stroke": "border",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 12000,
+          "fallbackIconId": "generic"
+        },
+        "storage": {
+          "shape": "cylinder",
+          "fill": "surface",
+          "stroke": "border",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 0,
+          "fallbackIconId": "generic"
+        },
+        "external": {
+          "shape": "rounded-rectangle",
+          "fill": "surfaceMuted",
+          "stroke": "border",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 4000,
+          "fallbackIconId": "generic"
+        }
+      },
+      "connector": {
+        "stroke": "connector",
+        "text": "textMuted",
+        "labelBackground": "canvas",
+        "widthMilliPx": 1500,
+        "arrowSizeMilliPx": 7000,
+        "dashMilliPx": [
+          4000,
+          3000
+        ]
+      },
+      "icons": [
+        {
+          "id": "generic",
+          "subject": "Generic architectural component",
+          "description": "A repository-authored conformance fixture.",
+          "asset": {
+            "path": "tests/fixtures/assets/safe.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme",
+              "sourceRevision": "repository-authored fixture",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
