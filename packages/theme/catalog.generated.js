@@ -2,7 +2,7 @@
 const catalogData = {
   "$schema": "https://raw.githubusercontent.com/stack-sh/theme/main/schemas/catalog.schema.json",
   "schemaVersion": "1.0",
-  "catalogVersion": "0.1.0",
+  "catalogVersion": "0.2.0",
   "reservedThemeIds": [],
   "fallbacks": {
     "missingThemeId": "default",
@@ -502,6 +502,330 @@ const catalogData = {
               }
             }
           }
+        },
+        {
+          "id": "api",
+          "subject": "Application programming interface",
+          "asset": {
+            "path": "assets/core/api.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "web",
+          "subject": "Web application",
+          "asset": {
+            "path": "assets/core/web.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "mobile",
+          "subject": "Mobile application",
+          "asset": {
+            "path": "assets/core/mobile.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "desktop",
+          "subject": "Desktop application",
+          "asset": {
+            "path": "assets/core/desktop.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "server",
+          "subject": "Server host",
+          "asset": {
+            "path": "assets/core/server.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "container",
+          "subject": "Application container",
+          "asset": {
+            "path": "assets/core/container.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "cluster",
+          "subject": "Compute cluster",
+          "asset": {
+            "path": "assets/core/cluster.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "cloud",
+          "subject": "Cloud environment",
+          "asset": {
+            "path": "assets/core/cloud.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "scheduler",
+          "subject": "Scheduled execution",
+          "asset": {
+            "path": "assets/core/scheduler.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "webhook",
+          "subject": "Webhook endpoint",
+          "asset": {
+            "path": "assets/core/webhook.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "identity",
+          "subject": "Identity and access",
+          "asset": {
+            "path": "assets/core/identity.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "observability",
+          "subject": "Observability system",
+          "asset": {
+            "path": "assets/core/observability.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
         }
       ]
     },
@@ -887,6 +1211,330 @@ const catalogData = {
             "provenance": {
               "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/light",
               "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "api",
+          "subject": "Application programming interface",
+          "asset": {
+            "path": "assets/core/api.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "web",
+          "subject": "Web application",
+          "asset": {
+            "path": "assets/core/web.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "mobile",
+          "subject": "Mobile application",
+          "asset": {
+            "path": "assets/core/mobile.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "desktop",
+          "subject": "Desktop application",
+          "asset": {
+            "path": "assets/core/desktop.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "server",
+          "subject": "Server host",
+          "asset": {
+            "path": "assets/core/server.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "container",
+          "subject": "Application container",
+          "asset": {
+            "path": "assets/core/container.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "cluster",
+          "subject": "Compute cluster",
+          "asset": {
+            "path": "assets/core/cluster.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "cloud",
+          "subject": "Cloud environment",
+          "asset": {
+            "path": "assets/core/cloud.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "scheduler",
+          "subject": "Scheduled execution",
+          "asset": {
+            "path": "assets/core/scheduler.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "webhook",
+          "subject": "Webhook endpoint",
+          "asset": {
+            "path": "assets/core/webhook.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "identity",
+          "subject": "Identity and access",
+          "asset": {
+            "path": "assets/core/identity.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "observability",
+          "subject": "Observability system",
+          "asset": {
+            "path": "assets/core/observability.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
               "copyright": "Stack contributors",
               "licenseSpdx": "Apache-2.0",
               "licenseFile": "LICENSE",
@@ -1296,12 +1944,348 @@ const catalogData = {
               }
             }
           }
+        },
+        {
+          "id": "api",
+          "subject": "Application programming interface",
+          "asset": {
+            "path": "assets/core/api.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "web",
+          "subject": "Web application",
+          "asset": {
+            "path": "assets/core/web.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "mobile",
+          "subject": "Mobile application",
+          "asset": {
+            "path": "assets/core/mobile.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "desktop",
+          "subject": "Desktop application",
+          "asset": {
+            "path": "assets/core/desktop.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "server",
+          "subject": "Server host",
+          "asset": {
+            "path": "assets/core/server.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "container",
+          "subject": "Application container",
+          "asset": {
+            "path": "assets/core/container.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "cluster",
+          "subject": "Compute cluster",
+          "asset": {
+            "path": "assets/core/cluster.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "cloud",
+          "subject": "Cloud environment",
+          "asset": {
+            "path": "assets/core/cloud.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "scheduler",
+          "subject": "Scheduled execution",
+          "asset": {
+            "path": "assets/core/scheduler.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "webhook",
+          "subject": "Webhook endpoint",
+          "asset": {
+            "path": "assets/core/webhook.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "identity",
+          "subject": "Identity and access",
+          "asset": {
+            "path": "assets/core/identity.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "observability",
+          "subject": "Observability system",
+          "asset": {
+            "path": "assets/core/observability.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
         }
       ]
     }
   ]
 };
 const iconAssetsData = {
+  "assets/core/api.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+  "assets/core/cloud.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"M7 19h11a4 4 0 0 0 .5-8 7 7 0 0 0-13.3-1.8A5 5 0 0 0 7 19Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+  "assets/core/cluster.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <circle cx=\"12\" cy=\"5\" r=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <circle cx=\"5\" cy=\"18\" r=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <circle cx=\"19\" cy=\"18\" r=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"m10.5 7.5-4 7.8M13.5 7.5l4 7.8M8 18h8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n</svg>\n",
+  "assets/core/container.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"m12 3 9 5-9 5-9-5 9-5Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linejoin=\"round\"/>\n  <path d=\"m3 8 9 5 9-5v8l-9 5-9-5V8ZM12 13v8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linejoin=\"round\"/>\n</svg>\n",
+  "assets/core/desktop.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <rect x=\"3\" y=\"3\" width=\"18\" height=\"14\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"M3 13h18M8 21h8M12 17v4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n</svg>\n",
+  "assets/core/identity.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"M12 3 5 6v5c0 4.5 2.8 8.2 7 10 4.2-1.8 7-5.5 7-10V6l-7-3Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linejoin=\"round\"/>\n  <circle cx=\"12\" cy=\"10\" r=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"M8.5 16c.5-2 1.7-3 3.5-3s3 1 3.5 3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n</svg>\n",
+  "assets/core/mobile.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <rect x=\"6\" y=\"2\" width=\"12\" height=\"20\" rx=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"M10 5h4M11 19h2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n</svg>\n",
+  "assets/core/observability.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linejoin=\"round\"/>\n  <path d=\"m7.5 12 2-2 2.5 4 2.5-4 2 2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+  "assets/core/scheduler.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <rect x=\"3\" y=\"4\" width=\"18\" height=\"17\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"M8 2v4M16 2v4M3 9h18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n  <circle cx=\"12\" cy=\"15\" r=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"M12 13.5V15l1 1\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n</svg>\n",
+  "assets/core/server.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <rect x=\"3\" y=\"3\" width=\"18\" height=\"7\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <rect x=\"3\" y=\"14\" width=\"18\" height=\"7\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"M7 6.5h.01M7 17.5h.01M11 6.5h7M11 17.5h7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n</svg>\n",
+  "assets/core/web.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"M3 8h18M7 6h.01M10 6h.01\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n</svg>\n",
+  "assets/core/webhook.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"M8 7a4 4 0 1 1 7.5 2M16 17a4 4 0 1 1-7.5-2M7 12h10\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n  <path d=\"m14 9 3 3-3 3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
   "assets/dark/kind-actor.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <circle cx=\"12\" cy=\"8\" r=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/>\n  <path d=\"M5 20c.8-4 3-6 7-6s6.2 2 7 6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/>\n</svg>\n",
   "assets/dark/kind-cache.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"m12 3 9 5-9 5-9-5 9-5ZM3 12l9 5 9-5M3 16l9 5 9-5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
   "assets/dark/kind-client.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <rect x=\"3\" y=\"4\" width=\"18\" height=\"13\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/>\n  <path d=\"M8 21h8M12 17v4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/>\n</svg>\n",
@@ -1345,8 +2329,8 @@ function deepFreeze(value) {
 }
 
 export const catalog = deepFreeze(catalogData);
-export const catalogVersion = "0.1.0";
-export const catalogRevision = "sha256:b54ca3435931675d36d6a69b5154a0bd6ce2cbae1cfe14a20a095a8e24f8bae4";
+export const catalogVersion = "0.2.0";
+export const catalogRevision = "sha256:d3a8a5a9d2100e496af3fd7adf389788f4a77508bf749a108183a2abf8f681e1";
 export const iconAssets = deepFreeze(iconAssetsData);
 export function iconSvg(assetPath) {
   return iconAssets[assetPath];
