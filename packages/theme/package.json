@@ -1,0 +1,34 @@
+{
+  "name": "@stack-sh/theme",
+  "version": "0.1.0",
+  "description": "Canonical Stack theme catalog contract and embedded catalog data",
+  "type": "module",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stack-sh/theme.git"
+  },
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js",
+      "default": "./index.js"
+    },
+    "./catalog.json": "./catalog.json",
+    "./catalog-metadata.json": "./catalog-metadata.json",
+    "./schema/catalog.schema.json": "./schema/catalog.schema.json"
+  },
+  "files": [
+    "assets",
+    "catalog.generated.js",
+    "catalog.json",
+    "catalog-metadata.json",
+    "index.d.ts",
+    "index.js",
+    "LICENSE",
+    "licenses",
+    "README.md",
+    "schema"
+  ]
+}

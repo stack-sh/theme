@@ -2,7 +2,9 @@
 
 `stack-sh/theme` is the canonical public catalog for Stack diagram themes, icons, and font metrics.
 
-This repository currently contains only its repository foundation. Theme schemas, package APIs, and compatibility guarantees are not stable until their public contract is added in a later change.
+The draft catalog contract is defined by [`CONTRACT.md`](./CONTRACT.md) and [`schemas/catalog.schema.json`](./schemas/catalog.schema.json). The canonical source is [`catalog/catalog.json`](./catalog/catalog.json); Cargo and npm artifacts are generated from that source with one content revision.
+
+The current `0.1.0` catalog is intentionally empty. The core `default`, `light`, and `dark` themes will be added as the next reviewed catalog change before either package is released to a registry.
 
 ## Scope
 
@@ -19,7 +21,20 @@ Only free core themes belong in this public repository. Paid or proprietary them
 
 ## Development
 
-Repository checks currently validate the foundation files on every push and pull request. Source-specific formatting, tests, builds, and package validation will be added together with the first catalog implementation.
+Install Node.js 20 or newer and Rust 1.85, then run:
+
+```sh
+npm ci
+npm run validate
+npm run generate:check
+npm test
+npm run typecheck
+cargo test --workspace --locked
+cargo clippy --workspace --all-targets --locked -- -D warnings
+cargo doc --workspace --no-deps --locked
+```
+
+`npm run generate` is the only supported way to update checked-in package copies and revision metadata. CI validates the schema and asset boundary, rejects unsafe SVG fixtures, compares Cargo and npm catalog semantics, builds both packages, and verifies the minimum Rust version.
 
 ## Licensing
 
