@@ -2,7 +2,7 @@
 
 ## Status
 
-This document defines the draft `1.0` catalog document shape. Catalog and package version `0.1.0` remain pre-1.0 and may change incompatibly before a stable release. Registry publication is outside this repository change.
+This document defines the draft `1.0` catalog document shape. Catalog and package version `0.2.0` remain pre-1.0 and may change incompatibly before a stable release. Registry publication is outside this repository change.
 
 The JSON Schema at [`schemas/catalog.schema.json`](./schemas/catalog.schema.json) is the machine-readable source of truth. [`catalog/catalog.json`](./catalog/catalog.json) is the only source catalog. Generated Cargo and npm copies must not be edited directly. The schema is copied into both packages; `$schema` is an editor-facing canonical repository URL and runtime consumers do not fetch it.
 
