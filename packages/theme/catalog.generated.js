@@ -4,10 +4,1335 @@ const catalogData = {
   "schemaVersion": "1.0",
   "catalogVersion": "0.1.0",
   "reservedThemeIds": [],
-  "fontMetrics": [],
-  "themes": []
+  "fallbacks": {
+    "missingThemeId": "default",
+    "missingIconId": "kind-external"
+  },
+  "fontMetrics": [
+    {
+      "id": "stack_sans",
+      "family": "system-ui",
+      "version": "stack-metrics-1",
+      "unitsPerEm": 1000,
+      "ascent": 800,
+      "descent": -200,
+      "lineGap": 200,
+      "defaultAdvance": 600,
+      "wideAdvance": 1000,
+      "wideRanges": [
+        {
+          "start": "U+1100",
+          "end": "U+115F"
+        },
+        {
+          "start": "U+2329",
+          "end": "U+232A"
+        },
+        {
+          "start": "U+2E80",
+          "end": "U+A4CF"
+        },
+        {
+          "start": "U+AC00",
+          "end": "U+D7A3"
+        },
+        {
+          "start": "U+F900",
+          "end": "U+FAFF"
+        },
+        {
+          "start": "U+FE10",
+          "end": "U+FE19"
+        },
+        {
+          "start": "U+FE30",
+          "end": "U+FE6F"
+        },
+        {
+          "start": "U+FF00",
+          "end": "U+FF60"
+        },
+        {
+          "start": "U+FFE0",
+          "end": "U+FFE6"
+        },
+        {
+          "start": "U+1F300",
+          "end": "U+1FAFF"
+        },
+        {
+          "start": "U+20000",
+          "end": "U+3FFFD"
+        }
+      ],
+      "glyphAdvances": {
+        "U+0020": 250,
+        "U+0021": 300,
+        "U+0022": 400,
+        "U+0027": 250,
+        "U+0028": 350,
+        "U+0029": 350,
+        "U+002C": 300,
+        "U+002D": 400,
+        "U+002E": 300,
+        "U+003A": 300,
+        "U+003B": 300,
+        "U+0049": 300,
+        "U+004D": 850,
+        "U+0057": 900,
+        "U+005B": 350,
+        "U+005D": 350,
+        "U+0066": 350,
+        "U+0069": 250,
+        "U+006A": 300,
+        "U+006C": 250,
+        "U+006D": 900,
+        "U+0072": 400,
+        "U+0074": 350,
+        "U+0077": 800
+      },
+      "provenance": {
+        "sourceUrl": "https://github.com/stack-sh/theme/blob/main/docs/font-metrics.md",
+        "sourceRevision": "stack-sans-metrics-v1",
+        "copyright": "Stack contributors",
+        "licenseSpdx": "Apache-2.0",
+        "licenseFile": "LICENSE",
+        "modified": false,
+        "redistribution": {
+          "cargo": true,
+          "npm": true,
+          "wasm": true,
+          "commercialApplications": true
+        }
+      }
+    }
+  ],
+  "themes": [
+    {
+      "id": "default",
+      "name": "Stack Default",
+      "description": "Balanced blue-gray surfaces for general architecture diagrams.",
+      "palette": {
+        "canvas": "#F3F6FA",
+        "surface": "#FFFFFF",
+        "surfaceMuted": "#E5EBF3",
+        "text": "#142033",
+        "textMuted": "#475569",
+        "border": "#64748B",
+        "accent": "#1D63D8",
+        "danger": "#B4233A",
+        "connector": "#475569"
+      },
+      "typography": {
+        "fontMetricsId": "stack_sans",
+        "nodeLabelSizeMilliPx": 14000,
+        "nodeDetailSizeMilliPx": 12000,
+        "groupLabelSizeMilliPx": 13000,
+        "edgeLabelSizeMilliPx": 11000,
+        "lineHeightPermille": 1400,
+        "labelWeight": 600,
+        "detailWeight": 400
+      },
+      "nodeKindFallbacks": {
+        "actor": {
+          "shape": "circle",
+          "fill": "surface",
+          "stroke": "border",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 0,
+          "fallbackIconId": "kind-actor"
+        },
+        "client": {
+          "shape": "rounded-rectangle",
+          "fill": "surface",
+          "stroke": "border",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 8000,
+          "fallbackIconId": "kind-client"
+        },
+        "service": {
+          "shape": "rounded-rectangle",
+          "fill": "surface",
+          "stroke": "accent",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 8000,
+          "fallbackIconId": "kind-service"
+        },
+        "function": {
+          "shape": "hexagon",
+          "fill": "surfaceMuted",
+          "stroke": "accent",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 0,
+          "fallbackIconId": "kind-function"
+        },
+        "worker": {
+          "shape": "capsule",
+          "fill": "surface",
+          "stroke": "border",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 16000,
+          "fallbackIconId": "kind-worker"
+        },
+        "database": {
+          "shape": "cylinder",
+          "fill": "surface",
+          "stroke": "accent",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 0,
+          "fallbackIconId": "kind-database"
+        },
+        "cache": {
+          "shape": "cylinder",
+          "fill": "surfaceMuted",
+          "stroke": "border",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 0,
+          "fallbackIconId": "kind-cache"
+        },
+        "queue": {
+          "shape": "capsule",
+          "fill": "surfaceMuted",
+          "stroke": "accent",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 16000,
+          "fallbackIconId": "kind-queue"
+        },
+        "storage": {
+          "shape": "rounded-rectangle",
+          "fill": "surface",
+          "stroke": "border",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 4000,
+          "fallbackIconId": "kind-storage"
+        },
+        "external": {
+          "shape": "hexagon",
+          "fill": "surfaceMuted",
+          "stroke": "border",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 0,
+          "fallbackIconId": "kind-external"
+        }
+      },
+      "connector": {
+        "stroke": "connector",
+        "text": "textMuted",
+        "labelBackground": "canvas",
+        "widthMilliPx": 1500,
+        "arrowSizeMilliPx": 7000
+      },
+      "icons": [
+        {
+          "id": "kind-actor",
+          "subject": "Human actor",
+          "asset": {
+            "path": "assets/default/kind-actor.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/default",
+              "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "kind-client",
+          "subject": "Client application or device",
+          "asset": {
+            "path": "assets/default/kind-client.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/default",
+              "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "kind-service",
+          "subject": "Long-running service",
+          "asset": {
+            "path": "assets/default/kind-service.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/default",
+              "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "kind-function",
+          "subject": "On-demand function",
+          "asset": {
+            "path": "assets/default/kind-function.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/default",
+              "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "kind-worker",
+          "subject": "Background worker",
+          "asset": {
+            "path": "assets/default/kind-worker.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/default",
+              "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "kind-database",
+          "subject": "Durable database",
+          "asset": {
+            "path": "assets/default/kind-database.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/default",
+              "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "kind-cache",
+          "subject": "Disposable cache",
+          "asset": {
+            "path": "assets/default/kind-cache.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/default",
+              "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "kind-queue",
+          "subject": "Asynchronous queue or stream",
+          "asset": {
+            "path": "assets/default/kind-queue.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/default",
+              "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "kind-storage",
+          "subject": "Blob or file storage",
+          "asset": {
+            "path": "assets/default/kind-storage.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/default",
+              "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "kind-external",
+          "subject": "External system",
+          "asset": {
+            "path": "assets/default/kind-external.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/default",
+              "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "light",
+      "name": "Stack Light",
+      "description": "Warm neutral surfaces for documents with light backgrounds.",
+      "palette": {
+        "canvas": "#FAF9F6",
+        "surface": "#FFFFFF",
+        "surfaceMuted": "#EEEAE3",
+        "text": "#1C1917",
+        "textMuted": "#57534E",
+        "border": "#78716C",
+        "accent": "#005DBB",
+        "danger": "#A52A1A",
+        "connector": "#57534E"
+      },
+      "typography": {
+        "fontMetricsId": "stack_sans",
+        "nodeLabelSizeMilliPx": 14000,
+        "nodeDetailSizeMilliPx": 12000,
+        "groupLabelSizeMilliPx": 13000,
+        "edgeLabelSizeMilliPx": 11000,
+        "lineHeightPermille": 1400,
+        "labelWeight": 600,
+        "detailWeight": 400
+      },
+      "nodeKindFallbacks": {
+        "actor": {
+          "shape": "circle",
+          "fill": "surface",
+          "stroke": "border",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 0,
+          "fallbackIconId": "kind-actor"
+        },
+        "client": {
+          "shape": "rounded-rectangle",
+          "fill": "surface",
+          "stroke": "border",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 8000,
+          "fallbackIconId": "kind-client"
+        },
+        "service": {
+          "shape": "rounded-rectangle",
+          "fill": "surface",
+          "stroke": "accent",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 8000,
+          "fallbackIconId": "kind-service"
+        },
+        "function": {
+          "shape": "hexagon",
+          "fill": "surfaceMuted",
+          "stroke": "accent",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 0,
+          "fallbackIconId": "kind-function"
+        },
+        "worker": {
+          "shape": "capsule",
+          "fill": "surface",
+          "stroke": "border",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 16000,
+          "fallbackIconId": "kind-worker"
+        },
+        "database": {
+          "shape": "cylinder",
+          "fill": "surface",
+          "stroke": "accent",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 0,
+          "fallbackIconId": "kind-database"
+        },
+        "cache": {
+          "shape": "cylinder",
+          "fill": "surfaceMuted",
+          "stroke": "border",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 0,
+          "fallbackIconId": "kind-cache"
+        },
+        "queue": {
+          "shape": "capsule",
+          "fill": "surfaceMuted",
+          "stroke": "accent",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 16000,
+          "fallbackIconId": "kind-queue"
+        },
+        "storage": {
+          "shape": "rounded-rectangle",
+          "fill": "surface",
+          "stroke": "border",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 4000,
+          "fallbackIconId": "kind-storage"
+        },
+        "external": {
+          "shape": "hexagon",
+          "fill": "surfaceMuted",
+          "stroke": "border",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 0,
+          "fallbackIconId": "kind-external"
+        }
+      },
+      "connector": {
+        "stroke": "connector",
+        "text": "textMuted",
+        "labelBackground": "canvas",
+        "widthMilliPx": 1250,
+        "arrowSizeMilliPx": 6500
+      },
+      "icons": [
+        {
+          "id": "kind-actor",
+          "subject": "Human actor",
+          "asset": {
+            "path": "assets/light/kind-actor.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/light",
+              "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "kind-client",
+          "subject": "Client application or device",
+          "asset": {
+            "path": "assets/light/kind-client.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/light",
+              "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "kind-service",
+          "subject": "Long-running service",
+          "asset": {
+            "path": "assets/light/kind-service.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/light",
+              "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "kind-function",
+          "subject": "On-demand function",
+          "asset": {
+            "path": "assets/light/kind-function.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/light",
+              "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "kind-worker",
+          "subject": "Background worker",
+          "asset": {
+            "path": "assets/light/kind-worker.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/light",
+              "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "kind-database",
+          "subject": "Durable database",
+          "asset": {
+            "path": "assets/light/kind-database.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/light",
+              "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "kind-cache",
+          "subject": "Disposable cache",
+          "asset": {
+            "path": "assets/light/kind-cache.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/light",
+              "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "kind-queue",
+          "subject": "Asynchronous queue or stream",
+          "asset": {
+            "path": "assets/light/kind-queue.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/light",
+              "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "kind-storage",
+          "subject": "Blob or file storage",
+          "asset": {
+            "path": "assets/light/kind-storage.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/light",
+              "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "kind-external",
+          "subject": "External system",
+          "asset": {
+            "path": "assets/light/kind-external.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/light",
+              "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "dark",
+      "name": "Stack Dark",
+      "description": "High-contrast cool surfaces for dark canvases.",
+      "palette": {
+        "canvas": "#0B1020",
+        "surface": "#141B2D",
+        "surfaceMuted": "#1E293B",
+        "text": "#F8FAFC",
+        "textMuted": "#CBD5E1",
+        "border": "#94A3B8",
+        "accent": "#69A7FF",
+        "danger": "#FF8A9A",
+        "connector": "#CBD5E1"
+      },
+      "typography": {
+        "fontMetricsId": "stack_sans",
+        "nodeLabelSizeMilliPx": 14000,
+        "nodeDetailSizeMilliPx": 12000,
+        "groupLabelSizeMilliPx": 13000,
+        "edgeLabelSizeMilliPx": 11000,
+        "lineHeightPermille": 1400,
+        "labelWeight": 600,
+        "detailWeight": 400
+      },
+      "nodeKindFallbacks": {
+        "actor": {
+          "shape": "circle",
+          "fill": "surface",
+          "stroke": "border",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 0,
+          "fallbackIconId": "kind-actor"
+        },
+        "client": {
+          "shape": "rounded-rectangle",
+          "fill": "surface",
+          "stroke": "border",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 8000,
+          "fallbackIconId": "kind-client"
+        },
+        "service": {
+          "shape": "rounded-rectangle",
+          "fill": "surface",
+          "stroke": "accent",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 8000,
+          "fallbackIconId": "kind-service"
+        },
+        "function": {
+          "shape": "hexagon",
+          "fill": "surfaceMuted",
+          "stroke": "accent",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 0,
+          "fallbackIconId": "kind-function"
+        },
+        "worker": {
+          "shape": "capsule",
+          "fill": "surface",
+          "stroke": "border",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 16000,
+          "fallbackIconId": "kind-worker"
+        },
+        "database": {
+          "shape": "cylinder",
+          "fill": "surface",
+          "stroke": "accent",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 0,
+          "fallbackIconId": "kind-database"
+        },
+        "cache": {
+          "shape": "cylinder",
+          "fill": "surfaceMuted",
+          "stroke": "border",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 0,
+          "fallbackIconId": "kind-cache"
+        },
+        "queue": {
+          "shape": "capsule",
+          "fill": "surfaceMuted",
+          "stroke": "accent",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 16000,
+          "fallbackIconId": "kind-queue"
+        },
+        "storage": {
+          "shape": "rounded-rectangle",
+          "fill": "surface",
+          "stroke": "border",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 4000,
+          "fallbackIconId": "kind-storage"
+        },
+        "external": {
+          "shape": "hexagon",
+          "fill": "surfaceMuted",
+          "stroke": "border",
+          "text": "text",
+          "accent": "accent",
+          "cornerRadiusMilliPx": 0,
+          "fallbackIconId": "kind-external"
+        }
+      },
+      "connector": {
+        "stroke": "connector",
+        "text": "textMuted",
+        "labelBackground": "canvas",
+        "widthMilliPx": 1750,
+        "arrowSizeMilliPx": 7500
+      },
+      "icons": [
+        {
+          "id": "kind-actor",
+          "subject": "Human actor",
+          "asset": {
+            "path": "assets/dark/kind-actor.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/dark",
+              "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "kind-client",
+          "subject": "Client application or device",
+          "asset": {
+            "path": "assets/dark/kind-client.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/dark",
+              "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "kind-service",
+          "subject": "Long-running service",
+          "asset": {
+            "path": "assets/dark/kind-service.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/dark",
+              "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "kind-function",
+          "subject": "On-demand function",
+          "asset": {
+            "path": "assets/dark/kind-function.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/dark",
+              "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "kind-worker",
+          "subject": "Background worker",
+          "asset": {
+            "path": "assets/dark/kind-worker.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/dark",
+              "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "kind-database",
+          "subject": "Durable database",
+          "asset": {
+            "path": "assets/dark/kind-database.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/dark",
+              "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "kind-cache",
+          "subject": "Disposable cache",
+          "asset": {
+            "path": "assets/dark/kind-cache.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/dark",
+              "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "kind-queue",
+          "subject": "Asynchronous queue or stream",
+          "asset": {
+            "path": "assets/dark/kind-queue.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/dark",
+              "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "kind-storage",
+          "subject": "Blob or file storage",
+          "asset": {
+            "path": "assets/dark/kind-storage.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/dark",
+              "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "kind-external",
+          "subject": "External system",
+          "asset": {
+            "path": "assets/dark/kind-external.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/dark",
+              "sourceRevision": "core-fallback-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
 };
-const iconAssetsData = {};
+const iconAssetsData = {
+  "assets/dark/kind-actor.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <circle cx=\"12\" cy=\"8\" r=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/>\n  <path d=\"M5 20c.8-4 3-6 7-6s6.2 2 7 6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/>\n</svg>\n",
+  "assets/dark/kind-cache.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"m12 3 9 5-9 5-9-5 9-5ZM3 12l9 5 9-5M3 16l9 5 9-5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+  "assets/dark/kind-client.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <rect x=\"3\" y=\"4\" width=\"18\" height=\"13\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/>\n  <path d=\"M8 21h8M12 17v4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/>\n</svg>\n",
+  "assets/dark/kind-database.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <ellipse cx=\"12\" cy=\"5\" rx=\"8\" ry=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/>\n  <path d=\"M4 5v7c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12v7c0 1.7 3.6 3 8 3s8-1.3 8-3v-7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/>\n</svg>\n",
+  "assets/dark/kind-external.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"M11 5H5v14h14v-6M13 5h6v6M19 5l-9 9\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+  "assets/dark/kind-function.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"M6 20 11 4h2l5 16M8 14h8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+  "assets/dark/kind-queue.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <circle cx=\"5\" cy=\"7\" r=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/>\n  <circle cx=\"5\" cy=\"17\" r=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/>\n  <path d=\"M7 7h10l3 3-3 3H7M7 17h12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+  "assets/dark/kind-service.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <rect x=\"4\" y=\"4\" width=\"16\" height=\"5\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/>\n  <rect x=\"4\" y=\"15\" width=\"16\" height=\"5\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/>\n  <path d=\"M8 9v6M16 9v6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/>\n</svg>\n",
+  "assets/dark/kind-storage.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"M3 6h7l2 3h9v10H3V6Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linejoin=\"round\"/>\n  <path d=\"M3 9h18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/>\n</svg>\n",
+  "assets/dark/kind-worker.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <circle cx=\"12\" cy=\"12\" r=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/>\n  <path d=\"M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/>\n</svg>\n",
+  "assets/default/kind-actor.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <circle cx=\"12\" cy=\"8\" r=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"M5 20c.8-4 3-6 7-6s6.2 2 7 6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n</svg>\n",
+  "assets/default/kind-cache.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"m12 3 9 5-9 5-9-5 9-5ZM3 12l9 5 9-5M3 16l9 5 9-5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+  "assets/default/kind-client.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <rect x=\"3\" y=\"4\" width=\"18\" height=\"13\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"M8 21h8M12 17v4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n</svg>\n",
+  "assets/default/kind-database.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <ellipse cx=\"12\" cy=\"5\" rx=\"8\" ry=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"M4 5v7c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12v7c0 1.7 3.6 3 8 3s8-1.3 8-3v-7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n</svg>\n",
+  "assets/default/kind-external.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"M11 5H5v14h14v-6M13 5h6v6M19 5l-9 9\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+  "assets/default/kind-function.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"M6 20 11 4h2l5 16M8 14h8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+  "assets/default/kind-queue.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <circle cx=\"5\" cy=\"7\" r=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <circle cx=\"5\" cy=\"17\" r=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"M7 7h10l3 3-3 3H7M7 17h12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+  "assets/default/kind-service.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <rect x=\"4\" y=\"4\" width=\"16\" height=\"5\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <rect x=\"4\" y=\"15\" width=\"16\" height=\"5\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"M8 9v6M16 9v6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n</svg>\n",
+  "assets/default/kind-storage.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"M3 6h7l2 3h9v10H3V6Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linejoin=\"round\"/>\n  <path d=\"M3 9h18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n</svg>\n",
+  "assets/default/kind-worker.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <circle cx=\"12\" cy=\"12\" r=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n</svg>\n",
+  "assets/light/kind-actor.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <circle cx=\"12\" cy=\"8\" r=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/>\n  <path d=\"M5 20c.8-4 3-6 7-6s6.2 2 7 6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/>\n</svg>\n",
+  "assets/light/kind-cache.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"m12 3 9 5-9 5-9-5 9-5ZM3 12l9 5 9-5M3 16l9 5 9-5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+  "assets/light/kind-client.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <rect x=\"3\" y=\"4\" width=\"18\" height=\"13\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/>\n  <path d=\"M8 21h8M12 17v4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/>\n</svg>\n",
+  "assets/light/kind-database.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <ellipse cx=\"12\" cy=\"5\" rx=\"8\" ry=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/>\n  <path d=\"M4 5v7c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12v7c0 1.7 3.6 3 8 3s8-1.3 8-3v-7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/>\n</svg>\n",
+  "assets/light/kind-external.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"M11 5H5v14h14v-6M13 5h6v6M19 5l-9 9\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+  "assets/light/kind-function.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"M6 20 11 4h2l5 16M8 14h8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+  "assets/light/kind-queue.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <circle cx=\"5\" cy=\"7\" r=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/>\n  <circle cx=\"5\" cy=\"17\" r=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/>\n  <path d=\"M7 7h10l3 3-3 3H7M7 17h12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+  "assets/light/kind-service.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <rect x=\"4\" y=\"4\" width=\"16\" height=\"5\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/>\n  <rect x=\"4\" y=\"15\" width=\"16\" height=\"5\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/>\n  <path d=\"M8 9v6M16 9v6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/>\n</svg>\n",
+  "assets/light/kind-storage.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"M3 6h7l2 3h9v10H3V6Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linejoin=\"round\"/>\n  <path d=\"M3 9h18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/>\n</svg>\n",
+  "assets/light/kind-worker.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <circle cx=\"12\" cy=\"12\" r=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/>\n  <path d=\"M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/>\n</svg>\n"
+};
 
 function deepFreeze(value) {
   Object.freeze(value);
@@ -21,7 +1346,7 @@ function deepFreeze(value) {
 
 export const catalog = deepFreeze(catalogData);
 export const catalogVersion = "0.1.0";
-export const catalogRevision = "sha256:4615e4947392933d443da7142f2c54e95bfb13330f3924de7432c297111978e8";
+export const catalogRevision = "sha256:b54ca3435931675d36d6a69b5154a0bd6ce2cbae1cfe14a20a095a8e24f8bae4";
 export const iconAssets = deepFreeze(iconAssetsData);
 export function iconSvg(assetPath) {
   return iconAssets[assetPath];

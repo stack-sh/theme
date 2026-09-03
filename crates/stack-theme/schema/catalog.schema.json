@@ -10,6 +10,7 @@
     "schemaVersion",
     "catalogVersion",
     "reservedThemeIds",
+    "fallbacks",
     "fontMetrics",
     "themes"
   ],
@@ -29,6 +30,9 @@
         "$ref": "#/$defs/identifier"
       },
       "uniqueItems": true
+    },
+    "fallbacks": {
+      "$ref": "#/$defs/catalogFallbacks"
     },
     "fontMetrics": {
       "type": "array",
@@ -55,6 +59,15 @@
     "iconIdentifier": {
       "type": "string",
       "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+    },
+    "catalogFallbacks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["missingThemeId", "missingIconId"],
+      "properties": {
+        "missingThemeId": { "$ref": "#/$defs/identifier" },
+        "missingIconId": { "$ref": "#/$defs/iconIdentifier" }
+      }
     },
     "relativePath": {
       "type": "string",
@@ -380,6 +393,8 @@
         "descent",
         "lineGap",
         "defaultAdvance",
+        "wideAdvance",
+        "wideRanges",
         "glyphAdvances",
         "provenance"
       ],
@@ -420,8 +435,32 @@
           "minimum": 1,
           "maximum": 32767
         },
+        "wideAdvance": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 32767
+        },
+        "wideRanges": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/unicodeRange" }
+        },
         "glyphAdvances": { "$ref": "#/$defs/glyphAdvances" },
         "provenance": { "$ref": "#/$defs/provenance" }
+      }
+    },
+    "unicodeRange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "end"],
+      "properties": {
+        "start": {
+          "type": "string",
+          "pattern": "^U\\+[0-9A-F]{4,6}$"
+        },
+        "end": {
+          "type": "string",
+          "pattern": "^U\\+[0-9A-F]{4,6}$"
+        }
       }
     }
   }

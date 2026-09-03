@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Stack core theme review</title>
+    <style>
+      * { box-sizing: border-box; }
+      body { margin: 0; background: #e7ebf1; color: #142033; font-family: system-ui, sans-serif; }
+      header { margin: 0 auto; max-width: 1440px; padding: 48px 32px 24px; }
+      h1 { margin: 0 0 8px; font-size: clamp(28px, 4vw, 48px); letter-spacing: -0.04em; }
+      header p { color: #475569; margin: 0; overflow-wrap: anywhere; }
+      main { display: grid; gap: 28px; margin: 0 auto; max-width: 1440px; min-width: 0; padding: 24px 32px 64px; width: 100%; }
+      .theme { background: var(--canvas); border: 1px solid var(--border); border-radius: 24px; color: var(--text); overflow: hidden; padding: 28px; }
+      .theme-heading { align-items: end; display: flex; gap: 16px; justify-content: space-between; margin-bottom: 24px; }
+      .theme h2 { font-size: 28px; letter-spacing: -0.03em; margin: 0 0 4px; }
+      .theme-heading p { color: var(--text-muted); margin: 0; }
+      .badge { background: var(--surface-muted); border: 1px solid var(--border); border-radius: 999px; color: var(--text); font-size: 12px; padding: 6px 10px; }
+      .palette { display: grid; gap: 8px; grid-template-columns: repeat(9, minmax(80px, 1fr)); margin-bottom: 24px; }
+      .swatch { background: var(--swatch); border: 1px solid var(--border); border-radius: 10px; min-height: 72px; overflow: hidden; padding: 38px 8px 8px; position: relative; }
+      .swatch::before { background: var(--swatch); content: ""; inset: 0 0 auto; height: 32px; position: absolute; }
+      .swatch span { background: var(--surface); border-radius: 5px; color: var(--text); display: block; font-size: 10px; overflow: hidden; padding: 4px; text-overflow: ellipsis; white-space: nowrap; }
+      .nodes { display: grid; gap: 12px; grid-template-columns: repeat(5, minmax(140px, 1fr)); }
+      .node { align-items: center; background: var(--node-fill); border: 2px solid var(--node-stroke); color: var(--node-text); display: grid; gap: 12px; grid-template-columns: 34px 1fr; min-height: 88px; overflow: hidden; padding: 16px; position: relative; }
+      .node::before { background: var(--accent); content: ""; inset: 0 auto 0 0; position: absolute; width: 4px; }
+      .node[data-shape="rounded-rectangle"] { border-radius: 14px; }
+      .node[data-shape="capsule"] { border-radius: 999px; padding-left: 24px; }
+      .node[data-shape="circle"] { aspect-ratio: 1.65; border-radius: 50%; padding-left: 24px; }
+      .node[data-shape="cylinder"] { border-radius: 50% / 16%; }
+      .node[data-shape="hexagon"] { clip-path: polygon(8% 0, 92% 0, 100% 50%, 92% 100%, 8% 100%, 0 50%); padding-inline: 24px; }
+      .icon { color: var(--accent); height: 30px; width: 30px; }
+      .icon svg { display: block; height: 100%; width: 100%; }
+      .node strong { display: block; font-size: 14px; }
+      .node small { color: var(--text-muted); display: block; font-size: 11px; margin-top: 3px; }
+      .footer-row { align-items: center; display: flex; gap: 20px; justify-content: space-between; margin-top: 24px; }
+      .type-sample { color: var(--text-muted); font-size: 13px; }
+      .type-sample strong { color: var(--text); font-size: 14px; }
+      .connector { align-items: center; display: flex; min-width: 220px; }
+      .connector-line { background: var(--connector); height: 2px; width: 100%; }
+      .connector-arrow { border-bottom: 5px solid transparent; border-left: 9px solid var(--connector); border-top: 5px solid transparent; }
+      @media (max-width: 900px) {
+        header, main { padding-left: 18px; padding-right: 18px; }
+        .palette { grid-template-columns: repeat(3, 1fr); }
+        .nodes { grid-template-columns: repeat(2, minmax(130px, 1fr)); }
+        .theme-heading, .footer-row { align-items: flex-start; flex-direction: column; }
+      }
+      @media (max-width: 430px) {
+        header { padding-top: 28px; }
+        .theme { border-radius: 18px; padding: 18px; }
+        .nodes { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Stack core theme review</h1>
+      <p id="metadata"></p>
+    </header>
+    <main id="themes"></main>
+    <script type="module">
+      import { catalog, catalogRevision, iconSvg } from "../packages/theme/index.js";
+
+      const kinds = ["actor", "client", "service", "function", "worker", "database", "cache", "queue", "storage", "external"];
+      const metadata = document.querySelector("#metadata");
+      metadata.textContent = `Catalog ${catalog.catalogVersion} · ${catalogRevision}`;
+
+      const root = document.querySelector("#themes");
+      for (const theme of catalog.themes) {
+        const section = document.createElement("section");
+        section.className = "theme";
+        for (const [name, color] of Object.entries(theme.palette)) {
+          section.style.setProperty(`--${name.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)}`, color);
+        }
+
+        const heading = document.createElement("div");
+        heading.className = "theme-heading";
+        const headingCopy = document.createElement("div");
+        const title = document.createElement("h2");
+        title.textContent = theme.name;
+        const description = document.createElement("p");
+        description.textContent = theme.description;
+        headingCopy.append(title, description);
+        const badge = document.createElement("span");
+        badge.className = "badge";
+        badge.textContent = theme.id;
+        heading.append(headingCopy, badge);
+        section.append(heading);
+
+        const palette = document.createElement("div");
+        palette.className = "palette";
+        for (const [name, color] of Object.entries(theme.palette)) {
+          const swatch = document.createElement("div");
+          swatch.className = "swatch";
+          swatch.style.setProperty("--swatch", color);
+          const label = document.createElement("span");
+          label.textContent = `${name} ${color}`;
+          swatch.append(label);
+          palette.append(swatch);
+        }
+        section.append(palette);
+
+        const nodes = document.createElement("div");
+        nodes.className = "nodes";
+        for (const kind of kinds) {
+          const fallback = theme.nodeKindFallbacks[kind];
+          const icon = theme.icons.find((entry) => entry.id === fallback.fallbackIconId);
+          const node = document.createElement("article");
+          node.className = "node";
+          node.dataset.shape = fallback.shape;
+          node.style.setProperty("--node-fill", theme.palette[fallback.fill]);
+          node.style.setProperty("--node-stroke", theme.palette[fallback.stroke]);
+          node.style.setProperty("--node-text", theme.palette[fallback.text]);
+          const iconContainer = document.createElement("div");
+          iconContainer.className = "icon";
+          iconContainer.setAttribute("aria-hidden", "true");
+          iconContainer.innerHTML = iconSvg(icon.asset.path);
+          const copy = document.createElement("div");
+          const label = document.createElement("strong");
+          label.textContent = kind;
+          const subject = document.createElement("small");
+          subject.textContent = icon.subject;
+          copy.append(label, subject);
+          node.append(iconContainer, copy);
+          nodes.append(node);
+        }
+        section.append(nodes);
+
+        const footer = document.createElement("div");
+        footer.className = "footer-row";
+        const typeSample = document.createElement("div");
+        typeSample.className = "type-sample";
+        typeSample.innerHTML = `<strong>API Gateway</strong><br>データベース · Event worker · 🚀`;
+        const connector = document.createElement("div");
+        connector.className = "connector";
+        connector.setAttribute("aria-label", "Connector contrast sample");
+        connector.innerHTML = `<span class="connector-line"></span><span class="connector-arrow"></span>`;
+        footer.append(typeSample, connector);
+        section.append(footer);
+        root.append(section);
+      }
+    </script>
+  </body>
+</html>

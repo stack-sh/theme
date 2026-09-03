@@ -1,6 +1,6 @@
 # Third-party licenses
 
-No third-party fonts, icons, or other runtime assets are bundled in this repository yet.
+No third-party fonts, icons, or other runtime assets are bundled in this repository. The 30 core SVG assets and `stack_sans` metrics are repository-authored Apache-2.0 work with provenance recorded in the canonical catalog.
 
 The repository uses the following third-party libraries:
 

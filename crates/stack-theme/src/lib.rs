@@ -60,10 +60,22 @@ pub struct Catalog {
     pub catalog_version: String,
     /// Theme identifiers that cannot be registered again.
     pub reserved_theme_ids: Vec<String>,
+    /// Deterministic recovery choices for unavailable themes and icons.
+    pub fallbacks: CatalogFallbacks,
     /// Deterministic, versioned font measurement tables.
     pub font_metrics: Vec<FontMetrics>,
     /// Theme records in canonical catalog order.
     pub themes: Vec<Theme>,
+}
+
+/// Catalog-wide recovery choices used after emitting a missing-resource diagnostic.
+#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct CatalogFallbacks {
+    /// Core theme selected when a requested non-core theme is unavailable.
+    pub missing_theme_id: String,
+    /// Logical icon selected when an icon is unavailable in the resolved theme.
+    pub missing_icon_id: String,
 }
 
 /// One deterministic font measurement table.
@@ -86,10 +98,22 @@ pub struct FontMetrics {
     pub line_gap: u32,
     /// Advance used for a scalar absent from `glyph_advances`.
     pub default_advance: u32,
+    /// Advance used for a scalar covered by `wide_ranges`.
+    pub wide_advance: u32,
+    /// Ordered, non-overlapping Unicode scalar ranges treated as wide.
+    pub wide_ranges: Vec<UnicodeRange>,
     /// Unicode scalar advances keyed as uppercase `U+XXXX` values.
     pub glyph_advances: BTreeMap<String, u32>,
     /// Source, license, and distribution evidence for the metrics.
     pub provenance: Provenance,
+}
+
+/// An inclusive Unicode scalar range encoded as `U+XXXX` labels.
+#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct UnicodeRange {
+    pub start: String,
+    pub end: String,
 }
 
 /// One theme and its theme-local icon collection.
@@ -101,6 +125,7 @@ pub struct Theme {
     /// Human-readable theme name.
     pub name: String,
     /// Optional contributor-facing description.
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
     /// Named colors available to other theme records.
     pub palette: Palette,
@@ -208,6 +233,7 @@ pub struct ConnectorStyle {
     pub label_background: PaletteToken,
     pub width_milli_px: u32,
     pub arrow_size_milli_px: u32,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub dash_milli_px: Option<Vec<u32>>,
 }
 
@@ -217,6 +243,7 @@ pub struct ConnectorStyle {
 pub struct Icon {
     pub id: String,
     pub subject: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
     pub asset: IconAsset,
 }
@@ -266,6 +293,21 @@ mod tests {
         assert!(CATALOG_REVISION.starts_with("sha256:"));
         assert_eq!(CATALOG_REVISION.len(), 71);
         assert_eq!(icon_svg("assets/missing.svg"), None);
+        assert_eq!(
+            catalog
+                .themes
+                .iter()
+                .map(|theme| theme.id.as_str())
+                .collect::<Vec<_>>(),
+            ["default", "light", "dark"]
+        );
+        assert!(
+            catalog
+                .themes
+                .iter()
+                .flat_map(|theme| &theme.icons)
+                .all(|icon| icon_svg(&icon.asset.path).is_some())
+        );
     }
 
     #[test]

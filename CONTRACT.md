@@ -16,10 +16,13 @@ Every catalog has these required top-level fields:
 | `schemaVersion` | Catalog document shape; currently `1.0` |
 | `catalogVersion` | Semantic version shared by the source catalog, Cargo crate, and npm package |
 | `reservedThemeIds` | Previously registered theme identifiers that cannot be reused |
+| `fallbacks` | Core theme and logical icon identifiers used after missing-resource diagnostics |
 | `fontMetrics` | Deterministic font measurement records |
 | `themes` | Themes in canonical catalog order |
 
 Theme identifiers use the Stack language identifier form. Active identifiers are unique and cannot also be reserved. When a registered theme is removed, its identifier moves to `reservedThemeIds`; it is never reassigned.
+
+`fallbacks.missingThemeId` must identify an active core theme. `fallbacks.missingIconId` must identify an icon present in every active theme with one stable subject. A renderer emits the applicable missing-resource diagnostic before selecting these records; fallback data does not hide the missing request.
 
 `catalogRevision` is generated metadata rather than a source field. It is a `sha256:` digest over the normalized source catalog followed by every referenced SVG path and byte sequence in path order. The revision therefore changes when semantic catalog data, provenance, or icon bytes change, without requiring a Git commit to contain its own commit identifier.
 
@@ -44,9 +47,9 @@ Integer units keep Rust and JavaScript consumers from introducing representation
 
 ## Font metrics
 
-A font metric record requires `id`, `family`, `version`, `unitsPerEm`, `ascent`, `descent`, `lineGap`, `defaultAdvance`, `glyphAdvances`, and the same source, license, and distribution `provenance` required for icon assets.
+A font metric record requires `id`, `family`, `version`, `unitsPerEm`, `ascent`, `descent`, `lineGap`, `defaultAdvance`, `wideAdvance`, ordered non-overlapping `wideRanges`, `glyphAdvances`, and the same source, license, and distribution `provenance` required for icon assets.
 
-Advances use integer font design units. `glyphAdvances` keys are uppercase Unicode scalar labels such as `U+0041`. A consumer uses `defaultAdvance` for a scalar without an explicit entry. This makes measurement deterministic and removes any need for a host font API. The catalog version and revision identify the exact measurement table used by a render.
+Advances use integer font design units. `glyphAdvances` keys are uppercase Unicode scalar labels such as `U+0041`. A consumer first uses an explicit glyph advance, then `wideAdvance` for a scalar in an inclusive `wideRanges` entry, and finally `defaultAdvance`. This makes Latin and wide-script measurement deterministic without a host Unicode-width or font API. The metrics version, catalog version, and revision identify the exact table and ranges used by a render.
 
 ## Icon metadata and provenance
 
@@ -87,4 +90,4 @@ cargo clippy --workspace --all-targets --locked -- -D warnings
 cargo doc --workspace --no-deps --locked
 ```
 
-The complete fixture exercises every required field. Security fixtures prove rejection of script, event-handler, and external-reference SVGs. The source catalog intentionally contains no themes until the core `default`, `light`, and `dark` data lands as the next provider change.
+The complete fixture exercises every required field. Security fixtures prove rejection of script, event-handler, and external-reference SVGs. Catalog completeness, palette contrast, distinct node-kind fallback icons, deterministic wide-character metrics, and embedded Cargo/npm asset parity are also enforced.

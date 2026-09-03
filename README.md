@@ -4,7 +4,7 @@
 
 The draft catalog contract is defined by [`CONTRACT.md`](./CONTRACT.md) and [`schemas/catalog.schema.json`](./schemas/catalog.schema.json). The canonical source is [`catalog/catalog.json`](./catalog/catalog.json); Cargo and npm artifacts are generated from that source with one content revision.
 
-The current `0.1.0` catalog is intentionally empty. The core `default`, `light`, and `dark` themes will be added as the next reviewed catalog change before either package is released to a registry.
+The current `0.1.0` catalog contains the core `default`, `light`, and `dark` themes, repository-authored fallbacks for every Stack 1.0 node kind, and versioned host-independent font metrics. Neither package has been released to a registry yet.
 
 ## Scope
 
@@ -35,6 +35,8 @@ cargo doc --workspace --no-deps --locked
 ```
 
 `npm run generate` is the only supported way to update checked-in package copies and revision metadata. CI validates the schema and asset boundary, rejects unsafe SVG fixtures, compares Cargo and npm catalog semantics, builds both packages, and verifies the minimum Rust version.
+
+The local [core theme review](./review/index.html) renders every fallback without a build step. Serve the repository root over HTTP, open `/review/`, and compare all three themes before changing palettes, fallback shapes, icons, or typography metrics. The current review record is in [`docs/core-theme-review.md`](./docs/core-theme-review.md).
 
 ## Licensing
 
