@@ -5,6 +5,10 @@
   "reservedThemeIds": [
     "retired"
   ],
+  "fallbacks": {
+    "missingThemeId": "fixture",
+    "missingIconId": "generic"
+  },
   "fontMetrics": [
     {
       "id": "fixture_font",
@@ -15,6 +19,13 @@
       "descent": -200,
       "lineGap": 100,
       "defaultAdvance": 600,
+      "wideAdvance": 1000,
+      "wideRanges": [
+        {
+          "start": "U+2E80",
+          "end": "U+9FFF"
+        }
+      ],
       "glyphAdvances": {
         "U+0020": 250,
         "U+0041": 650

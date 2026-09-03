@@ -21,8 +21,14 @@ export interface Catalog {
   readonly schemaVersion: "1.0";
   readonly catalogVersion: string;
   readonly reservedThemeIds: readonly string[];
+  readonly fallbacks: CatalogFallbacks;
   readonly fontMetrics: readonly FontMetrics[];
   readonly themes: readonly Theme[];
+}
+
+export interface CatalogFallbacks {
+  readonly missingThemeId: string;
+  readonly missingIconId: string;
 }
 
 export interface FontMetrics {
@@ -34,8 +40,15 @@ export interface FontMetrics {
   readonly descent: number;
   readonly lineGap: number;
   readonly defaultAdvance: number;
+  readonly wideAdvance: number;
+  readonly wideRanges: readonly UnicodeRange[];
   readonly glyphAdvances: Readonly<Record<string, number>>;
   readonly provenance: Provenance;
+}
+
+export interface UnicodeRange {
+  readonly start: `U+${string}`;
+  readonly end: `U+${string}`;
 }
 
 export interface Theme {

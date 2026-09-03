@@ -69,6 +69,10 @@ const nodeKinds = [
   "external",
 ];
 
+function unicodeScalar(label) {
+  return Number.parseInt(label.slice(2), 16);
+}
+
 export async function readJson(filePath) {
   return JSON.parse(await readFile(filePath, "utf8"));
 }
@@ -201,7 +205,7 @@ export function validateSvgText(svg, assetPath, expectedViewBox) {
 
 export async function validateCatalog(
   catalog,
-  { root = repositoryRoot, validateAssets = true } = {},
+  { root = repositoryRoot, validateAssets = true, requiredThemeIds = [] } = {},
 ) {
   const schema = await readJson(path.join(repositoryRoot, "schemas/catalog.schema.json"));
   const ajv = new Ajv2020({ allErrors: true, strict: true });
@@ -219,6 +223,20 @@ export async function validateCatalog(
       fail(`duplicate font metrics id: ${metrics.id}`);
     }
     metricIds.add(metrics.id);
+    let previousRangeEnd = -1;
+    for (const range of metrics.wideRanges) {
+      const start = unicodeScalar(range.start);
+      const end = unicodeScalar(range.end);
+      if (
+        start > end ||
+        end > 0x10ffff ||
+        (start <= 0xdfff && end >= 0xd800) ||
+        start <= previousRangeEnd
+      ) {
+        fail(`font metrics ${metrics.id} has invalid or overlapping wide ranges`);
+      }
+      previousRangeEnd = end;
+    }
     if (Object.values(metrics.provenance.redistribution).some((permitted) => !permitted)) {
       fail(`font metrics ${metrics.id} is not redistributable in every supported artifact`);
     }
@@ -312,6 +330,23 @@ export async function validateCatalog(
       if (!icons.has(fallbackId)) {
         fail(`theme ${theme.id} ${kind} fallback references unknown icon ${fallbackId}`);
       }
+    }
+  }
+
+  for (const requiredThemeId of requiredThemeIds) {
+    if (!themeIds.has(requiredThemeId)) {
+      fail(`catalog is missing required theme: ${requiredThemeId}`);
+    }
+  }
+
+  if (!themeIds.has(catalog.fallbacks.missingThemeId)) {
+    fail(`catalog fallback references unknown theme ${catalog.fallbacks.missingThemeId}`);
+  }
+  for (const theme of catalog.themes) {
+    if (!theme.icons.some((icon) => icon.id === catalog.fallbacks.missingIconId)) {
+      fail(
+        `theme ${theme.id} is missing catalog fallback icon ${catalog.fallbacks.missingIconId}`,
+      );
     }
   }
 
