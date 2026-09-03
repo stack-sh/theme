@@ -4,7 +4,7 @@
 
 The draft catalog contract is defined by [`CONTRACT.md`](./CONTRACT.md) and [`schemas/catalog.schema.json`](./schemas/catalog.schema.json). The canonical source is [`catalog/catalog.json`](./catalog/catalog.json); Cargo and npm artifacts are generated from that source with one content revision.
 
-The current `0.1.0` catalog contains the core `default`, `light`, and `dark` themes, repository-authored fallbacks for every Stack 1.0 node kind, and versioned host-independent font metrics. Neither package has been released to a registry yet.
+The current `0.2.0` catalog contains the core `default`, `light`, and `dark` themes, repository-authored fallbacks for every Stack 1.0 node kind, 12 provider-neutral explicit icons, and versioned host-independent font metrics. The explicit icon identifiers are `api`, `web`, `mobile`, `desktop`, `server`, `container`, `cluster`, `cloud`, `scheduler`, `webhook`, `identity`, and `observability`. Neither package has been released to a registry yet.
 
 ## Scope
 

@@ -50,6 +50,37 @@ test("unknown fallback icons are rejected", async () => {
   );
 });
 
+test("themes may share one asset for the same logical icon", async () => {
+  const fixture = await readJson(
+    path.join(repositoryRoot, "tests/fixtures/catalog/valid.json"),
+  );
+  const sharedTheme = structuredClone(fixture.themes[0]);
+  sharedTheme.id = "fixture_shared";
+  sharedTheme.name = "Shared fixture";
+  fixture.themes.push(sharedTheme);
+
+  await validateCatalog(fixture);
+});
+
+test("shared asset paths reject conflicting icon metadata", async () => {
+  const fixture = await readJson(
+    path.join(repositoryRoot, "tests/fixtures/catalog/valid.json"),
+  );
+  const conflictingTheme = structuredClone(fixture.themes[0]);
+  conflictingTheme.id = "fixture_conflict";
+  conflictingTheme.name = "Conflicting fixture";
+  conflictingTheme.icons[0].id = "different";
+  for (const fallback of Object.values(conflictingTheme.nodeKindFallbacks)) {
+    fallback.fallbackIconId = "different";
+  }
+  fixture.themes.push(conflictingTheme);
+
+  await assert.rejects(
+    validateCatalog(fixture, { validateAssets: false }),
+    /icon asset path has conflicting metadata/,
+  );
+});
+
 const nodeKinds = [
   "actor",
   "client",
@@ -61,6 +92,21 @@ const nodeKinds = [
   "queue",
   "storage",
   "external",
+];
+
+const explicitIcons = [
+  ["api", "Application programming interface"],
+  ["web", "Web application"],
+  ["mobile", "Mobile application"],
+  ["desktop", "Desktop application"],
+  ["server", "Server host"],
+  ["container", "Application container"],
+  ["cluster", "Compute cluster"],
+  ["cloud", "Cloud environment"],
+  ["scheduler", "Scheduled execution"],
+  ["webhook", "Webhook endpoint"],
+  ["identity", "Identity and access"],
+  ["observability", "Observability system"],
 ];
 
 function linearChannel(channel) {
@@ -118,6 +164,14 @@ test("the three core themes provide distinct fallback visuals", () => {
         assert.equal(icon.subject, existingSubject);
       }
       logicalIconSubjects.set(icon.id, icon.subject);
+    }
+    assert.deepEqual(
+      theme.icons.slice(nodeKinds.length).map((icon) => [icon.id, icon.subject]),
+      explicitIcons,
+    );
+    for (const [iconId] of explicitIcons) {
+      const icon = theme.icons.find((entry) => entry.id === iconId);
+      assert.equal(icon.asset.path, `assets/core/${iconId}.svg`);
     }
     assert.ok(
       theme.icons.some((icon) => icon.id === catalog.fallbacks.missingIconId),
@@ -231,6 +285,10 @@ test("Cargo and npm artifacts expose one semantic catalog revision", async () =>
     new RegExp(`CATALOG_REVISION: &str = "${catalogRevision}"`),
   );
   assert.match(catalogRevision, /^sha256:[0-9a-f]{64}$/);
-  assert.equal(Object.keys(iconAssets).length, 30);
+  assert.equal(
+    catalog.themes.flatMap((theme) => theme.icons).length,
+    66,
+  );
+  assert.equal(Object.keys(iconAssets).length, 42);
   assert.equal(iconSvg("assets/missing.svg"), undefined);
 });

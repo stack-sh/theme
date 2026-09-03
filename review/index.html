@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:," />
     <title>Stack core theme review</title>
     <style>
       * { box-sizing: border-box; }
@@ -32,6 +33,11 @@
       .icon svg { display: block; height: 100%; width: 100%; }
       .node strong { display: block; font-size: 14px; }
       .node small { color: var(--text-muted); display: block; font-size: 11px; margin-top: 3px; }
+      .section-title { font-size: 13px; letter-spacing: 0.08em; margin: 28px 0 12px; text-transform: uppercase; }
+      .explicit-icons { display: grid; gap: 10px; grid-template-columns: repeat(6, minmax(120px, 1fr)); }
+      .explicit-icon { align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; display: grid; gap: 10px; grid-template-columns: 30px minmax(0, 1fr); min-height: 68px; padding: 12px; }
+      .explicit-icon strong { display: block; font-size: 13px; overflow-wrap: anywhere; }
+      .explicit-icon small { color: var(--text-muted); display: block; font-size: 10px; margin-top: 2px; overflow-wrap: anywhere; }
       .footer-row { align-items: center; display: flex; gap: 20px; justify-content: space-between; margin-top: 24px; }
       .type-sample { color: var(--text-muted); font-size: 13px; }
       .type-sample strong { color: var(--text); font-size: 14px; }
@@ -42,12 +48,15 @@
         header, main { padding-left: 18px; padding-right: 18px; }
         .palette { grid-template-columns: repeat(3, 1fr); }
         .nodes { grid-template-columns: repeat(2, minmax(130px, 1fr)); }
+        .explicit-icons { grid-template-columns: repeat(3, minmax(0, 1fr)); }
         .theme-heading, .footer-row { align-items: flex-start; flex-direction: column; }
       }
       @media (max-width: 430px) {
         header { padding-top: 28px; }
         .theme { border-radius: 18px; padding: 18px; }
         .nodes { grid-template-columns: 1fr; }
+        .explicit-icons { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .explicit-icon { grid-template-columns: 24px minmax(0, 1fr); padding: 10px; }
       }
     </style>
   </head>
@@ -124,6 +133,32 @@
           nodes.append(node);
         }
         section.append(nodes);
+
+        const iconHeading = document.createElement("h3");
+        iconHeading.className = "section-title";
+        iconHeading.textContent = "Explicit icons";
+        section.append(iconHeading);
+
+        const explicitIcons = document.createElement("div");
+        explicitIcons.className = "explicit-icons";
+        const fallbackIconIds = new Set(Object.values(theme.nodeKindFallbacks).map((fallback) => fallback.fallbackIconId));
+        for (const icon of theme.icons.filter((entry) => !fallbackIconIds.has(entry.id))) {
+          const card = document.createElement("article");
+          card.className = "explicit-icon";
+          const iconContainer = document.createElement("div");
+          iconContainer.className = "icon";
+          iconContainer.setAttribute("aria-hidden", "true");
+          iconContainer.innerHTML = iconSvg(icon.asset.path);
+          const copy = document.createElement("div");
+          const label = document.createElement("strong");
+          label.textContent = icon.id;
+          const subject = document.createElement("small");
+          subject.textContent = icon.subject;
+          copy.append(label, subject);
+          card.append(iconContainer, copy);
+          explicitIcons.append(card);
+        }
+        section.append(explicitIcons);
 
         const footer = document.createElement("div");
         footer.className = "footer-row";

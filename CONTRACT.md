@@ -2,7 +2,7 @@
 
 ## Status
 
-This document defines the draft `1.0` catalog document shape. Catalog and package version `0.1.0` remain pre-1.0 and may change incompatibly before a stable release. Registry publication is outside this repository change.
+This document defines the draft `1.0` catalog document shape. Catalog and package version `0.2.0` remain pre-1.0 and may change incompatibly before a stable release. Registry publication is outside this repository change.
 
 The JSON Schema at [`schemas/catalog.schema.json`](./schemas/catalog.schema.json) is the machine-readable source of truth. [`catalog/catalog.json`](./catalog/catalog.json) is the only source catalog. Generated Cargo and npm copies must not be edited directly. The schema is copied into both packages; `$schema` is an editor-facing canonical repository URL and runtime consumers do not fetch it.
 
@@ -24,7 +24,7 @@ Theme identifiers use the Stack language identifier form. Active identifiers are
 
 `fallbacks.missingThemeId` must identify an active core theme. `fallbacks.missingIconId` must identify an icon present in every active theme with one stable subject. A renderer emits the applicable missing-resource diagnostic before selecting these records; fallback data does not hide the missing request.
 
-`catalogRevision` is generated metadata rather than a source field. It is a `sha256:` digest over the normalized source catalog followed by every referenced SVG path and byte sequence in path order. The revision therefore changes when semantic catalog data, provenance, or icon bytes change, without requiring a Git commit to contain its own commit identifier.
+`catalogRevision` is generated metadata rather than a source field. It is a `sha256:` digest over the normalized source catalog followed by every unique referenced SVG path and byte sequence in path order. The revision therefore changes when semantic catalog data, provenance, or icon bytes change, without requiring a Git commit to contain its own commit identifier.
 
 ## Theme records
 
@@ -53,7 +53,7 @@ Advances use integer font design units. `glyphAdvances` keys are uppercase Unico
 
 ## Icon metadata and provenance
 
-Icon identifiers are unique within one theme. Each icon requires `id`, a stable logical `subject`, and `asset`; `description` is optional. When the same icon identifier appears in multiple themes, its `subject` must be identical so theme switching cannot change its meaning.
+Icon identifiers are unique within one theme. Each icon requires `id`, a stable logical `subject`, and `asset`; `description` is optional. When the same icon identifier appears in multiple themes, its `subject` must be identical so theme switching cannot change its meaning. Themes may reference one shared asset path only when the logical icon identifier and complete asset metadata are identical; reusing a path for different or conflicting metadata is rejected.
 
 An icon asset requires a repository-relative SVG `path`, four-integer `viewBox`, and `provenance`. Provenance requires:
 
