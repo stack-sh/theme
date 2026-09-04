@@ -358,6 +358,76 @@ export async function validateCatalog(
   return catalog;
 }
 
+export async function validateProviderPack(
+  providerPack,
+  { root = repositoryRoot, validateAssets = true } = {},
+) {
+  const schema = await readJson(
+    path.join(repositoryRoot, "schemas/provider-pack.schema.json"),
+  );
+  const ajv = new Ajv2020({ allErrors: true, strict: true });
+  const validate = ajv.compile(schema);
+  if (!validate(providerPack)) {
+    const details = validate.errors
+      .map((error) => `${error.instancePath || "/"} ${error.message}`)
+      .join("; ");
+    fail(`provider pack schema validation failed: ${details}`);
+  }
+
+  const expectedPrefix = `${providerPack.provider.id}:`;
+  const iconIds = new Set();
+  const assetPaths = new Set();
+  for (const icon of providerPack.icons) {
+    if (!icon.id.startsWith(expectedPrefix)) {
+      fail(
+        `provider icon ${icon.id} must use the ${providerPack.provider.id} namespace`,
+      );
+    }
+    if (iconIds.has(icon.id)) {
+      fail(`duplicate provider icon id: ${icon.id}`);
+    }
+    iconIds.add(icon.id);
+
+    if (!icon.asset.path.startsWith("assets/")) {
+      fail(`provider icon asset must be under assets/: ${icon.asset.path}`);
+    }
+    if (assetPaths.has(icon.asset.path)) {
+      fail(`duplicate provider icon asset path: ${icon.asset.path}`);
+    }
+    assetPaths.add(icon.asset.path);
+
+    const hashesMatch =
+      icon.asset.originalSha256 === icon.asset.processedSha256;
+    if (icon.asset.transformations.length === 0 && !hashesMatch) {
+      fail(`provider icon ${icon.id} changed without a transformation record`);
+    }
+
+    if (validateAssets) {
+      const assetFile = resolveRepositoryPath(
+        root,
+        icon.asset.path,
+        "provider icon asset path",
+      );
+      await requireFile(assetFile, "provider icon asset");
+      if (path.extname(assetFile).toLowerCase() !== ".svg") {
+        fail(`provider icon asset must be an SVG file: ${icon.asset.path}`);
+      }
+      const assetBytes = await readFile(assetFile);
+      const digest = `sha256:${createHash("sha256").update(assetBytes).digest("hex")}`;
+      if (digest !== icon.asset.processedSha256) {
+        fail(`provider icon ${icon.id} processed hash does not match its asset`);
+      }
+      validateSvgText(
+        assetBytes.toString("utf8"),
+        icon.asset.path,
+        icon.asset.viewBox,
+      );
+    }
+  }
+
+  return providerPack;
+}
+
 export async function catalogRevision(catalog, root = repositoryRoot) {
   const hash = createHash("sha256");
   hash.update("stack-theme-catalog-v1\0");

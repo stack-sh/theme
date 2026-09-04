@@ -4,4 +4,5 @@ export {
   catalogVersion,
   iconAssets,
   iconSvg,
+  providerPackSchema,
 } from "./catalog.generated.js";

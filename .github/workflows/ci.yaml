@@ -68,6 +68,7 @@ jobs:
           test -s README.md
           test -s AGENTS.md
           test -s CONTRACT.md
+          test -s PROVIDER_PACKS.md
           test -s LICENSE
           test -s THIRD_PARTY_LICENSES.md
 

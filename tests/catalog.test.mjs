@@ -7,6 +7,7 @@ import {
   readJson,
   repositoryRoot,
   validateCatalog,
+  validateProviderPack,
   validateSvgText,
 } from "../scripts/catalog-lib.mjs";
 import {
@@ -15,6 +16,7 @@ import {
   catalogVersion,
   iconAssets,
   iconSvg,
+  providerPackSchema,
 } from "../packages/theme/index.js";
 
 test("the complete contract fixture is valid", async () => {
@@ -22,6 +24,69 @@ test("the complete contract fixture is valid", async () => {
     path.join(repositoryRoot, "tests/fixtures/catalog/valid.json"),
   );
   await validateCatalog(fixture);
+});
+
+const providerPackRoot = path.join(
+  repositoryRoot,
+  "tests/fixtures/provider-pack",
+);
+
+async function providerPackFixture() {
+  return readJson(path.join(providerPackRoot, "valid.json"));
+}
+
+test("the user-imported provider pack fixture is valid", async () => {
+  await validateProviderPack(await providerPackFixture(), {
+    root: providerPackRoot,
+  });
+});
+
+test("provider icon IDs must match the declared namespace", async () => {
+  const fixture = await providerPackFixture();
+  fixture.icons[0].id = "other:object-storage";
+  await assert.rejects(
+    validateProviderPack(fixture, {
+      root: providerPackRoot,
+      validateAssets: false,
+    }),
+    /must use the acme namespace/,
+  );
+});
+
+test("provider packs cannot enable package redistribution", async () => {
+  const fixture = await providerPackFixture();
+  fixture.rights.redistribution.npm = true;
+  await assert.rejects(
+    validateProviderPack(fixture, {
+      root: providerPackRoot,
+      validateAssets: false,
+    }),
+    /provider pack schema validation failed/,
+  );
+});
+
+test("provider assets require matching processed hashes", async () => {
+  const fixture = await providerPackFixture();
+  fixture.icons[0].asset.processedSha256 =
+    "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb";
+  fixture.icons[0].asset.transformations = ["normalize-xml"];
+  await assert.rejects(
+    validateProviderPack(fixture, { root: providerPackRoot }),
+    /processed hash does not match its asset/,
+  );
+});
+
+test("provider asset changes require a transformation record", async () => {
+  const fixture = await providerPackFixture();
+  fixture.icons[0].asset.originalSha256 =
+    "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc";
+  await assert.rejects(
+    validateProviderPack(fixture, {
+      root: providerPackRoot,
+      validateAssets: false,
+    }),
+    /changed without a transformation record/,
+  );
 });
 
 for (const [name, pattern] of [
@@ -257,6 +322,21 @@ test("Cargo and npm artifacts expose one semantic catalog revision", async () =>
   const npmSchema = await readJson(
     path.join(repositoryRoot, "packages/theme/schema/catalog.schema.json"),
   );
+  const sourceProviderPackSchema = await readJson(
+    path.join(repositoryRoot, "schemas/provider-pack.schema.json"),
+  );
+  const cargoProviderPackSchema = await readJson(
+    path.join(
+      repositoryRoot,
+      "crates/stack-theme/schema/provider-pack.schema.json",
+    ),
+  );
+  const npmProviderPackSchema = await readJson(
+    path.join(
+      repositoryRoot,
+      "packages/theme/schema/provider-pack.schema.json",
+    ),
+  );
   const metadata = await readJson(
     path.join(repositoryRoot, "packages/theme/catalog-metadata.json"),
   );
@@ -272,6 +352,9 @@ test("Cargo and npm artifacts expose one semantic catalog revision", async () =>
   assert.deepEqual(cargoCatalog, npmCatalog);
   assert.deepEqual(cargoSchema, sourceSchema);
   assert.deepEqual(cargoSchema, npmSchema);
+  assert.deepEqual(cargoProviderPackSchema, sourceProviderPackSchema);
+  assert.deepEqual(cargoProviderPackSchema, npmProviderPackSchema);
+  assert.deepEqual(providerPackSchema, sourceProviderPackSchema);
   assert.deepEqual(catalog, npmCatalog);
   assert.equal(catalogVersion, npmCatalog.catalogVersion);
   assert.equal(metadata.catalogVersion, catalogVersion);

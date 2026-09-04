@@ -2,7 +2,7 @@
 const catalogData = {
   "$schema": "https://raw.githubusercontent.com/stack-sh/theme/main/schemas/catalog.schema.json",
   "schemaVersion": "1.0",
-  "catalogVersion": "0.2.0",
+  "catalogVersion": "0.3.0",
   "reservedThemeIds": [],
   "fallbacks": {
     "missingThemeId": "default",
@@ -2273,6 +2273,406 @@ const catalogData = {
     }
   ]
 };
+const providerPackSchemaData = {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/stack-sh/theme/main/schemas/provider-pack.schema.json",
+  "title": "Stack user-imported provider icon pack",
+  "description": "A local provider icon pack produced from an archive explicitly selected by the user.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "packVersion",
+    "provider",
+    "distributionMode",
+    "source",
+    "rights",
+    "notice",
+    "icons"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "packVersion": {
+      "$ref": "#/$defs/semanticVersion"
+    },
+    "provider": {
+      "$ref": "#/$defs/provider"
+    },
+    "distributionMode": {
+      "const": "user-imported"
+    },
+    "source": {
+      "$ref": "#/$defs/source"
+    },
+    "rights": {
+      "$ref": "#/$defs/rights"
+    },
+    "notice": {
+      "$ref": "#/$defs/notice"
+    },
+    "icons": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 10000,
+      "items": {
+        "$ref": "#/$defs/icon"
+      }
+    }
+  },
+  "$defs": {
+    "semanticVersion": {
+      "type": "string",
+      "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z.-]+)?(\\+[0-9A-Za-z.-]+)?$"
+    },
+    "providerId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{1,31}$"
+    },
+    "namespacedIconId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{1,31}:[a-z0-9][a-z0-9-]{0,63}$"
+    },
+    "relativePath": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 320,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\u0000]+$"
+    },
+    "httpsUrl": {
+      "type": "string",
+      "pattern": "^https://[^\\s]+$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "date": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-(0[1-9]|1[0-2])-([0-2][0-9]|3[01])$"
+    },
+    "nonEmptyText": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "provider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/providerId"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pageUrl",
+        "archiveUrl",
+        "archiveSha256",
+        "release",
+        "retrievedAt",
+        "termsUrl",
+        "termsReviewedAt",
+        "reviewAfter",
+        "copyright",
+        "licenseId",
+        "archiveLicenseIncluded"
+      ],
+      "properties": {
+        "pageUrl": {
+          "$ref": "#/$defs/httpsUrl"
+        },
+        "archiveUrl": {
+          "$ref": "#/$defs/httpsUrl"
+        },
+        "archiveSha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "release": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "retrievedAt": {
+          "$ref": "#/$defs/date"
+        },
+        "termsUrl": {
+          "$ref": "#/$defs/httpsUrl"
+        },
+        "termsReviewedAt": {
+          "$ref": "#/$defs/date"
+        },
+        "reviewAfter": {
+          "$ref": "#/$defs/date"
+        },
+        "copyright": {
+          "$ref": "#/$defs/nonEmptyText"
+        },
+        "licenseId": {
+          "type": "string",
+          "pattern": "^LicenseRef-[A-Za-z0-9.-]+$"
+        },
+        "archiveLicenseIncluded": {
+          "type": "boolean"
+        }
+      }
+    },
+    "redistribution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cargo",
+        "npm",
+        "wasm",
+        "webAsset",
+        "nativeBinary",
+        "generatedOutput"
+      ],
+      "properties": {
+        "cargo": {
+          "const": false
+        },
+        "npm": {
+          "const": false
+        },
+        "wasm": {
+          "const": false
+        },
+        "webAsset": {
+          "const": false
+        },
+        "nativeBinary": {
+          "const": false
+        },
+        "generatedOutput": {
+          "const": true
+        }
+      }
+    },
+    "processing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "localOnly",
+        "automaticDownload",
+        "serverUpload",
+        "preserveColors",
+        "preserveGeometry",
+        "productNameNearby"
+      ],
+      "properties": {
+        "localOnly": {
+          "const": true
+        },
+        "automaticDownload": {
+          "const": false
+        },
+        "serverUpload": {
+          "const": false
+        },
+        "preserveColors": {
+          "const": true
+        },
+        "preserveGeometry": {
+          "const": true
+        },
+        "productNameNearby": {
+          "type": "boolean"
+        }
+      }
+    },
+    "rights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "termsAcceptanceRequired",
+        "permittedOutputs",
+        "redistribution",
+        "processing",
+        "modificationPolicy"
+      ],
+      "properties": {
+        "termsAcceptanceRequired": {
+          "const": true
+        },
+        "permittedOutputs": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "architecture-diagram",
+              "training-material",
+              "documentation",
+              "whitepaper",
+              "presentation",
+              "data-sheet",
+              "poster"
+            ]
+          }
+        },
+        "redistribution": {
+          "$ref": "#/$defs/redistribution"
+        },
+        "processing": {
+          "$ref": "#/$defs/processing"
+        },
+        "modificationPolicy": {
+          "const": "visual-preservation-only"
+        }
+      }
+    },
+    "notice": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "attribution",
+        "termsSummary",
+        "nonEndorsement"
+      ],
+      "properties": {
+        "attribution": {
+          "$ref": "#/$defs/nonEmptyText"
+        },
+        "termsSummary": {
+          "$ref": "#/$defs/nonEmptyText"
+        },
+        "nonEndorsement": {
+          "$ref": "#/$defs/nonEmptyText"
+        }
+      }
+    },
+    "nodeKind": {
+      "enum": [
+        "actor",
+        "client",
+        "service",
+        "function",
+        "worker",
+        "database",
+        "cache",
+        "queue",
+        "storage",
+        "external"
+      ]
+    },
+    "viewBox": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "integer"
+        },
+        {
+          "type": "integer",
+          "minimum": 1
+        },
+        {
+          "type": "integer",
+          "minimum": 1
+        }
+      ],
+      "items": false,
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "transformation": {
+      "enum": [
+        "remove-metadata",
+        "inline-styles",
+        "remove-unused-identifiers",
+        "normalize-xml"
+      ]
+    },
+    "iconAsset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "originalPath",
+        "viewBox",
+        "originalSha256",
+        "processedSha256",
+        "transformations"
+      ],
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/relativePath"
+        },
+        "originalPath": {
+          "$ref": "#/$defs/relativePath"
+        },
+        "viewBox": {
+          "$ref": "#/$defs/viewBox"
+        },
+        "originalSha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "processedSha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "transformations": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/transformation"
+          }
+        }
+      }
+    },
+    "icon": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "subject",
+        "productName",
+        "recommendedNodeKind",
+        "asset"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/namespacedIconId"
+        },
+        "subject": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "productName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "recommendedNodeKind": {
+          "$ref": "#/$defs/nodeKind"
+        },
+        "asset": {
+          "$ref": "#/$defs/iconAsset"
+        }
+      }
+    }
+  }
+};
 const iconAssetsData = {
   "assets/core/api.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
   "assets/core/cloud.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"M7 19h11a4 4 0 0 0 .5-8 7 7 0 0 0-13.3-1.8A5 5 0 0 0 7 19Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
@@ -2329,8 +2729,9 @@ function deepFreeze(value) {
 }
 
 export const catalog = deepFreeze(catalogData);
-export const catalogVersion = "0.2.0";
-export const catalogRevision = "sha256:d3a8a5a9d2100e496af3fd7adf389788f4a77508bf749a108183a2abf8f681e1";
+export const providerPackSchema = deepFreeze(providerPackSchemaData);
+export const catalogVersion = "0.3.0";
+export const catalogRevision = "sha256:e4eaad0813fcfef4a203e861909ff38833270646f9097155974c7c92108c5b1e";
 export const iconAssets = deepFreeze(iconAssetsData);
 export function iconSvg(assetPath) {
   return iconAssets[assetPath];
