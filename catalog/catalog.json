@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/stack-sh/theme/main/schemas/catalog.schema.json",
   "schemaVersion": "1.0",
-  "catalogVersion": "0.2.0",
+  "catalogVersion": "0.3.0",
   "reservedThemeIds": [],
   "fallbacks": {
     "missingThemeId": "default",

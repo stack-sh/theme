@@ -1,6 +1,11 @@
 import path from "node:path";
 
-import { readJson, repositoryRoot, validateCatalog } from "./catalog-lib.mjs";
+import {
+  readJson,
+  repositoryRoot,
+  validateCatalog,
+  validateProviderPack,
+} from "./catalog-lib.mjs";
 
 const catalogs = [
   {
@@ -15,3 +20,13 @@ for (const entry of catalogs) {
   await validateCatalog(catalog, { requiredThemeIds: entry.requiredThemeIds });
   console.log(`validated ${entry.path}`);
 }
+
+const providerPackRoot = path.join(
+  repositoryRoot,
+  "tests/fixtures/provider-pack",
+);
+await validateProviderPack(
+  await readJson(path.join(providerPackRoot, "valid.json")),
+  { root: providerPackRoot },
+);
+console.log("validated tests/fixtures/provider-pack/valid.json");

@@ -16,6 +16,7 @@ pub use generated::{CATALOG_REVISION, CATALOG_VERSION};
 
 const CATALOG_JSON: &str = include_str!("generated/catalog.json");
 const CATALOG_SCHEMA_JSON: &str = include_str!("../schema/catalog.schema.json");
+const PROVIDER_PACK_SCHEMA_JSON: &str = include_str!("../schema/provider-pack.schema.json");
 static CATALOG: OnceLock<Catalog> = OnceLock::new();
 
 /// Returns the embedded catalog parsed into the public Rust contract.
@@ -36,6 +37,12 @@ pub const fn catalog_json() -> &'static str {
 #[must_use]
 pub const fn catalog_schema_json() -> &'static str {
     CATALOG_SCHEMA_JSON
+}
+
+/// Returns the JSON Schema for local user-imported provider icon packs.
+#[must_use]
+pub const fn provider_pack_schema_json() -> &'static str {
+    PROVIDER_PACK_SCHEMA_JSON
 }
 
 /// Returns one validated SVG asset by its catalog path.
@@ -280,6 +287,167 @@ pub struct Redistribution {
     pub commercial_applications: bool,
 }
 
+/// A local provider icon pack produced from an archive selected by the user.
+#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ProviderPack {
+    #[serde(rename = "$schema")]
+    pub schema: String,
+    pub schema_version: String,
+    pub pack_version: String,
+    pub provider: ProviderPackIdentity,
+    pub distribution_mode: ProviderPackDistributionMode,
+    pub source: ProviderPackSource,
+    pub rights: ProviderPackRights,
+    pub notice: ProviderPackNotice,
+    pub icons: Vec<ProviderIcon>,
+}
+
+/// Stable provider namespace and display name.
+#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ProviderPackIdentity {
+    pub id: String,
+    pub name: String,
+}
+
+/// Provider packs are always supplied through an explicit local import.
+#[derive(Clone, Copy, Debug, Deserialize, Eq, PartialEq, Serialize)]
+#[serde(rename_all = "kebab-case")]
+pub enum ProviderPackDistributionMode {
+    UserImported,
+}
+
+/// Immutable provenance for the official source archive and reviewed terms.
+#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ProviderPackSource {
+    pub page_url: String,
+    pub archive_url: String,
+    pub archive_sha256: String,
+    pub release: String,
+    pub retrieved_at: String,
+    pub terms_url: String,
+    pub terms_reviewed_at: String,
+    pub review_after: String,
+    pub copyright: String,
+    pub license_id: String,
+    pub archive_license_included: bool,
+}
+
+/// Provider-specific usage boundary retained with every imported pack.
+#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ProviderPackRights {
+    pub terms_acceptance_required: bool,
+    pub permitted_outputs: Vec<ProviderPackPermittedOutput>,
+    pub redistribution: ProviderPackRedistribution,
+    pub processing: ProviderPackProcessing,
+    pub modification_policy: ProviderPackModificationPolicy,
+}
+
+/// Output categories copied from the provider's reviewed terms.
+#[derive(Clone, Copy, Debug, Deserialize, Eq, PartialEq, Serialize)]
+#[serde(rename_all = "kebab-case")]
+pub enum ProviderPackPermittedOutput {
+    ArchitectureDiagram,
+    TrainingMaterial,
+    Documentation,
+    Whitepaper,
+    Presentation,
+    DataSheet,
+    Poster,
+}
+
+/// Asset redistribution switches fixed by the user-imported contract.
+#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ProviderPackRedistribution {
+    pub cargo: bool,
+    pub npm: bool,
+    pub wasm: bool,
+    pub web_asset: bool,
+    pub native_binary: bool,
+    pub generated_output: bool,
+}
+
+/// Local processing and artwork-preservation requirements.
+#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ProviderPackProcessing {
+    pub local_only: bool,
+    pub automatic_download: bool,
+    pub server_upload: bool,
+    pub preserve_colors: bool,
+    pub preserve_geometry: bool,
+    pub product_name_nearby: bool,
+}
+
+/// The only modification policy supported by the provider-pack schema.
+#[derive(Clone, Copy, Debug, Deserialize, Eq, PartialEq, Serialize)]
+#[serde(rename_all = "kebab-case")]
+pub enum ProviderPackModificationPolicy {
+    VisualPreservationOnly,
+}
+
+/// User-visible source, terms, and non-endorsement text.
+#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ProviderPackNotice {
+    pub attribution: String,
+    pub terms_summary: String,
+    pub non_endorsement: String,
+}
+
+/// One namespaced product icon and its locally processed safe SVG.
+#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ProviderIcon {
+    pub id: String,
+    pub subject: String,
+    pub product_name: String,
+    pub recommended_node_kind: ProviderNodeKind,
+    pub asset: ProviderIconAsset,
+}
+
+/// Stack node-kind recommendation attached without changing node semantics.
+#[derive(Clone, Copy, Debug, Deserialize, Eq, PartialEq, Serialize)]
+#[serde(rename_all = "kebab-case")]
+pub enum ProviderNodeKind {
+    Actor,
+    Client,
+    Service,
+    Function,
+    Worker,
+    Database,
+    Cache,
+    Queue,
+    Storage,
+    External,
+}
+
+/// Original and processed identities for one local SVG file.
+#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ProviderIconAsset {
+    pub path: String,
+    pub original_path: String,
+    pub view_box: [i32; 4],
+    pub original_sha256: String,
+    pub processed_sha256: String,
+    pub transformations: Vec<ProviderPackTransformation>,
+}
+
+/// Auditable, visual-preservation-only transformations applied during import.
+#[derive(Clone, Copy, Debug, Deserialize, Eq, PartialEq, Serialize)]
+#[serde(rename_all = "kebab-case")]
+pub enum ProviderPackTransformation {
+    RemoveMetadata,
+    InlineStyles,
+    RemoveUnusedIdentifiers,
+    NormalizeXml,
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -321,6 +489,12 @@ mod tests {
         assert_eq!(
             schema["$schema"],
             "https://json-schema.org/draft/2020-12/schema"
+        );
+        let provider_schema: serde_json::Value =
+            serde_json::from_str(provider_pack_schema_json()).unwrap();
+        assert_eq!(
+            provider_schema["$id"],
+            "https://raw.githubusercontent.com/stack-sh/theme/main/schemas/provider-pack.schema.json"
         );
     }
 }

@@ -2,7 +2,7 @@
 
 ## Status
 
-This document defines the draft `1.0` catalog document shape. Catalog and package version `0.2.0` remain pre-1.0 and may change incompatibly before a stable release. Registry publication is outside this repository change.
+This document defines the draft `1.0` core catalog document shape. Catalog and package version `0.3.0` remain pre-1.0 and may change incompatibly before a stable release. Registry publication is outside this repository change. User-imported provider packs use the separate contract in [`PROVIDER_PACKS.md`](./PROVIDER_PACKS.md); their custom-term assets never enter this core catalog.
 
 The JSON Schema at [`schemas/catalog.schema.json`](./schemas/catalog.schema.json) is the machine-readable source of truth. [`catalog/catalog.json`](./catalog/catalog.json) is the only source catalog. Generated Cargo and npm copies must not be edited directly. The schema is copied into both packages; `$schema` is an editor-facing canonical repository URL and runtime consumers do not fetch it.
 
@@ -69,7 +69,7 @@ SVG validation uses an element and attribute allowlist. It rejects scripts, even
 
 ## Cargo and npm boundary
 
-Cargo `stack-theme` exposes typed Rust records, `catalog()`, `catalog_json()`, `catalog_schema_json()`, `icon_svg()`, `CATALOG_VERSION`, and `CATALOG_REVISION`. npm `@stack-sh/theme` exposes the equivalent frozen `catalog`, `iconAssets`, `iconSvg()`, `catalogVersion`, and `catalogRevision`, plus TypeScript declarations and catalog, metadata, and schema JSON subpath exports. Referenced SVG and license files are copied into both package roots; SVG bytes are also embedded behind the Rust and JavaScript accessors so runtime consumers never resolve catalog paths through the host.
+Cargo `stack-theme` exposes typed Rust records, `catalog()`, `catalog_json()`, `catalog_schema_json()`, `provider_pack_schema_json()`, `icon_svg()`, `CATALOG_VERSION`, and `CATALOG_REVISION`. npm `@stack-sh/theme` exposes the equivalent frozen `catalog`, `providerPackSchema`, `iconAssets`, `iconSvg()`, `catalogVersion`, and `catalogRevision`, plus TypeScript declarations and both schema JSON subpath exports. Referenced core SVG and license files are copied into both package roots; core SVG bytes are also embedded behind the Rust and JavaScript accessors so runtime consumers never resolve catalog paths through the host. Provider-pack asset bytes are supplied by the user and are not embedded.
 
 `npm run generate` validates the source catalog, checks package version equality, computes one revision, and updates both package artifacts. `npm run generate:check` fails when a generated artifact is missing or stale. Generated package data is checked into Git so Cargo and npm builds do not need network, filesystem discovery, Git, a clock, locale, or host font measurement at runtime.
 

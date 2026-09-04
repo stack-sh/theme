@@ -1,0 +1,68 @@
+{
+  "$schema": "https://raw.githubusercontent.com/stack-sh/theme/main/schemas/provider-pack.schema.json",
+  "schemaVersion": "1.0",
+  "packVersion": "0.1.0",
+  "provider": {
+    "id": "acme",
+    "name": "Acme Cloud"
+  },
+  "distributionMode": "user-imported",
+  "source": {
+    "pageUrl": "https://example.com/acme/icons",
+    "archiveUrl": "https://example.com/acme/icons.zip",
+    "archiveSha256": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "release": "fixture-1",
+    "retrievedAt": "2026-09-04",
+    "termsUrl": "https://example.com/acme/icon-terms",
+    "termsReviewedAt": "2026-09-04",
+    "reviewAfter": "2026-12-03",
+    "copyright": "Copyright 2026 Acme Cloud",
+    "licenseId": "LicenseRef-Acme-Cloud-Icons",
+    "archiveLicenseIncluded": false
+  },
+  "rights": {
+    "termsAcceptanceRequired": true,
+    "permittedOutputs": [
+      "architecture-diagram",
+      "documentation"
+    ],
+    "redistribution": {
+      "cargo": false,
+      "npm": false,
+      "wasm": false,
+      "webAsset": false,
+      "nativeBinary": false,
+      "generatedOutput": true
+    },
+    "processing": {
+      "localOnly": true,
+      "automaticDownload": false,
+      "serverUpload": false,
+      "preserveColors": true,
+      "preserveGeometry": true,
+      "productNameNearby": true
+    },
+    "modificationPolicy": "visual-preservation-only"
+  },
+  "notice": {
+    "attribution": "Acme Cloud icons are owned by Acme Cloud.",
+    "termsSummary": "Use is limited to architecture diagrams and documentation.",
+    "nonEndorsement": "Acme Cloud does not sponsor or endorse this diagram or Stack."
+  },
+  "icons": [
+    {
+      "id": "acme:object-storage",
+      "subject": "Object storage service",
+      "productName": "Acme Object Storage",
+      "recommendedNodeKind": "storage",
+      "asset": {
+        "path": "assets/example.svg",
+        "originalPath": "Official Icons/Acme Object Storage.svg",
+        "viewBox": [0, 0, 24, 24],
+        "originalSha256": "sha256:bb77c20b241b47db4ca268ebee418f0f74e19bdb1a2c2e2fa271b7f65c2d447d",
+        "processedSha256": "sha256:bb77c20b241b47db4ca268ebee418f0f74e19bdb1a2c2e2fa271b7f65c2d447d",
+        "transformations": []
+      }
+    }
+  ]
+}
