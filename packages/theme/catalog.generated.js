@@ -4168,6 +4168,12 @@ const providerPackSchemaData = {
           "minLength": 1,
           "maxLength": 160
         },
+        "brandSourceUrl": {
+          "$ref": "#/$defs/httpsUrl"
+        },
+        "brandGuidelinesUrl": {
+          "$ref": "#/$defs/httpsUrl"
+        },
         "recommendedNodeKind": {
           "$ref": "#/$defs/nodeKind"
         },

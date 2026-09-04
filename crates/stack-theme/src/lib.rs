@@ -417,6 +417,10 @@ pub struct ProviderIcon {
     pub id: String,
     pub subject: String,
     pub product_name: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub brand_source_url: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub brand_guidelines_url: Option<String>,
     pub recommended_node_kind: ProviderNodeKind,
     pub asset: ProviderIconAsset,
 }
@@ -523,6 +527,10 @@ mod tests {
         assert_eq!(
             pack.icons[0].asset.source_id.as_deref(),
             Some("categories")
+        );
+        assert_eq!(
+            pack.icons[0].brand_guidelines_url.as_deref(),
+            Some("https://example.com/acme/brand-guidelines")
         );
         assert_eq!(
             serde_json::to_value(&pack).unwrap(),

@@ -237,6 +237,8 @@ export interface ProviderIcon {
   readonly id: `${string}:${string}`;
   readonly subject: string;
   readonly productName: string;
+  readonly brandSourceUrl?: `https://${string}`;
+  readonly brandGuidelinesUrl?: `https://${string}`;
   readonly recommendedNodeKind: keyof NodeKindFallbacks;
   readonly asset: ProviderIconAsset;
 }

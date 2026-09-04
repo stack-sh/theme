@@ -67,6 +67,8 @@
       "id": "acme:object-storage",
       "subject": "Object storage service",
       "productName": "Acme Object Storage",
+      "brandSourceUrl": "https://example.com/acme/storage",
+      "brandGuidelinesUrl": "https://example.com/acme/brand-guidelines",
       "recommendedNodeKind": "storage",
       "asset": {
         "sourceId": "categories",

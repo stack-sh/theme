@@ -20,11 +20,11 @@ Every manifest requires:
 
 The schema records `archiveUrl` as provenance. It is not permission for a runtime consumer to fetch the URL. Import remains an explicit user-selected local operation.
 
-Version `1.1` additionally supports `additionalSources` for a provider catalog split across more than one official archive. Each additional source has a stable pack-local `id` and the same immutable provenance fields as the primary `source`. An icon from an additional archive records that `id` in `asset.sourceId`; omitting `sourceId` means the primary source. Source IDs must be unique and every reference must resolve. Version `1.0` single-source packs remain valid without changes.
+Version `1.1` additionally supports `additionalSources` for a provider catalog split across more than one official archive. Each additional source has a stable pack-local `id` and the same immutable provenance fields as the primary `source`. An icon from an additional archive records that `id` in `asset.sourceId`; omitting `sourceId` means the primary source. Source IDs must be unique and every reference must resolve. Optional `brandSourceUrl` and `brandGuidelinesUrl` fields preserve the rights-owner references for a curated multi-brand archive. Version `1.0` single-source packs remain valid without changes.
 
 ## Icon records
 
-An icon ID has the form `<provider>:<slug>`, such as `aws:s3`, `gcp:cloud-run`, or `azure:storage-accounts`. The prefix must equal `provider.id`. Each icon preserves a stable subject, official product name, recommended Stack node kind, source reference, upstream archive path, processed local SVG path, integer view box, original and processed SHA-256 hashes, and an ordered transformation log.
+An icon ID has the form `<provider>:<slug>`, such as `aws:s3`, `gcp:cloud-run`, or `azure:storage-accounts`. The prefix must equal `provider.id`. Each icon preserves a stable subject, official product name, recommended Stack node kind, source reference, optional brand source and guideline URLs, upstream archive path, processed local SVG path, integer view box, original and processed SHA-256 hashes, and an ordered transformation log.
 
 The importer may perform only visual-preservation transformations needed for safe standalone SVG, such as removing metadata, converting stylesheet declarations to equivalent presentation attributes, removing unused identifiers, namespacing referenced gradient identifiers to prevent collisions, or normalizing XML. Recoloring, cropping, flipping, rotation, distortion, product substitution, or aspect-ratio changes are outside the contract.
 

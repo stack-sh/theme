@@ -311,6 +311,8 @@
           "minLength": 1,
           "maxLength": 160
         },
+        "brandSourceUrl": { "$ref": "#/$defs/httpsUrl" },
+        "brandGuidelinesUrl": { "$ref": "#/$defs/httpsUrl" },
         "recommendedNodeKind": { "$ref": "#/$defs/nodeKind" },
         "asset": { "$ref": "#/$defs/iconAsset" }
       }
