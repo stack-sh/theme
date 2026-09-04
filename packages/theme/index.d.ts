@@ -167,11 +167,12 @@ export type ProviderPackTransformation =
 
 export interface ProviderPack {
   readonly $schema: string;
-  readonly schemaVersion: "1.0";
+  readonly schemaVersion: "1.0" | "1.1";
   readonly packVersion: string;
   readonly provider: ProviderPackIdentity;
   readonly distributionMode: ProviderPackDistributionMode;
   readonly source: ProviderPackSource;
+  readonly additionalSources?: readonly ProviderPackAdditionalSource[];
   readonly rights: ProviderPackRights;
   readonly notice: ProviderPackNotice;
   readonly icons: readonly ProviderIcon[];
@@ -194,6 +195,10 @@ export interface ProviderPackSource {
   readonly copyright: string;
   readonly licenseId: `LicenseRef-${string}`;
   readonly archiveLicenseIncluded: boolean;
+}
+
+export interface ProviderPackAdditionalSource extends ProviderPackSource {
+  readonly id: string;
 }
 
 export interface ProviderPackRights {
@@ -237,6 +242,7 @@ export interface ProviderIcon {
 }
 
 export interface ProviderIconAsset {
+  readonly sourceId?: string;
   readonly path: string;
   readonly originalPath: string;
   readonly viewBox: readonly [number, number, number, number];
