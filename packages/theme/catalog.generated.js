@@ -2600,6 +2600,7 @@ const providerPackSchemaData = {
         "remove-metadata",
         "inline-styles",
         "remove-unused-identifiers",
+        "namespace-identifiers",
         "normalize-xml"
       ]
     },

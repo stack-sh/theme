@@ -24,9 +24,9 @@ The schema records `archiveUrl` as provenance. It is not permission for a runtim
 
 An icon ID has the form `<provider>:<slug>`, such as `aws:s3`, `gcp:cloud-run`, or `azure:storage-accounts`. The prefix must equal `provider.id`. Each icon preserves a stable subject, official product name, recommended Stack node kind, upstream archive path, processed local SVG path, integer view box, original and processed SHA-256 hashes, and an ordered transformation log.
 
-The importer may perform only visual-preservation transformations needed for safe standalone SVG, such as removing metadata, converting stylesheet declarations to equivalent presentation attributes, removing unused identifiers, or normalizing XML. Recoloring, cropping, flipping, rotation, distortion, product substitution, or aspect-ratio changes are outside the contract.
+The importer may perform only visual-preservation transformations needed for safe standalone SVG, such as removing metadata, converting stylesheet declarations to equivalent presentation attributes, removing unused identifiers, namespacing referenced gradient identifiers to prevent collisions, or normalizing XML. Recoloring, cropping, flipping, rotation, distortion, product substitution, or aspect-ratio changes are outside the contract.
 
-An empty transformation list requires identical original and processed hashes. A changed hash requires at least one declared transformation. The processed SVG must pass the same script, event-handler, external-reference, executable URL, and viewport safety checks as core assets.
+An empty transformation list requires identical original and processed hashes. A changed hash requires at least one declared transformation. The processed SVG must pass the same script, event-handler, external-reference, executable URL, and viewport safety checks as core assets. Gradients may use only locally declared, `stack-`-namespaced identifiers; stylesheets and external references remain forbidden.
 
 ## Terms and output
 

@@ -445,6 +445,7 @@ pub enum ProviderPackTransformation {
     RemoveMetadata,
     InlineStyles,
     RemoveUnusedIdentifiers,
+    NamespaceIdentifiers,
     NormalizeXml,
 }
 

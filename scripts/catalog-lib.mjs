@@ -14,16 +14,22 @@ export const repositoryRoot = path.resolve(
 const allowedElements = new Set([
   "circle",
   "desc",
+  "defs",
   "ellipse",
   "g",
   "line",
+  "linearGradient",
   "path",
   "polygon",
   "polyline",
+  "radialGradient",
   "rect",
+  "stop",
   "svg",
   "title",
 ]);
+
+const gradientElements = new Set(["linearGradient", "radialGradient"]);
 
 const allowedAttributes = new Set([
   "aria-hidden",
@@ -34,7 +40,9 @@ const allowedAttributes = new Set([
   "fill",
   "fill-rule",
   "height",
+  "id",
   "opacity",
+  "offset",
   "points",
   "r",
   "role",
@@ -44,7 +52,11 @@ const allowedAttributes = new Set([
   "stroke-linecap",
   "stroke-linejoin",
   "stroke-width",
+  "stop-color",
+  "stop-opacity",
   "transform",
+  "gradientTransform",
+  "gradientUnits",
   "viewBox",
   "width",
   "x",
@@ -106,7 +118,14 @@ async function requireFile(filePath, label) {
   }
 }
 
-function validateAttribute(element, name, value, assetPath) {
+function validateAttribute(
+  element,
+  name,
+  value,
+  assetPath,
+  declaredIdentifiers,
+  referencedIdentifiers,
+) {
   if (/^on/i.test(name)) {
     fail(`${assetPath}: event handler attribute ${name} is forbidden`);
   }
@@ -122,6 +141,27 @@ function validateAttribute(element, name, value, assetPath) {
     }
     return;
   }
+  if (name === "id") {
+    if (!gradientElements.has(element)) {
+      fail(`${assetPath}: only gradient elements may declare identifiers`);
+    }
+    if (!/^stack-[a-z0-9][a-z0-9-]{0,126}$/.test(value)) {
+      fail(`${assetPath}: gradient identifier must use the stack- namespace`);
+    }
+    if (declaredIdentifiers.has(value)) {
+      fail(`${assetPath}: duplicate identifier ${value}`);
+    }
+    declaredIdentifiers.add(value);
+    return;
+  }
+  if (/url\s*\(/i.test(value)) {
+    const localReference = value.match(/^url\(#(stack-[a-z0-9][a-z0-9-]{0,126})\)$/);
+    if ((name !== "fill" && name !== "stroke") || localReference === null) {
+      fail(`${assetPath}: external or executable reference in ${name} is forbidden`);
+    }
+    referencedIdentifiers.add(localReference[1]);
+    return;
+  }
   if (/url\s*\(|javascript:|data:|https?:\/\/|\/\//i.test(value)) {
     fail(`${assetPath}: external or executable reference in ${name} is forbidden`);
   }
@@ -134,6 +174,8 @@ export function validateSvgText(svg, assetPath, expectedViewBox) {
 
   const parser = new SaxesParser({ xmlns: false });
   const elementStack = [];
+  const declaredIdentifiers = new Set();
+  const referencedIdentifiers = new Set();
   let rootCount = 0;
   let rootNamespace;
   let rootViewBox;
@@ -153,8 +195,28 @@ export function validateSvgText(svg, assetPath, expectedViewBox) {
     } else if (tag.name === "svg") {
       fail(`${assetPath}: nested svg elements are forbidden`);
     }
+    const parent = elementStack.at(-1);
+    if (tag.name === "defs" && parent !== "svg") {
+      fail(`${assetPath}: defs must be a direct child of svg`);
+    }
+    if (gradientElements.has(tag.name) && parent !== "defs") {
+      fail(`${assetPath}: gradient elements must be direct children of defs`);
+    }
+    if (tag.name === "stop" && !gradientElements.has(parent)) {
+      fail(`${assetPath}: stop must be a direct child of a gradient`);
+    }
+    if (parent === "defs" && !gradientElements.has(tag.name)) {
+      fail(`${assetPath}: defs may contain only gradients`);
+    }
     for (const [name, value] of Object.entries(tag.attributes)) {
-      validateAttribute(tag.name, name, value, assetPath);
+      validateAttribute(
+        tag.name,
+        name,
+        value,
+        assetPath,
+        declaredIdentifiers,
+        referencedIdentifiers,
+      );
     }
     elementStack.push(tag.name);
   });
@@ -187,6 +249,16 @@ export function validateSvgText(svg, assetPath, expectedViewBox) {
   }
   if (rootNamespace !== "http://www.w3.org/2000/svg") {
     fail(`${assetPath}: root must declare the canonical SVG namespace`);
+  }
+  for (const identifier of referencedIdentifiers) {
+    if (!declaredIdentifiers.has(identifier)) {
+      fail(`${assetPath}: local reference ${identifier} is not declared`);
+    }
+  }
+  for (const identifier of declaredIdentifiers) {
+    if (!referencedIdentifiers.has(identifier)) {
+      fail(`${assetPath}: identifier ${identifier} is unused`);
+    }
   }
 
   const actualViewBox = rootViewBox
