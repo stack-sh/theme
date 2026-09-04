@@ -163,6 +163,7 @@ export type ProviderPackTransformation =
   | "inline-styles"
   | "remove-unused-identifiers"
   | "namespace-identifiers"
+  | "scale-view-box-to-integers"
   | "normalize-xml";
 
 export interface ProviderPack {

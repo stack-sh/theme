@@ -463,6 +463,7 @@ pub enum ProviderPackTransformation {
     InlineStyles,
     RemoveUnusedIdentifiers,
     NamespaceIdentifiers,
+    ScaleViewBoxToIntegers,
     NormalizeXml,
 }
 
@@ -524,10 +525,7 @@ mod tests {
         assert_eq!(pack.schema_version, "1.1");
         assert_eq!(pack.additional_sources.len(), 1);
         assert_eq!(pack.additional_sources[0].id, "categories");
-        assert_eq!(
-            pack.icons[0].asset.source_id.as_deref(),
-            Some("categories")
-        );
+        assert_eq!(pack.icons[0].asset.source_id.as_deref(), Some("categories"));
         assert_eq!(
             pack.icons[0].brand_guidelines_url.as_deref(),
             Some("https://example.com/acme/brand-guidelines")
