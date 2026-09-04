@@ -89,6 +89,38 @@ test("provider asset changes require a transformation record", async () => {
   );
 });
 
+test("safe namespaced local gradients are accepted", () => {
+  validateSvgText(
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><linearGradient id="stack-acme-object-storage-gradient" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient></defs><path d="M0 0h24v24H0z" fill="url(#stack-acme-object-storage-gradient)"/></svg>',
+    "safe-local-gradient.svg",
+    [0, 0, 24, 24],
+  );
+});
+
+test("undeclared local gradients are rejected", () => {
+  assert.throws(
+    () =>
+      validateSvgText(
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="url(#stack-missing)"/></svg>',
+        "missing-local-gradient.svg",
+        [0, 0, 24, 24],
+      ),
+    /local reference stack-missing is not declared/,
+  );
+});
+
+test("stylesheets remain forbidden in provider SVG", () => {
+  assert.throws(
+    () =>
+      validateSvgText(
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><style>.icon { fill: red }</style><path class="icon" d="M0 0h24v24H0z"/></svg>',
+        "stylesheet.svg",
+        [0, 0, 24, 24],
+      ),
+    /element style is not allowed/,
+  );
+});
+
 for (const [name, pattern] of [
   ["unsafe-script.svg", /element script is not allowed/],
   ["unsafe-event.svg", /event handler attribute onload is forbidden/],

@@ -162,6 +162,7 @@ export type ProviderPackTransformation =
   | "remove-metadata"
   | "inline-styles"
   | "remove-unused-identifiers"
+  | "namespace-identifiers"
   | "normalize-xml";
 
 export interface ProviderPack {
