@@ -35,10 +35,39 @@ async function providerPackFixture() {
   return readJson(path.join(providerPackRoot, "valid.json"));
 }
 
+async function multiSourceProviderPackFixture() {
+  return readJson(path.join(providerPackRoot, "multi-source.json"));
+}
+
 test("the user-imported provider pack fixture is valid", async () => {
   await validateProviderPack(await providerPackFixture(), {
     root: providerPackRoot,
   });
+});
+
+test("multi-source packs require unique declared source references", async () => {
+  const valid = await multiSourceProviderPackFixture();
+  await validateProviderPack(valid, { root: providerPackRoot });
+
+  const duplicate = structuredClone(valid);
+  duplicate.additionalSources.push(structuredClone(duplicate.additionalSources[0]));
+  await assert.rejects(
+    validateProviderPack(duplicate, {
+      root: providerPackRoot,
+      validateAssets: false,
+    }),
+    /duplicate provider pack source id/,
+  );
+
+  const unknown = structuredClone(valid);
+  unknown.icons[0].asset.sourceId = "unknown";
+  await assert.rejects(
+    validateProviderPack(unknown, {
+      root: providerPackRoot,
+      validateAssets: false,
+    }),
+    /references unknown source unknown/,
+  );
 });
 
 test("provider icon IDs must match the declared namespace", async () => {

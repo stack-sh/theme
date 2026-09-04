@@ -2,7 +2,7 @@
 
 ## Status and boundary
 
-This document defines the draft `1.0` manifest for provider icons that a user imports from an official archive. It is separate from the core theme catalog because current AWS, Google Cloud, and Azure terms permit architecture-diagram use but do not provide a clear license for Stack to redistribute the asset bytes in Cargo, npm, Web, WebAssembly, or native binary packages.
+This document defines the backward-compatible `1.0` and `1.1` manifests for provider icons that a user imports from official archives. It is separate from the core theme catalog because current vendor terms may permit diagram use without providing a clear license for Stack to redistribute the asset bytes in Cargo, npm, Web, WebAssembly, or native binary packages.
 
 The Stack repository and packages contain only the Apache-2.0 manifest schema, types, and validation logic. They never contain, mirror, proxy, automatically download, or upload provider asset bytes. A host application must ask the user to select a local archive and accept the linked provider terms before creating a pack.
 
@@ -13,20 +13,22 @@ Every manifest requires:
 - `schemaVersion` and a semantically versioned `packVersion`;
 - one lowercase provider `id`, human-readable name, and matching icon namespace;
 - `distributionMode: "user-imported"`;
-- the official source page, archive URL, archive SHA-256, upstream release, retrieval date, terms URL, terms-review date, copyright statement, and `LicenseRef-*` identifier;
+- the primary official source page, archive URL, archive SHA-256, upstream release, retrieval date, terms URL, terms-review date, copyright statement, and `LicenseRef-*` identifier;
 - a rights record that fixes package redistribution, automatic download, and server upload to `false`, generated diagram embedding to `true`, and artwork preservation to `true`;
 - user-visible attribution, terms summary, and non-endorsement notice;
 - one or more provider-prefixed icon records.
 
 The schema records `archiveUrl` as provenance. It is not permission for a runtime consumer to fetch the URL. Import remains an explicit user-selected local operation.
 
+Version `1.1` additionally supports `additionalSources` for a provider catalog split across more than one official archive. Each additional source has a stable pack-local `id` and the same immutable provenance fields as the primary `source`. An icon from an additional archive records that `id` in `asset.sourceId`; omitting `sourceId` means the primary source. Source IDs must be unique and every reference must resolve. Optional `brandSourceUrl` and `brandGuidelinesUrl` fields preserve the rights-owner references for a curated multi-brand archive. Version `1.0` single-source packs remain valid without changes.
+
 ## Icon records
 
-An icon ID has the form `<provider>:<slug>`, such as `aws:s3`, `gcp:cloud-run`, or `azure:storage-accounts`. The prefix must equal `provider.id`. Each icon preserves a stable subject, official product name, recommended Stack node kind, upstream archive path, processed local SVG path, integer view box, original and processed SHA-256 hashes, and an ordered transformation log.
+An icon ID has the form `<provider>:<slug>`, such as `aws:s3`, `gcp:cloud-run`, or `azure:storage-accounts`. The prefix must equal `provider.id`. Each icon preserves a stable subject, official product name, recommended Stack node kind, source reference, optional brand source and guideline URLs, upstream archive path, processed local SVG path, integer view box, original and processed SHA-256 hashes, and an ordered transformation log.
 
-The importer may perform only visual-preservation transformations needed for safe standalone SVG, such as removing metadata, converting stylesheet declarations to equivalent presentation attributes, removing unused identifiers, namespacing referenced gradient identifiers to prevent collisions, or normalizing XML. Recoloring, cropping, flipping, rotation, distortion, product substitution, or aspect-ratio changes are outside the contract.
+The importer may perform only visual-preservation transformations needed for safe standalone SVG, such as removing metadata, converting stylesheet declarations to equivalent presentation attributes, removing unused identifiers, namespacing referenced local resource identifiers to prevent collisions, scaling a finite decimal view box and all coordinates by the same power of ten to obtain the contract's integer view box, or normalizing XML. Recoloring, cropping, flipping, rotation, distortion, product substitution, or aspect-ratio changes are outside the contract.
 
-An empty transformation list requires identical original and processed hashes. A changed hash requires at least one declared transformation. The processed SVG must pass the same script, event-handler, external-reference, executable URL, and viewport safety checks as core assets. Gradients may use only locally declared, `stack-`-namespaced identifiers; stylesheets and external references remain forbidden.
+An empty transformation list requires identical original and processed hashes. A changed hash requires at least one declared transformation. The processed SVG must pass the same script, event-handler, external-reference, executable URL, and viewport safety checks as core assets. Gradients, clip paths, and masks may use only locally declared, `stack-`-namespaced identifiers; stylesheets and external references remain forbidden.
 
 ## Terms and output
 

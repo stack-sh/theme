@@ -2,7 +2,7 @@
 const catalogData = {
   "$schema": "https://raw.githubusercontent.com/stack-sh/theme/main/schemas/catalog.schema.json",
   "schemaVersion": "1.0",
-  "catalogVersion": "0.4.0",
+  "catalogVersion": "0.5.0",
   "reservedThemeIds": [],
   "fallbacks": {
     "missingThemeId": "default",
@@ -3754,7 +3754,10 @@ const providerPackSchemaData = {
       "type": "string"
     },
     "schemaVersion": {
-      "const": "1.0"
+      "enum": [
+        "1.0",
+        "1.1"
+      ]
     },
     "packVersion": {
       "$ref": "#/$defs/semanticVersion"
@@ -3767,6 +3770,14 @@ const providerPackSchemaData = {
     },
     "source": {
       "$ref": "#/$defs/source"
+    },
+    "additionalSources": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "items": {
+        "$ref": "#/$defs/additionalSource"
+      }
     },
     "rights": {
       "$ref": "#/$defs/rights"
@@ -3789,6 +3800,10 @@ const providerPackSchemaData = {
       "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(-[0-9A-Za-z.-]+)?(\\+[0-9A-Za-z.-]+)?$"
     },
     "providerId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{1,31}$"
+    },
+    "sourceId": {
       "type": "string",
       "pattern": "^[a-z][a-z0-9-]{1,31}$"
     },
@@ -3839,7 +3854,15 @@ const providerPackSchemaData = {
     },
     "source": {
       "type": "object",
-      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/sourceData"
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+    "sourceData": {
+      "type": "object",
       "required": [
         "pageUrl",
         "archiveUrl",
@@ -3891,6 +3914,26 @@ const providerPackSchemaData = {
           "type": "boolean"
         }
       }
+    },
+    "additionalSource": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/sourceData"
+        },
+        {
+          "type": "object",
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/sourceId"
+            }
+          }
+        }
+      ],
+      "unevaluatedProperties": false
     },
     "redistribution": {
       "type": "object",
@@ -4059,6 +4102,7 @@ const providerPackSchemaData = {
         "inline-styles",
         "remove-unused-identifiers",
         "namespace-identifiers",
+        "scale-view-box-to-integers",
         "normalize-xml"
       ]
     },
@@ -4074,6 +4118,9 @@ const providerPackSchemaData = {
         "transformations"
       ],
       "properties": {
+        "sourceId": {
+          "$ref": "#/$defs/sourceId"
+        },
         "path": {
           "$ref": "#/$defs/relativePath"
         },
@@ -4121,6 +4168,12 @@ const providerPackSchemaData = {
           "type": "string",
           "minLength": 1,
           "maxLength": 160
+        },
+        "brandSourceUrl": {
+          "$ref": "#/$defs/httpsUrl"
+        },
+        "brandGuidelinesUrl": {
+          "$ref": "#/$defs/httpsUrl"
         },
         "recommendedNodeKind": {
           "$ref": "#/$defs/nodeKind"
@@ -4207,8 +4260,8 @@ function deepFreeze(value) {
 
 export const catalog = deepFreeze(catalogData);
 export const providerPackSchema = deepFreeze(providerPackSchemaData);
-export const catalogVersion = "0.4.0";
-export const catalogRevision = "sha256:9cb3de8b504acbf22c93cea5fbea66be50f38734dc1dee18b9cab7084082cc1f";
+export const catalogVersion = "0.5.0";
+export const catalogRevision = "sha256:3bfd66e1a96628b29b95b7273b54373bcce952f7285aefa506b4255a629eaf53";
 export const iconAssets = deepFreeze(iconAssetsData);
 export function iconSvg(assetPath) {
   return iconAssets[assetPath];

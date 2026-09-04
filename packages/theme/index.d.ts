@@ -163,15 +163,17 @@ export type ProviderPackTransformation =
   | "inline-styles"
   | "remove-unused-identifiers"
   | "namespace-identifiers"
+  | "scale-view-box-to-integers"
   | "normalize-xml";
 
 export interface ProviderPack {
   readonly $schema: string;
-  readonly schemaVersion: "1.0";
+  readonly schemaVersion: "1.0" | "1.1";
   readonly packVersion: string;
   readonly provider: ProviderPackIdentity;
   readonly distributionMode: ProviderPackDistributionMode;
   readonly source: ProviderPackSource;
+  readonly additionalSources?: readonly ProviderPackAdditionalSource[];
   readonly rights: ProviderPackRights;
   readonly notice: ProviderPackNotice;
   readonly icons: readonly ProviderIcon[];
@@ -194,6 +196,10 @@ export interface ProviderPackSource {
   readonly copyright: string;
   readonly licenseId: `LicenseRef-${string}`;
   readonly archiveLicenseIncluded: boolean;
+}
+
+export interface ProviderPackAdditionalSource extends ProviderPackSource {
+  readonly id: string;
 }
 
 export interface ProviderPackRights {
@@ -232,11 +238,14 @@ export interface ProviderIcon {
   readonly id: `${string}:${string}`;
   readonly subject: string;
   readonly productName: string;
+  readonly brandSourceUrl?: `https://${string}`;
+  readonly brandGuidelinesUrl?: `https://${string}`;
   readonly recommendedNodeKind: keyof NodeKindFallbacks;
   readonly asset: ProviderIconAsset;
 }
 
 export interface ProviderIconAsset {
+  readonly sourceId?: string;
   readonly path: string;
   readonly originalPath: string;
   readonly viewBox: readonly [number, number, number, number];

@@ -447,9 +447,21 @@ export async function validateProviderPack(
   }
 
   const expectedPrefix = `${providerPack.provider.id}:`;
+  const additionalSourceIds = new Set();
+  for (const source of providerPack.additionalSources ?? []) {
+    if (additionalSourceIds.has(source.id)) {
+      fail(`duplicate provider pack source id: ${source.id}`);
+    }
+    additionalSourceIds.add(source.id);
+  }
   const iconIds = new Set();
   const assetPaths = new Set();
   for (const icon of providerPack.icons) {
+    if (icon.asset.sourceId && !additionalSourceIds.has(icon.asset.sourceId)) {
+      fail(
+        `provider icon ${icon.id} references unknown source ${icon.asset.sourceId}`,
+      );
+    }
     if (!icon.id.startsWith(expectedPrefix)) {
       fail(
         `provider icon ${icon.id} must use the ${providerPack.provider.id} namespace`,

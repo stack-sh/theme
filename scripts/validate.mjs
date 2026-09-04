@@ -21,12 +21,10 @@ for (const entry of catalogs) {
   console.log(`validated ${entry.path}`);
 }
 
-const providerPackRoot = path.join(
-  repositoryRoot,
-  "tests/fixtures/provider-pack",
-);
-await validateProviderPack(
-  await readJson(path.join(providerPackRoot, "valid.json")),
-  { root: providerPackRoot },
-);
-console.log("validated tests/fixtures/provider-pack/valid.json");
+const providerPackRoot = path.join(repositoryRoot, "tests/fixtures/provider-pack");
+for (const fixture of ["valid.json", "multi-source.json"]) {
+  await validateProviderPack(await readJson(path.join(providerPackRoot, fixture)), {
+    root: providerPackRoot,
+  });
+  console.log(`validated tests/fixtures/provider-pack/${fixture}`);
+}

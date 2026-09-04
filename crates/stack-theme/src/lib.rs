@@ -298,6 +298,8 @@ pub struct ProviderPack {
     pub provider: ProviderPackIdentity,
     pub distribution_mode: ProviderPackDistributionMode,
     pub source: ProviderPackSource,
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub additional_sources: Vec<ProviderPackAdditionalSource>,
     pub rights: ProviderPackRights,
     pub notice: ProviderPackNotice,
     pub icons: Vec<ProviderIcon>,
@@ -333,6 +335,15 @@ pub struct ProviderPackSource {
     pub copyright: String,
     pub license_id: String,
     pub archive_license_included: bool,
+}
+
+/// An additional audited archive used by a multi-source provider pack.
+#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ProviderPackAdditionalSource {
+    pub id: String,
+    #[serde(flatten)]
+    pub source: ProviderPackSource,
 }
 
 /// Provider-specific usage boundary retained with every imported pack.
@@ -406,6 +417,10 @@ pub struct ProviderIcon {
     pub id: String,
     pub subject: String,
     pub product_name: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub brand_source_url: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub brand_guidelines_url: Option<String>,
     pub recommended_node_kind: ProviderNodeKind,
     pub asset: ProviderIconAsset,
 }
@@ -430,6 +445,8 @@ pub enum ProviderNodeKind {
 #[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ProviderIconAsset {
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub source_id: Option<String>,
     pub path: String,
     pub original_path: String,
     pub view_box: [i32; 4],
@@ -446,6 +463,7 @@ pub enum ProviderPackTransformation {
     InlineStyles,
     RemoveUnusedIdentifiers,
     NamespaceIdentifiers,
+    ScaleViewBoxToIntegers,
     NormalizeXml,
 }
 
@@ -496,6 +514,25 @@ mod tests {
         assert_eq!(
             provider_schema["$id"],
             "https://raw.githubusercontent.com/stack-sh/theme/main/schemas/provider-pack.schema.json"
+        );
+    }
+
+    #[test]
+    fn multi_source_provider_pack_round_trips_semantically() {
+        let source = include_str!("../../../tests/fixtures/provider-pack/multi-source.json");
+        let pack: ProviderPack = serde_json::from_str(source).unwrap();
+
+        assert_eq!(pack.schema_version, "1.1");
+        assert_eq!(pack.additional_sources.len(), 1);
+        assert_eq!(pack.additional_sources[0].id, "categories");
+        assert_eq!(pack.icons[0].asset.source_id.as_deref(), Some("categories"));
+        assert_eq!(
+            pack.icons[0].brand_guidelines_url.as_deref(),
+            Some("https://example.com/acme/brand-guidelines")
+        );
+        assert_eq!(
+            serde_json::to_value(&pack).unwrap(),
+            serde_json::from_str::<serde_json::Value>(source).unwrap()
         );
     }
 }
