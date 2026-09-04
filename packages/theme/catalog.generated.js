@@ -2,7 +2,7 @@
 const catalogData = {
   "$schema": "https://raw.githubusercontent.com/stack-sh/theme/main/schemas/catalog.schema.json",
   "schemaVersion": "1.0",
-  "catalogVersion": "0.3.0",
+  "catalogVersion": "0.4.0",
   "reservedThemeIds": [],
   "fallbacks": {
     "missingThemeId": "default",
@@ -826,6 +826,492 @@ const catalogData = {
               }
             }
           }
+        },
+        {
+          "id": "gateway",
+          "subject": "Network gateway",
+          "asset": {
+            "path": "assets/core/gateway.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "load-balancer",
+          "subject": "Load balancer",
+          "asset": {
+            "path": "assets/core/load-balancer.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "dns",
+          "subject": "Domain name service",
+          "asset": {
+            "path": "assets/core/dns.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "cdn",
+          "subject": "Content delivery network",
+          "asset": {
+            "path": "assets/core/cdn.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "firewall",
+          "subject": "Network firewall",
+          "asset": {
+            "path": "assets/core/firewall.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "network",
+          "subject": "Network topology",
+          "asset": {
+            "path": "assets/core/network.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "event",
+          "subject": "Discrete event",
+          "asset": {
+            "path": "assets/core/event.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "stream",
+          "subject": "Event stream",
+          "asset": {
+            "path": "assets/core/stream.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "search",
+          "subject": "Search service",
+          "asset": {
+            "path": "assets/core/search.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "analytics",
+          "subject": "Analytics system",
+          "asset": {
+            "path": "assets/core/analytics.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "repository",
+          "subject": "Source code repository",
+          "asset": {
+            "path": "assets/core/repository.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "pipeline",
+          "subject": "Delivery pipeline",
+          "asset": {
+            "path": "assets/core/pipeline.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "secret",
+          "subject": "Secret or credential",
+          "asset": {
+            "path": "assets/core/secret.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "document",
+          "subject": "Document or knowledge base",
+          "asset": {
+            "path": "assets/core/document.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "task",
+          "subject": "Task or issue tracker",
+          "asset": {
+            "path": "assets/core/task.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "chat",
+          "subject": "Chat or messaging tool",
+          "asset": {
+            "path": "assets/core/chat.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "email",
+          "subject": "Email delivery",
+          "asset": {
+            "path": "assets/core/email.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "ai",
+          "subject": "Artificial intelligence system",
+          "asset": {
+            "path": "assets/core/ai.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
         }
       ]
     },
@@ -1535,6 +2021,492 @@ const catalogData = {
             "provenance": {
               "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
               "sourceRevision": "core-icons-v1",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "gateway",
+          "subject": "Network gateway",
+          "asset": {
+            "path": "assets/core/gateway.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "load-balancer",
+          "subject": "Load balancer",
+          "asset": {
+            "path": "assets/core/load-balancer.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "dns",
+          "subject": "Domain name service",
+          "asset": {
+            "path": "assets/core/dns.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "cdn",
+          "subject": "Content delivery network",
+          "asset": {
+            "path": "assets/core/cdn.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "firewall",
+          "subject": "Network firewall",
+          "asset": {
+            "path": "assets/core/firewall.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "network",
+          "subject": "Network topology",
+          "asset": {
+            "path": "assets/core/network.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "event",
+          "subject": "Discrete event",
+          "asset": {
+            "path": "assets/core/event.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "stream",
+          "subject": "Event stream",
+          "asset": {
+            "path": "assets/core/stream.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "search",
+          "subject": "Search service",
+          "asset": {
+            "path": "assets/core/search.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "analytics",
+          "subject": "Analytics system",
+          "asset": {
+            "path": "assets/core/analytics.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "repository",
+          "subject": "Source code repository",
+          "asset": {
+            "path": "assets/core/repository.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "pipeline",
+          "subject": "Delivery pipeline",
+          "asset": {
+            "path": "assets/core/pipeline.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "secret",
+          "subject": "Secret or credential",
+          "asset": {
+            "path": "assets/core/secret.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "document",
+          "subject": "Document or knowledge base",
+          "asset": {
+            "path": "assets/core/document.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "task",
+          "subject": "Task or issue tracker",
+          "asset": {
+            "path": "assets/core/task.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "chat",
+          "subject": "Chat or messaging tool",
+          "asset": {
+            "path": "assets/core/chat.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "email",
+          "subject": "Email delivery",
+          "asset": {
+            "path": "assets/core/email.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "ai",
+          "subject": "Artificial intelligence system",
+          "asset": {
+            "path": "assets/core/ai.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
               "copyright": "Stack contributors",
               "licenseSpdx": "Apache-2.0",
               "licenseFile": "LICENSE",
@@ -2268,6 +3240,492 @@ const catalogData = {
               }
             }
           }
+        },
+        {
+          "id": "gateway",
+          "subject": "Network gateway",
+          "asset": {
+            "path": "assets/core/gateway.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "load-balancer",
+          "subject": "Load balancer",
+          "asset": {
+            "path": "assets/core/load-balancer.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "dns",
+          "subject": "Domain name service",
+          "asset": {
+            "path": "assets/core/dns.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "cdn",
+          "subject": "Content delivery network",
+          "asset": {
+            "path": "assets/core/cdn.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "firewall",
+          "subject": "Network firewall",
+          "asset": {
+            "path": "assets/core/firewall.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "network",
+          "subject": "Network topology",
+          "asset": {
+            "path": "assets/core/network.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "event",
+          "subject": "Discrete event",
+          "asset": {
+            "path": "assets/core/event.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "stream",
+          "subject": "Event stream",
+          "asset": {
+            "path": "assets/core/stream.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "search",
+          "subject": "Search service",
+          "asset": {
+            "path": "assets/core/search.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "analytics",
+          "subject": "Analytics system",
+          "asset": {
+            "path": "assets/core/analytics.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "repository",
+          "subject": "Source code repository",
+          "asset": {
+            "path": "assets/core/repository.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "pipeline",
+          "subject": "Delivery pipeline",
+          "asset": {
+            "path": "assets/core/pipeline.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "secret",
+          "subject": "Secret or credential",
+          "asset": {
+            "path": "assets/core/secret.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "document",
+          "subject": "Document or knowledge base",
+          "asset": {
+            "path": "assets/core/document.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "task",
+          "subject": "Task or issue tracker",
+          "asset": {
+            "path": "assets/core/task.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "chat",
+          "subject": "Chat or messaging tool",
+          "asset": {
+            "path": "assets/core/chat.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "email",
+          "subject": "Email delivery",
+          "asset": {
+            "path": "assets/core/email.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
+        },
+        {
+          "id": "ai",
+          "subject": "Artificial intelligence system",
+          "asset": {
+            "path": "assets/core/ai.svg",
+            "viewBox": [
+              0,
+              0,
+              24,
+              24
+            ],
+            "provenance": {
+              "sourceUrl": "https://github.com/stack-sh/theme/tree/main/assets/core",
+              "sourceRevision": "core-icons-v2",
+              "copyright": "Stack contributors",
+              "licenseSpdx": "Apache-2.0",
+              "licenseFile": "LICENSE",
+              "modified": false,
+              "redistribution": {
+                "cargo": true,
+                "npm": true,
+                "wasm": true,
+                "commercialApplications": true
+              }
+            }
+          }
         }
       ]
     }
@@ -2675,16 +4133,34 @@ const providerPackSchemaData = {
   }
 };
 const iconAssetsData = {
+  "assets/core/ai.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <rect x=\"5\" y=\"5\" width=\"14\" height=\"14\" rx=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <circle cx=\"12\" cy=\"12\" r=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"M12 9V7M15 12h2M12 15v2M9 12H7M8 5V3M12 5V3M16 5V3M8 21v-2M12 21v-2M16 21v-2M5 8H3M5 12H3M5 16H3M21 8h-2M21 12h-2M21 16h-2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n</svg>\n",
+  "assets/core/analytics.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"M4 20V4M4 20h17\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n  <path d=\"M7 17v-4M11 17V9M15 17v-6M19 17V6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n  <path d=\"m7 9 4-3 4 2 4-4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
   "assets/core/api.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+  "assets/core/cdn.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <circle cx=\"12\" cy=\"12\" r=\"4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"M8 12h8M12 8c1.2 1.2 1.8 2.5 1.8 4s-.6 2.8-1.8 4c-1.2-1.2-1.8-2.5-1.8-4s.6-2.8 1.8-4M6 6l3 3M18 6l-3 3M12 16v4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n  <rect x=\"3\" y=\"3\" width=\"4\" height=\"4\" rx=\"1\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <rect x=\"17\" y=\"3\" width=\"4\" height=\"4\" rx=\"1\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <rect x=\"10\" y=\"19\" width=\"4\" height=\"3\" rx=\"1\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n</svg>\n",
+  "assets/core/chat.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"M4 4h13a3 3 0 0 1 3 3v5a3 3 0 0 1-3 3H9l-5 4v-4a3 3 0 0 1-2-3V7a3 3 0 0 1 2-3Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linejoin=\"round\"/>\n  <path d=\"M7 9h.01M11 9h.01M15 9h.01\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n</svg>\n",
   "assets/core/cloud.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"M7 19h11a4 4 0 0 0 .5-8 7 7 0 0 0-13.3-1.8A5 5 0 0 0 7 19Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
   "assets/core/cluster.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <circle cx=\"12\" cy=\"5\" r=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <circle cx=\"5\" cy=\"18\" r=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <circle cx=\"19\" cy=\"18\" r=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"m10.5 7.5-4 7.8M13.5 7.5l4 7.8M8 18h8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n</svg>\n",
   "assets/core/container.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"m12 3 9 5-9 5-9-5 9-5Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linejoin=\"round\"/>\n  <path d=\"m3 8 9 5 9-5v8l-9 5-9-5V8ZM12 13v8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linejoin=\"round\"/>\n</svg>\n",
   "assets/core/desktop.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <rect x=\"3\" y=\"3\" width=\"18\" height=\"14\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"M3 13h18M8 21h8M12 17v4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n</svg>\n",
+  "assets/core/dns.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <circle cx=\"9\" cy=\"12\" r=\"7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"M2 12h14M9 5c2 2 3 4.3 3 7s-1 5-3 7c-2-2-3-4.3-3-7s1-5 3-7M16 8h5M19 6l2 2-2 2M21 16h-5M18 14l-2 2 2 2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+  "assets/core/document.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"M5 3h9l5 5v13H5V3Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linejoin=\"round\"/>\n  <path d=\"M14 3v5h5M8 12h8M8 16h8\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+  "assets/core/email.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"m4 7 8 6 8-6M4 17l5-5M20 17l-5-5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+  "assets/core/event.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <circle cx=\"12\" cy=\"12\" r=\"9\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"m13 4.5-5 8H12l-1 7 5-9H12l1-6Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+  "assets/core/firewall.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"M3 9h18M3 14h18M8 4v5M16 4v5M12 9v5M8 14v6M16 14v6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n</svg>\n",
+  "assets/core/gateway.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <rect x=\"8\" y=\"4\" width=\"8\" height=\"16\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"M3 8h5M5.5 5.5 8 8l-2.5 2.5M21 16h-5M18.5 13.5 16 16l2.5 2.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
   "assets/core/identity.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"M12 3 5 6v5c0 4.5 2.8 8.2 7 10 4.2-1.8 7-5.5 7-10V6l-7-3Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linejoin=\"round\"/>\n  <circle cx=\"12\" cy=\"10\" r=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"M8.5 16c.5-2 1.7-3 3.5-3s3 1 3.5 3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n</svg>\n",
+  "assets/core/load-balancer.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <circle cx=\"4\" cy=\"12\" r=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <circle cx=\"20\" cy=\"6\" r=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <circle cx=\"20\" cy=\"18\" r=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"M6 12h3c3 0 3-6 7-6h2M9 12c3 0 3 6 7 6h2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n</svg>\n",
   "assets/core/mobile.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <rect x=\"6\" y=\"2\" width=\"12\" height=\"20\" rx=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"M10 5h4M11 19h2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n</svg>\n",
+  "assets/core/network.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <circle cx=\"12\" cy=\"12\" r=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <circle cx=\"5\" cy=\"5\" r=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <circle cx=\"19\" cy=\"5\" r=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <circle cx=\"5\" cy=\"19\" r=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <circle cx=\"19\" cy=\"19\" r=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"m7 7 3 3M17 7l-3 3M7 17l3-3M17 17l-3-3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n</svg>\n",
   "assets/core/observability.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linejoin=\"round\"/>\n  <path d=\"m7.5 12 2-2 2.5 4 2.5-4 2 2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+  "assets/core/pipeline.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <rect x=\"2\" y=\"8\" width=\"5\" height=\"8\" rx=\"1.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <rect x=\"10\" y=\"8\" width=\"5\" height=\"8\" rx=\"1.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <rect x=\"18\" y=\"8\" width=\"4\" height=\"8\" rx=\"1.5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"M7 12h3M15 12h3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n</svg>\n",
+  "assets/core/repository.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <circle cx=\"8\" cy=\"7\" r=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <circle cx=\"8\" cy=\"17\" r=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <circle cx=\"16\" cy=\"12\" r=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"M8 9v6M10 7h1c3 0 2 5 3 5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n</svg>\n",
   "assets/core/scheduler.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <rect x=\"3\" y=\"4\" width=\"18\" height=\"17\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"M8 2v4M16 2v4M3 9h18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n  <circle cx=\"12\" cy=\"15\" r=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"M12 13.5V15l1 1\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n</svg>\n",
+  "assets/core/search.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <circle cx=\"10\" cy=\"10\" r=\"6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"m14.5 14.5 6 6M7 8h6M7 11h4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n</svg>\n",
+  "assets/core/secret.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <circle cx=\"8\" cy=\"12\" r=\"4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"M12 12h9M17 12v3M20 12v2M6.5 12h.01\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n</svg>\n",
   "assets/core/server.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <rect x=\"3\" y=\"3\" width=\"18\" height=\"7\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <rect x=\"3\" y=\"14\" width=\"18\" height=\"7\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"M7 6.5h.01M7 17.5h.01M11 6.5h7M11 17.5h7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n</svg>\n",
+  "assets/core/stream.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"M3 6h10c3 0 3 4 6 4h2M18 7l3 3-3 3M3 12h6c3 0 3 6 7 6h5M18 15l3 3-3 3M3 18h4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
+  "assets/core/task.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"m7 9 2 2 4-4M15 9h3M7 16h3M13 16h5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
   "assets/core/web.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"M3 8h18M7 6h.01M10 6h.01\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n</svg>\n",
   "assets/core/webhook.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"M8 7a4 4 0 1 1 7.5 2M16 17a4 4 0 1 1-7.5-2M7 12h10\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n  <path d=\"m14 9 3 3-3 3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
   "assets/dark/kind-actor.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <circle cx=\"12\" cy=\"8\" r=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/>\n  <path d=\"M5 20c.8-4 3-6 7-6s6.2 2 7 6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/>\n</svg>\n",
@@ -2731,8 +4207,8 @@ function deepFreeze(value) {
 
 export const catalog = deepFreeze(catalogData);
 export const providerPackSchema = deepFreeze(providerPackSchemaData);
-export const catalogVersion = "0.3.0";
-export const catalogRevision = "sha256:e4eaad0813fcfef4a203e861909ff38833270646f9097155974c7c92108c5b1e";
+export const catalogVersion = "0.4.0";
+export const catalogRevision = "sha256:9cb3de8b504acbf22c93cea5fbea66be50f38734dc1dee18b9cab7084082cc1f";
 export const iconAssets = deepFreeze(iconAssetsData);
 export function iconSvg(assetPath) {
   return iconAssets[assetPath];

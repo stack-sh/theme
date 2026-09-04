@@ -204,6 +204,24 @@ const explicitIcons = [
   ["webhook", "Webhook endpoint"],
   ["identity", "Identity and access"],
   ["observability", "Observability system"],
+  ["gateway", "Network gateway"],
+  ["load-balancer", "Load balancer"],
+  ["dns", "Domain name service"],
+  ["cdn", "Content delivery network"],
+  ["firewall", "Network firewall"],
+  ["network", "Network topology"],
+  ["event", "Discrete event"],
+  ["stream", "Event stream"],
+  ["search", "Search service"],
+  ["analytics", "Analytics system"],
+  ["repository", "Source code repository"],
+  ["pipeline", "Delivery pipeline"],
+  ["secret", "Secret or credential"],
+  ["document", "Document or knowledge base"],
+  ["task", "Task or issue tracker"],
+  ["chat", "Chat or messaging tool"],
+  ["email", "Email delivery"],
+  ["ai", "Artificial intelligence system"],
 ];
 
 function linearChannel(channel) {
@@ -273,6 +291,32 @@ test("the three core themes provide distinct fallback visuals", () => {
     assert.ok(
       theme.icons.some((icon) => icon.id === catalog.fallbacks.missingIconId),
     );
+  }
+});
+
+test("explicit core icons remain first-party single-color assets", () => {
+  const explicitIds = new Set(explicitIcons.map(([iconId]) => iconId));
+  const icons = catalog.themes[0].icons.filter((icon) =>
+    explicitIds.has(icon.id),
+  );
+
+  assert.equal(icons.length, explicitIcons.length);
+  for (const icon of icons) {
+    const { provenance } = icon.asset;
+    assert.equal(provenance.copyright, "Stack contributors");
+    assert.equal(provenance.licenseSpdx, "Apache-2.0");
+    assert.equal(provenance.licenseFile, "LICENSE");
+    assert.match(provenance.sourceRevision, /^core-icons-v[12]$/);
+    assert.deepEqual(provenance.redistribution, {
+      cargo: true,
+      npm: true,
+      wasm: true,
+      commercialApplications: true,
+    });
+
+    const svg = iconSvg(icon.asset.path);
+    assert.match(svg, /stroke="currentColor"/);
+    assert.doesNotMatch(svg, /#[0-9a-f]{3,8}/i);
   }
 });
 
@@ -402,8 +446,8 @@ test("Cargo and npm artifacts expose one semantic catalog revision", async () =>
   assert.match(catalogRevision, /^sha256:[0-9a-f]{64}$/);
   assert.equal(
     catalog.themes.flatMap((theme) => theme.icons).length,
-    66,
+    120,
   );
-  assert.equal(Object.keys(iconAssets).length, 42);
+  assert.equal(Object.keys(iconAssets).length, 60);
   assert.equal(iconSvg("assets/missing.svg"), undefined);
 });
