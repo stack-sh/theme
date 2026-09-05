@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v7
 
       - name: Test initial publication guards
-        run: node --test scripts/initial-publish-context.test.mjs
+        run: node --test scripts/initial-publish-context.test.mjs scripts/cargo-publish-context.test.mjs
 
       - name: Check whitespace
         run: git diff --check "$(git hash-object -t tree /dev/null)" HEAD
