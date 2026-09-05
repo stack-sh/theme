@@ -60,8 +60,8 @@ jobs:
           RUSTDOCFLAGS: -D warnings
         run: cargo +stable doc --workspace --no-deps --locked
 
-      - name: Verify Cargo package contents
-        run: cargo +stable package -p stack-theme --locked
+      - name: Verify crates.io package
+        run: cargo +stable publish --dry-run -p stack-theme --locked
 
       - name: Verify repository files
         run: |

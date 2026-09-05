@@ -6,6 +6,12 @@ license.workspace = true
 repository.workspace = true
 rust-version.workspace = true
 version.workspace = true
+homepage = "https://stack-diagram.com/"
+documentation = "https://docs.rs/stack-theme"
+readme = "README.md"
+publish = ["crates-io"]
+keywords = ["stack", "diagram", "theme", "icons"]
+categories = ["graphics"]
 include = ["src/**", "assets/**", "licenses/**", "schema/**", "README.md", "LICENSE"]
 
 [dependencies]
