@@ -56,3 +56,5 @@ The local [core theme review](./review/index.html) renders every fallback withou
 Repository-authored source code, catalog data, and assets are licensed under the [Apache License 2.0](./LICENSE).
 
 Third-party fonts, icons, and other assets keep their own licenses and are not relicensed under Apache-2.0. Their provenance and redistribution terms must be recorded in [THIRD_PARTY_LICENSES.md](./THIRD_PARTY_LICENSES.md) before they are committed. Current provider icons are user-imported and are never committed or copied into the Cargo or npm packages.
+
+Maintainers use the [initial publication procedure](./docs/releasing.md) for the first crates.io release.
