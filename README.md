@@ -8,6 +8,16 @@ The current `0.5.0` catalog contains the core `default`, `light`, and `dark` the
 
 Provider-specific assets are not bundled. The provider-pack contract lets a CLI or browser validate an archive that the user explicitly selected from the provider's official source, keep it local, preserve the artwork, and carry source and terms notices into diagram output.
 
+## Cargo package
+
+Add the Rust catalog from crates.io with:
+
+```sh
+cargo add stack-theme@0.5.0
+```
+
+The package supports Rust 1.85 or newer and includes only the generated catalog API, repository-authored SVG assets, public schemas, package documentation, and the Apache-2.0 license.
+
 ## Scope
 
 This repository will own:
