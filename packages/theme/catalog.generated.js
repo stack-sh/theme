@@ -2,7 +2,7 @@
 const catalogData = {
   "$schema": "https://raw.githubusercontent.com/stack-sh/theme/main/schemas/catalog.schema.json",
   "schemaVersion": "1.0",
-  "catalogVersion": "0.5.0",
+  "catalogVersion": "0.6.0",
   "reservedThemeIds": [],
   "fallbacks": {
     "missingThemeId": "default",
@@ -4260,8 +4260,8 @@ function deepFreeze(value) {
 
 export const catalog = deepFreeze(catalogData);
 export const providerPackSchema = deepFreeze(providerPackSchemaData);
-export const catalogVersion = "0.5.0";
-export const catalogRevision = "sha256:926b4d3ec415feb2631e75a3feae0789696516e34ab95ed54915779372bfad03";
+export const catalogVersion = "0.6.0";
+export const catalogRevision = "sha256:4d4e9dcda36bf2a5187a233c0be74c9e9302f41d5021e1fa2a73712837ff55c1";
 export const iconAssets = deepFreeze(iconAssetsData);
 export function iconSvg(assetPath) {
   return iconAssets[assetPath];
