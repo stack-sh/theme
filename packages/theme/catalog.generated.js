@@ -180,12 +180,12 @@ const catalogData = {
           "fallbackIconId": "kind-worker"
         },
         "database": {
-          "shape": "cylinder",
+          "shape": "rounded-rectangle",
           "fill": "surface",
           "stroke": "accent",
           "text": "text",
           "accent": "accent",
-          "cornerRadiusMilliPx": 0,
+          "cornerRadiusMilliPx": 8000,
           "fallbackIconId": "kind-database"
         },
         "cache": {
@@ -1387,12 +1387,12 @@ const catalogData = {
           "fallbackIconId": "kind-worker"
         },
         "database": {
-          "shape": "cylinder",
+          "shape": "rounded-rectangle",
           "fill": "surface",
           "stroke": "accent",
           "text": "text",
           "accent": "accent",
-          "cornerRadiusMilliPx": 0,
+          "cornerRadiusMilliPx": 8000,
           "fallbackIconId": "kind-database"
         },
         "cache": {
@@ -2594,12 +2594,12 @@ const catalogData = {
           "fallbackIconId": "kind-worker"
         },
         "database": {
-          "shape": "cylinder",
+          "shape": "rounded-rectangle",
           "fill": "surface",
           "stroke": "accent",
           "text": "text",
           "accent": "accent",
-          "cornerRadiusMilliPx": 0,
+          "cornerRadiusMilliPx": 8000,
           "fallbackIconId": "kind-database"
         },
         "cache": {
@@ -4261,7 +4261,7 @@ function deepFreeze(value) {
 export const catalog = deepFreeze(catalogData);
 export const providerPackSchema = deepFreeze(providerPackSchemaData);
 export const catalogVersion = "0.5.0";
-export const catalogRevision = "sha256:3bfd66e1a96628b29b95b7273b54373bcce952f7285aefa506b4255a629eaf53";
+export const catalogRevision = "sha256:926b4d3ec415feb2631e75a3feae0789696516e34ab95ed54915779372bfad03";
 export const iconAssets = deepFreeze(iconAssetsData);
 export function iconSvg(assetPath) {
   return iconAssets[assetPath];

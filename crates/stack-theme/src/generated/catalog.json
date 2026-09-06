@@ -179,12 +179,12 @@
           "fallbackIconId": "kind-worker"
         },
         "database": {
-          "shape": "cylinder",
+          "shape": "rounded-rectangle",
           "fill": "surface",
           "stroke": "accent",
           "text": "text",
           "accent": "accent",
-          "cornerRadiusMilliPx": 0,
+          "cornerRadiusMilliPx": 8000,
           "fallbackIconId": "kind-database"
         },
         "cache": {
@@ -1386,12 +1386,12 @@
           "fallbackIconId": "kind-worker"
         },
         "database": {
-          "shape": "cylinder",
+          "shape": "rounded-rectangle",
           "fill": "surface",
           "stroke": "accent",
           "text": "text",
           "accent": "accent",
-          "cornerRadiusMilliPx": 0,
+          "cornerRadiusMilliPx": 8000,
           "fallbackIconId": "kind-database"
         },
         "cache": {
@@ -2593,12 +2593,12 @@
           "fallbackIconId": "kind-worker"
         },
         "database": {
-          "shape": "cylinder",
+          "shape": "rounded-rectangle",
           "fill": "surface",
           "stroke": "accent",
           "text": "text",
           "accent": "accent",
-          "cornerRadiusMilliPx": 0,
+          "cornerRadiusMilliPx": 8000,
           "fallbackIconId": "kind-database"
         },
         "cache": {
