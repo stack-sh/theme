@@ -5,6 +5,7 @@ import {
   repositoryRoot,
   validateCatalog,
   validateProviderPack,
+  validateThemeOverrides,
 } from "./catalog-lib.mjs";
 
 const catalogs = [
@@ -28,3 +29,10 @@ for (const fixture of ["valid.json", "multi-source.json"]) {
   });
   console.log(`validated tests/fixtures/provider-pack/${fixture}`);
 }
+
+await validateThemeOverrides(
+  await readJson(
+    path.join(repositoryRoot, "tests/fixtures/theme-overrides/valid.json"),
+  ),
+);
+console.log("validated tests/fixtures/theme-overrides/valid.json");

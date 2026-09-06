@@ -2,9 +2,9 @@
 
 `stack-sh/theme` is the canonical public contract for Stack diagram themes, icons, font metrics, and local provider icon packs.
 
-The core catalog contract is defined by [`CONTRACT.md`](./CONTRACT.md) and [`schemas/catalog.schema.json`](./schemas/catalog.schema.json). The separate local-only provider-pack contract is defined by [`PROVIDER_PACKS.md`](./PROVIDER_PACKS.md) and [`schemas/provider-pack.schema.json`](./schemas/provider-pack.schema.json). The canonical core source is [`catalog/catalog.json`](./catalog/catalog.json); Rust and JavaScript package trees are generated from that source with one content revision.
+The core catalog and configured palette contract are defined by [`CONTRACT.md`](./CONTRACT.md), [`schemas/catalog.schema.json`](./schemas/catalog.schema.json), and [`schemas/theme-overrides.schema.json`](./schemas/theme-overrides.schema.json). The separate local-only provider-pack contract is defined by [`PROVIDER_PACKS.md`](./PROVIDER_PACKS.md) and [`schemas/provider-pack.schema.json`](./schemas/provider-pack.schema.json). The canonical core source is [`catalog/catalog.json`](./catalog/catalog.json); Rust and JavaScript package trees are generated from that source with one content revision.
 
-The current `0.7.0` catalog contains the core `default`, `light`, and `dark` themes, repository-authored fallbacks for every Stack 1.0 node kind, 30 provider-neutral explicit icons, and versioned host-independent font metrics. The explicit icon catalog covers clients and compute, networking and delivery, data and events, development workflows, security, general collaboration tools, and AI systems. Its identifiers are `api`, `web`, `mobile`, `desktop`, `server`, `container`, `cluster`, `cloud`, `scheduler`, `webhook`, `identity`, `observability`, `gateway`, `load-balancer`, `dns`, `cdn`, `firewall`, `network`, `event`, `stream`, `search`, `analytics`, `repository`, `pipeline`, `secret`, `document`, `task`, `chat`, `email`, and `ai`.
+The current `0.8.0` catalog contains the core `default`, `light`, and `dark` themes, repository-authored fallbacks for every Stack 1.0 node kind, 30 provider-neutral explicit icons, and versioned host-independent font metrics. It also exposes a palette-only resolver that lets user configuration add any valid theme name or intentionally shadow a built-in name while inheriting the built-in typography, node styles, connectors, and icons. The built-in palettes themselves are unchanged in this release.
 
 Provider-specific assets are not bundled. The provider-pack contract lets a CLI or browser validate an archive that the user explicitly selected from the provider's official source, keep it local, preserve the artwork, and carry source and terms notices into diagram output.
 
@@ -13,7 +13,7 @@ Provider-specific assets are not bundled. The provider-pack contract lets a CLI 
 Add the Rust catalog from crates.io with:
 
 ```sh
-cargo add stack-theme@0.7.0
+cargo add stack-theme@0.8.0
 ```
 
 The package supports Rust 1.85 or newer and includes only the generated catalog API, repository-authored SVG assets, public schemas, package documentation, and the Apache-2.0 license.
@@ -75,4 +75,4 @@ Repository-authored source code, catalog data, and assets are licensed under the
 
 Third-party fonts, icons, and other assets keep their own licenses and are not relicensed under Apache-2.0. Their provenance and redistribution terms must be recorded in [THIRD_PARTY_LICENSES.md](./THIRD_PARTY_LICENSES.md) before they are committed. Current provider icons are user-imported and are never committed or copied into the Cargo or npm packages.
 
-Maintainers use the [trusted publishing procedure](./docs/releasing.md#ongoing-trusted-publishing) for subsequent crates.io releases. See the [0.7.0 release notes](./docs/releases/v0.7.0.md) for the cache card update.
+Maintainers use the [trusted publishing procedure](./docs/releasing.md#ongoing-trusted-publishing) for subsequent crates.io releases. See the [0.8.0 release notes](./docs/releases/v0.8.0.md) for configured palette overrides.

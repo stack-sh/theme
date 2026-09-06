@@ -9,6 +9,7 @@ import {
   validateCatalog,
   validateProviderPack,
   validateSvgText,
+  validateThemeOverrides,
 } from "../scripts/catalog-lib.mjs";
 import {
   catalog,
@@ -17,6 +18,7 @@ import {
   iconAssets,
   iconSvg,
   providerPackSchema,
+  themeOverridesSchema,
 } from "../packages/theme/index.js";
 
 test("the complete contract fixture is valid", async () => {
@@ -24,6 +26,45 @@ test("the complete contract fixture is valid", async () => {
     path.join(repositoryRoot, "tests/fixtures/catalog/valid.json"),
   );
   await validateCatalog(fixture);
+});
+
+test("palette-only theme overrides accept custom and built-in names", async () => {
+  const fixture = await readJson(
+    path.join(repositoryRoot, "tests/fixtures/theme-overrides/valid.json"),
+  );
+  await validateThemeOverrides(fixture);
+});
+
+for (const [name, mutate] of [
+  ["consecutive hyphens", (fixture) => (fixture["invalid--name"] = fixture.default)],
+  ["unknown base", (fixture) => (fixture.default.extends = "custom-theme")],
+  ["empty palette", (fixture) => (fixture.default.palette = {})],
+  ["unknown palette token", (fixture) => (fixture.default.palette.shadow = "#000000")],
+  ["invalid color", (fixture) => (fixture.default.palette.canvas = "red")],
+]) {
+  test(`theme overrides reject ${name}`, async () => {
+    const fixture = await readJson(
+      path.join(repositoryRoot, "tests/fixtures/theme-overrides/valid.json"),
+    );
+    mutate(fixture);
+    await assert.rejects(
+      validateThemeOverrides(fixture),
+      /theme overrides schema validation failed/,
+    );
+  });
+}
+
+test("theme overrides reject more than 32 definitions", async () => {
+  const fixture = Object.fromEntries(
+    Array.from({ length: 33 }, (_, index) => [
+      `theme_${index}`,
+      { extends: "default", palette: { accent: "#000000" } },
+    ]),
+  );
+  await assert.rejects(
+    validateThemeOverrides(fixture),
+    /theme overrides schema validation failed/,
+  );
 });
 
 test("database and cache fallbacks use cards with their existing icons", async () => {
@@ -480,6 +521,21 @@ test("Cargo and npm artifacts expose one semantic catalog revision", async () =>
       "packages/theme/schema/provider-pack.schema.json",
     ),
   );
+  const sourceThemeOverridesSchema = await readJson(
+    path.join(repositoryRoot, "schemas/theme-overrides.schema.json"),
+  );
+  const cargoThemeOverridesSchema = await readJson(
+    path.join(
+      repositoryRoot,
+      "crates/stack-theme/schema/theme-overrides.schema.json",
+    ),
+  );
+  const npmThemeOverridesSchema = await readJson(
+    path.join(
+      repositoryRoot,
+      "packages/theme/schema/theme-overrides.schema.json",
+    ),
+  );
   const metadata = await readJson(
     path.join(repositoryRoot, "packages/theme/catalog-metadata.json"),
   );
@@ -498,6 +554,9 @@ test("Cargo and npm artifacts expose one semantic catalog revision", async () =>
   assert.deepEqual(cargoProviderPackSchema, sourceProviderPackSchema);
   assert.deepEqual(cargoProviderPackSchema, npmProviderPackSchema);
   assert.deepEqual(providerPackSchema, sourceProviderPackSchema);
+  assert.deepEqual(cargoThemeOverridesSchema, sourceThemeOverridesSchema);
+  assert.deepEqual(npmThemeOverridesSchema, sourceThemeOverridesSchema);
+  assert.deepEqual(themeOverridesSchema, sourceThemeOverridesSchema);
   assert.deepEqual(catalog, npmCatalog);
   assert.equal(catalogVersion, npmCatalog.catalogVersion);
   assert.equal(metadata.catalogVersion, catalogVersion);

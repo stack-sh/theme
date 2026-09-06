@@ -2,7 +2,7 @@
 const catalogData = {
   "$schema": "https://raw.githubusercontent.com/stack-sh/theme/main/schemas/catalog.schema.json",
   "schemaVersion": "1.0",
-  "catalogVersion": "0.7.0",
+  "catalogVersion": "0.8.0",
   "reservedThemeIds": [],
   "fallbacks": {
     "missingThemeId": "default",
@@ -4185,6 +4185,84 @@ const providerPackSchemaData = {
     }
   }
 };
+const themeOverridesSchemaData = {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/stack-sh/theme/main/schemas/theme-overrides.schema.json",
+  "title": "Stack Theme Overrides",
+  "description": "Palette-only user theme definitions applied over built-in Stack themes.",
+  "type": "object",
+  "maxProperties": 32,
+  "propertyNames": {
+    "$ref": "#/$defs/identifier"
+  },
+  "additionalProperties": {
+    "$ref": "#/$defs/themeOverride"
+  },
+  "$defs": {
+    "identifier": {
+      "type": "string",
+      "pattern": "^(?!.*--)[a-z][a-z0-9_-]{0,63}$"
+    },
+    "color": {
+      "type": "string",
+      "pattern": "^#[0-9A-Fa-f]{6}([0-9A-Fa-f]{2})?$"
+    },
+    "themeOverride": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "extends",
+        "palette"
+      ],
+      "properties": {
+        "extends": {
+          "enum": [
+            "default",
+            "light",
+            "dark"
+          ]
+        },
+        "palette": {
+          "$ref": "#/$defs/paletteOverride"
+        }
+      }
+    },
+    "paletteOverride": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "canvas": {
+          "$ref": "#/$defs/color"
+        },
+        "surface": {
+          "$ref": "#/$defs/color"
+        },
+        "surfaceMuted": {
+          "$ref": "#/$defs/color"
+        },
+        "text": {
+          "$ref": "#/$defs/color"
+        },
+        "textMuted": {
+          "$ref": "#/$defs/color"
+        },
+        "border": {
+          "$ref": "#/$defs/color"
+        },
+        "accent": {
+          "$ref": "#/$defs/color"
+        },
+        "danger": {
+          "$ref": "#/$defs/color"
+        },
+        "connector": {
+          "$ref": "#/$defs/color"
+        }
+      }
+    }
+  }
+};
 const iconAssetsData = {
   "assets/core/ai.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <rect x=\"5\" y=\"5\" width=\"14\" height=\"14\" rx=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <circle cx=\"12\" cy=\"12\" r=\"3\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\"/>\n  <path d=\"M12 9V7M15 12h2M12 15v2M9 12H7M8 5V3M12 5V3M16 5V3M8 21v-2M12 21v-2M16 21v-2M5 8H3M5 12H3M5 16H3M21 8h-2M21 12h-2M21 16h-2\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n</svg>\n",
   "assets/core/analytics.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n  <path d=\"M4 20V4M4 20h17\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n  <path d=\"M7 17v-4M11 17V9M15 17v-6M19 17V6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\"/>\n  <path d=\"m7 9 4-3 4 2 4-4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>\n",
@@ -4260,8 +4338,9 @@ function deepFreeze(value) {
 
 export const catalog = deepFreeze(catalogData);
 export const providerPackSchema = deepFreeze(providerPackSchemaData);
-export const catalogVersion = "0.7.0";
-export const catalogRevision = "sha256:4a8b94b746c6b120998bfbe701edd722449a28c89c424b0a33f67561756ded5a";
+export const themeOverridesSchema = deepFreeze(themeOverridesSchemaData);
+export const catalogVersion = "0.8.0";
+export const catalogRevision = "sha256:e0d119e8048f74ebbc85e8cc34c1f25ccc5b4fe6cb8274c80a92271b81fa30ea";
 export const iconAssets = deepFreeze(iconAssetsData);
 export function iconSvg(assetPath) {
   return iconAssets[assetPath];

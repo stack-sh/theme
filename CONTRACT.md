@@ -2,7 +2,7 @@
 
 ## Status
 
-This document defines the draft `1.0` core catalog document shape. Catalog and package version `0.7.0` remain pre-1.0 and may change incompatibly before a stable release. The Rust catalog is distributed on crates.io; generated npm artifacts are maintained in this repository. User-imported provider packs use the separate contract in [`PROVIDER_PACKS.md`](./PROVIDER_PACKS.md); their custom-term assets never enter this core catalog.
+This document defines the draft `1.0` core catalog document shape. Catalog and package version `0.8.0` remain pre-1.0 and may change incompatibly before a stable release. The Rust catalog is distributed on crates.io; generated npm artifacts are maintained in this repository. User-imported provider packs use the separate contract in [`PROVIDER_PACKS.md`](./PROVIDER_PACKS.md); their custom-term assets never enter this core catalog.
 
 The JSON Schema at [`schemas/catalog.schema.json`](./schemas/catalog.schema.json) is the machine-readable source of truth. [`catalog/catalog.json`](./catalog/catalog.json) is the only source catalog. Generated Cargo and npm copies must not be edited directly. The schema is copied into both packages; `$schema` is an editor-facing canonical repository URL and runtime consumers do not fetch it.
 
@@ -45,6 +45,18 @@ Integer units keep Rust and JavaScript consumers from introducing representation
 
 `connector` requires line, text, and label-background palette references plus integer line width and arrow size. `dashMilliPx` is the only optional connector field; absence means a solid line.
 
+## Configured theme overrides
+
+[`schemas/theme-overrides.schema.json`](./schemas/theme-overrides.schema.json) defines a map of at most 32 user theme definitions. Each map key is any valid Stack theme identifier, including `default`, `light`, or `dark`. A definition requires one `extends` value from those three built-in identifiers and at least one `palette` value. Palette values use the same six- or eight-digit hexadecimal sRGB format as the core catalog. Other theme records cannot be configured through this contract.
+
+Resolution always reads `extends` from the original built-in catalog before applying any configured definition. Configured themes therefore do not extend one another. A definition named `default` with `extends: default` intentionally shadows the built-in `default` without forming a cycle. Theme lookup checks configured definitions before the installed catalog, and a missing source-level theme selection requests the effective `default`, so the configured override applies there too.
+
+The resolver inherits typography, node fallbacks, connectors, and icons from the selected built-in theme. A definition that shadows a built-in theme keeps that theme's display metadata. A new identifier uses its identifier as the display name and omits the inherited description. Existing catalog positions are preserved for shadowed themes; new themes are appended in identifier order.
+
+The Rust resolver validates identifier, count, base, palette presence, and color constraints even when a caller does not run JSON Schema validation. It normalizes configured colors to uppercase hexadecimal. Transparent colors and contrast below the core review floors produce structured warnings; the resolver never silently replaces a user color.
+
+With no configured definitions, the effective revision is the base `catalogRevision`. Otherwise it is `sha256:` followed by the lowercase SHA-256 digest of `stack-theme-effective-v1`, a null byte, the base revision, a null byte, and compact JSON for the normalized definition map. Map keys use lexicographic order, definition fields use `extends` then `palette`, palette fields use contract order, absent fields are omitted, and colors use uppercase hexadecimal. The revision changes with either the built-in catalog or the effective user definition while remaining stable across input key order and color casing.
+
 ## Font metrics
 
 A font metric record requires `id`, `family`, `version`, `unitsPerEm`, `ascent`, `descent`, `lineGap`, `defaultAdvance`, `wideAdvance`, ordered non-overlapping `wideRanges`, `glyphAdvances`, and the same source, license, and distribution `provenance` required for icon assets.
@@ -69,7 +81,7 @@ SVG validation uses an element and attribute allowlist. It rejects scripts, even
 
 ## Cargo and npm boundary
 
-Cargo `stack-theme` exposes typed Rust records, `catalog()`, `catalog_json()`, `catalog_schema_json()`, `provider_pack_schema_json()`, `icon_svg()`, `CATALOG_VERSION`, and `CATALOG_REVISION`. npm `@stack-sh/theme` exposes the equivalent frozen `catalog`, `providerPackSchema`, `iconAssets`, `iconSvg()`, `catalogVersion`, and `catalogRevision`, plus TypeScript declarations and both schema JSON subpath exports. Referenced core SVG and license files are copied into both package roots; core SVG bytes are also embedded behind the Rust and JavaScript accessors so runtime consumers never resolve catalog paths through the host. Provider-pack asset bytes are supplied by the user and are not embedded.
+Cargo `stack-theme` exposes typed Rust records, `catalog()`, `catalog_json()`, `catalog_schema_json()`, `provider_pack_schema_json()`, `theme_overrides_schema_json()`, `resolve_theme_overrides()`, `icon_svg()`, `CATALOG_VERSION`, and `CATALOG_REVISION`. npm `@stack-sh/theme` exposes the equivalent frozen `catalog`, `providerPackSchema`, `themeOverridesSchema`, `iconAssets`, `iconSvg()`, `catalogVersion`, and `catalogRevision`, plus TypeScript declarations and all three schema JSON subpath exports. Referenced core SVG and license files are copied into both package roots; core SVG bytes are also embedded behind the Rust and JavaScript accessors so runtime consumers never resolve catalog paths through the host. Provider-pack asset bytes are supplied by the user and are not embedded.
 
 `npm run generate` validates the source catalog, checks package version equality, computes one revision, and updates both package artifacts. `npm run generate:check` fails when a generated artifact is missing or stale. Generated package data is checked into Git so Cargo and npm builds do not need network, filesystem discovery, Git, a clock, locale, or host font measurement at runtime.
 
