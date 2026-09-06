@@ -1,0 +1,15 @@
+{
+  "custom-theme": {
+    "extends": "light",
+    "palette": {
+      "accent": "#005DBB",
+      "connector": "#334155"
+    }
+  },
+  "default": {
+    "extends": "default",
+    "palette": {
+      "canvas": "#F7F8FA"
+    }
+  }
+}

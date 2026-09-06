@@ -5,4 +5,5 @@ export {
   iconAssets,
   iconSvg,
   providerPackSchema,
+  themeOverridesSchema,
 } from "./catalog.generated.js";

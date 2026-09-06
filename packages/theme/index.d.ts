@@ -74,6 +74,17 @@ export interface Palette {
   readonly connector: string;
 }
 
+export type BuiltinThemeId = "default" | "light" | "dark";
+
+export type ThemeOverrides = Readonly<Record<string, ThemeOverride>>;
+
+export interface ThemeOverride {
+  readonly extends: BuiltinThemeId;
+  readonly palette: PaletteOverride;
+}
+
+export type PaletteOverride = Readonly<Partial<Palette>>;
+
 export interface Typography {
   readonly fontMetricsId: string;
   readonly nodeLabelSizeMilliPx: number;
@@ -256,6 +267,7 @@ export interface ProviderIconAsset {
 
 export declare const catalog: Readonly<Catalog>;
 export declare const providerPackSchema: Readonly<Record<string, unknown>>;
+export declare const themeOverridesSchema: Readonly<Record<string, unknown>>;
 export declare const catalogVersion: string;
 export declare const catalogRevision: `sha256:${string}`;
 export declare const iconAssets: Readonly<Record<string, string>>;

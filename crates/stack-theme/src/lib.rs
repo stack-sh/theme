@@ -4,9 +4,11 @@
 //! filesystem, network, clock, locale, or host-font access at runtime.
 
 use std::collections::BTreeMap;
+use std::fmt::{self, Write};
 use std::sync::OnceLock;
 
 use serde::{Deserialize, Serialize};
+use sha2::{Digest, Sha256};
 
 mod generated {
     include!("generated/metadata.rs");
@@ -17,6 +19,7 @@ pub use generated::{CATALOG_REVISION, CATALOG_VERSION};
 const CATALOG_JSON: &str = include_str!("generated/catalog.json");
 const CATALOG_SCHEMA_JSON: &str = include_str!("../schema/catalog.schema.json");
 const PROVIDER_PACK_SCHEMA_JSON: &str = include_str!("../schema/provider-pack.schema.json");
+const THEME_OVERRIDES_SCHEMA_JSON: &str = include_str!("../schema/theme-overrides.schema.json");
 static CATALOG: OnceLock<Catalog> = OnceLock::new();
 
 /// Returns the embedded catalog parsed into the public Rust contract.
@@ -43,6 +46,12 @@ pub const fn catalog_schema_json() -> &'static str {
 #[must_use]
 pub const fn provider_pack_schema_json() -> &'static str {
     PROVIDER_PACK_SCHEMA_JSON
+}
+
+/// Returns the JSON Schema for palette-only user theme definitions.
+#[must_use]
+pub const fn theme_overrides_schema_json() -> &'static str {
+    THEME_OVERRIDES_SCHEMA_JSON
 }
 
 /// Returns one validated SVG asset by its catalog path.
@@ -159,6 +168,391 @@ pub struct Palette {
     pub accent: String,
     pub danger: String,
     pub connector: String,
+}
+
+/// Palette-only theme definitions supplied by one user configuration.
+#[derive(Clone, Debug, Default, Deserialize, Eq, PartialEq, Serialize)]
+#[serde(transparent)]
+pub struct ThemeOverrides(pub BTreeMap<String, ThemeOverride>);
+
+/// One user theme definition resolved from a built-in theme.
+#[derive(Clone, Debug, Deserialize, Eq, PartialEq, Serialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+pub struct ThemeOverride {
+    pub extends: BuiltinThemeId,
+    pub palette: PaletteOverride,
+}
+
+/// Built-in themes that may supply non-palette records to a user theme.
+#[derive(Clone, Copy, Debug, Deserialize, Eq, PartialEq, Serialize)]
+#[serde(rename_all = "lowercase")]
+pub enum BuiltinThemeId {
+    Default,
+    Light,
+    Dark,
+}
+
+impl BuiltinThemeId {
+    #[must_use]
+    pub const fn as_str(self) -> &'static str {
+        match self {
+            Self::Default => "default",
+            Self::Light => "light",
+            Self::Dark => "dark",
+        }
+    }
+}
+
+/// Semantic color slots changed by one user theme definition.
+#[derive(Clone, Debug, Default, Deserialize, Eq, PartialEq, Serialize)]
+#[serde(rename_all = "camelCase", deny_unknown_fields)]
+pub struct PaletteOverride {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub canvas: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub surface: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub surface_muted: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub text: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub text_muted: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub border: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub accent: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub danger: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub connector: Option<String>,
+}
+
+impl PaletteOverride {
+    fn is_empty(&self) -> bool {
+        self.canvas.is_none()
+            && self.surface.is_none()
+            && self.surface_muted.is_none()
+            && self.text.is_none()
+            && self.text_muted.is_none()
+            && self.border.is_none()
+            && self.accent.is_none()
+            && self.danger.is_none()
+            && self.connector.is_none()
+    }
+
+    fn normalized(&self) -> Result<Self, ThemeOverrideError> {
+        macro_rules! normalized_slot {
+            ($field:ident, $token:literal) => {
+                self.$field
+                    .as_deref()
+                    .map(|value| {
+                        normalize_color(value).ok_or_else(|| {
+                            ThemeOverrideError::new(format!(
+                                "palette.{} must be a six- or eight-digit hexadecimal color",
+                                $token
+                            ))
+                        })
+                    })
+                    .transpose()?
+            };
+        }
+
+        Ok(Self {
+            canvas: normalized_slot!(canvas, "canvas"),
+            surface: normalized_slot!(surface, "surface"),
+            surface_muted: normalized_slot!(surface_muted, "surfaceMuted"),
+            text: normalized_slot!(text, "text"),
+            text_muted: normalized_slot!(text_muted, "textMuted"),
+            border: normalized_slot!(border, "border"),
+            accent: normalized_slot!(accent, "accent"),
+            danger: normalized_slot!(danger, "danger"),
+            connector: normalized_slot!(connector, "connector"),
+        })
+    }
+
+    fn apply_to(&self, palette: &mut Palette) {
+        macro_rules! apply_slot {
+            ($field:ident) => {
+                if let Some(value) = &self.$field {
+                    palette.$field.clone_from(value);
+                }
+            };
+        }
+
+        apply_slot!(canvas);
+        apply_slot!(surface);
+        apply_slot!(surface_muted);
+        apply_slot!(text);
+        apply_slot!(text_muted);
+        apply_slot!(border);
+        apply_slot!(accent);
+        apply_slot!(danger);
+        apply_slot!(connector);
+    }
+}
+
+/// A catalog with all configured themes applied and a reproducible identity.
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct ResolvedThemeCatalog {
+    pub catalog: Catalog,
+    pub revision: String,
+    pub warnings: Vec<ThemeOverrideWarning>,
+}
+
+/// A non-fatal usability concern found in one configured palette.
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct ThemeOverrideWarning {
+    pub code: String,
+    pub theme_id: String,
+    pub message: String,
+}
+
+/// A theme definition that cannot be resolved safely and deterministically.
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct ThemeOverrideError {
+    reason: String,
+}
+
+impl ThemeOverrideError {
+    fn new(reason: impl Into<String>) -> Self {
+        Self {
+            reason: reason.into(),
+        }
+    }
+
+    #[must_use]
+    pub fn reason(&self) -> &str {
+        &self.reason
+    }
+}
+
+impl fmt::Display for ThemeOverrideError {
+    fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result {
+        formatter.write_str(&self.reason)
+    }
+}
+
+impl std::error::Error for ThemeOverrideError {}
+
+/// Applies user palette definitions over an immutable built-in catalog.
+///
+/// Every `extends` lookup uses `base_catalog`, including when the configured
+/// name shadows a built-in theme. This makes `default extends default` an
+/// intentional override instead of a recursive definition.
+pub fn resolve_theme_overrides(
+    base_catalog: &Catalog,
+    base_revision: &str,
+    overrides: &ThemeOverrides,
+) -> Result<ResolvedThemeCatalog, ThemeOverrideError> {
+    if overrides.0.len() > 32 {
+        return Err(ThemeOverrideError::new(
+            "theme overrides may contain at most 32 definitions",
+        ));
+    }
+    if overrides.0.is_empty() {
+        return Ok(ResolvedThemeCatalog {
+            catalog: base_catalog.clone(),
+            revision: base_revision.to_owned(),
+            warnings: Vec::new(),
+        });
+    }
+
+    let mut normalized = BTreeMap::new();
+    let mut resolved = BTreeMap::new();
+    let mut warnings = Vec::new();
+
+    for (theme_id, definition) in &overrides.0 {
+        if !is_theme_identifier(theme_id) {
+            return Err(ThemeOverrideError::new(format!(
+                "theme identifier {theme_id:?} is invalid"
+            )));
+        }
+        if definition.palette.is_empty() {
+            return Err(ThemeOverrideError::new(format!(
+                "theme {theme_id} must override at least one palette color"
+            )));
+        }
+
+        let base_id = definition.extends.as_str();
+        let Some(base_theme) = base_catalog.themes.iter().find(|theme| theme.id == base_id) else {
+            return Err(ThemeOverrideError::new(format!(
+                "built-in theme {base_id} is unavailable"
+            )));
+        };
+        let normalized_palette = definition.palette.normalized().map_err(|error| {
+            ThemeOverrideError::new(format!("theme {theme_id}: {}", error.reason()))
+        })?;
+        let normalized_definition = ThemeOverride {
+            extends: definition.extends,
+            palette: normalized_palette,
+        };
+
+        let mut theme = base_theme.clone();
+        if theme.id != *theme_id {
+            theme.name.clone_from(theme_id);
+            theme.description = None;
+        }
+        theme.id.clone_from(theme_id);
+        normalized_definition.palette.apply_to(&mut theme.palette);
+        warnings.extend(palette_warnings(theme_id, &theme.palette));
+        normalized.insert(theme_id.clone(), normalized_definition);
+        resolved.insert(theme_id.clone(), theme);
+    }
+
+    let mut effective_catalog = base_catalog.clone();
+    for theme in &mut effective_catalog.themes {
+        if let Some(configured) = resolved.remove(&theme.id) {
+            *theme = configured;
+        }
+    }
+    effective_catalog.themes.extend(resolved.into_values());
+
+    let normalized_json = serde_json::to_vec(&ThemeOverrides(normalized))
+        .expect("theme overrides contain only serializable public records");
+    let mut hash = Sha256::new();
+    hash.update(b"stack-theme-effective-v1\0");
+    hash.update(base_revision.as_bytes());
+    hash.update(b"\0");
+    hash.update(normalized_json);
+
+    let mut revision = String::with_capacity(71);
+    revision.push_str("sha256:");
+    for byte in hash.finalize() {
+        write!(&mut revision, "{byte:02x}").expect("writing to a string cannot fail");
+    }
+
+    Ok(ResolvedThemeCatalog {
+        catalog: effective_catalog,
+        revision,
+        warnings,
+    })
+}
+
+fn is_theme_identifier(value: &str) -> bool {
+    let bytes = value.as_bytes();
+    !bytes.is_empty()
+        && bytes.len() <= 64
+        && bytes[0].is_ascii_lowercase()
+        && bytes.iter().all(|byte| {
+            byte.is_ascii_lowercase() || byte.is_ascii_digit() || *byte == b'_' || *byte == b'-'
+        })
+        && !value.contains("--")
+}
+
+fn normalize_color(value: &str) -> Option<String> {
+    let bytes = value.as_bytes();
+    if (bytes.len() == 7 || bytes.len() == 9)
+        && bytes[0] == b'#'
+        && bytes[1..].iter().all(u8::is_ascii_hexdigit)
+    {
+        Some(value.to_ascii_uppercase())
+    } else {
+        None
+    }
+}
+
+fn palette_warnings(theme_id: &str, palette: &Palette) -> Vec<ThemeOverrideWarning> {
+    let colors = [
+        ("canvas", &palette.canvas),
+        ("surface", &palette.surface),
+        ("surfaceMuted", &palette.surface_muted),
+        ("text", &palette.text),
+        ("textMuted", &palette.text_muted),
+        ("border", &palette.border),
+        ("accent", &palette.accent),
+        ("danger", &palette.danger),
+        ("connector", &palette.connector),
+    ];
+    let mut warnings = Vec::new();
+    for (token, color) in colors {
+        if has_transparency(color) {
+            warnings.push(ThemeOverrideWarning {
+                code: "theme-transparent-color".to_owned(),
+                theme_id: theme_id.to_owned(),
+                message: format!(
+                    "palette.{token} uses transparency; contrast depends on its rendered backdrop"
+                ),
+            });
+        }
+    }
+
+    for (foreground, background, minimum) in [
+        ("text", "surface", 4.5),
+        ("textMuted", "surface", 4.5),
+        ("danger", "surface", 4.5),
+        ("border", "surface", 3.0),
+        ("accent", "surface", 3.0),
+        ("connector", "canvas", 3.0),
+    ] {
+        let foreground_color = palette_color(palette, foreground);
+        let background_color = palette_color(palette, background);
+        let (Some(foreground_rgb), Some(background_rgb)) =
+            (opaque_rgb(foreground_color), opaque_rgb(background_color))
+        else {
+            continue;
+        };
+        let ratio = contrast_ratio(foreground_rgb, background_rgb);
+        if ratio < minimum {
+            warnings.push(ThemeOverrideWarning {
+                code: "theme-low-contrast".to_owned(),
+                theme_id: theme_id.to_owned(),
+                message: format!(
+                    "palette.{foreground} against palette.{background} has {ratio:.2}:1 contrast; expected at least {minimum:.1}:1"
+                ),
+            });
+        }
+    }
+    warnings
+}
+
+fn palette_color<'a>(palette: &'a Palette, token: &str) -> &'a str {
+    match token {
+        "canvas" => &palette.canvas,
+        "surface" => &palette.surface,
+        "text" => &palette.text,
+        "textMuted" => &palette.text_muted,
+        "border" => &palette.border,
+        "accent" => &palette.accent,
+        "danger" => &palette.danger,
+        "connector" => &palette.connector,
+        _ => unreachable!("contrast pairs use known palette tokens"),
+    }
+}
+
+fn opaque_rgb(value: &str) -> Option<[u8; 3]> {
+    if normalize_color(value).is_none() || has_transparency(value) {
+        return None;
+    }
+    Some([
+        u8::from_str_radix(value.get(1..3)?, 16).ok()?,
+        u8::from_str_radix(value.get(3..5)?, 16).ok()?,
+        u8::from_str_radix(value.get(5..7)?, 16).ok()?,
+    ])
+}
+
+fn has_transparency(value: &str) -> bool {
+    value.len() == 9
+        && !value
+            .get(7..9)
+            .is_some_and(|alpha| alpha.eq_ignore_ascii_case("ff"))
+}
+
+fn contrast_ratio(left: [u8; 3], right: [u8; 3]) -> f64 {
+    let left = relative_luminance(left);
+    let right = relative_luminance(right);
+    (left.max(right) + 0.05) / (left.min(right) + 0.05)
+}
+
+fn relative_luminance(color: [u8; 3]) -> f64 {
+    let channels = color.map(|channel| {
+        let value = f64::from(channel) / 255.0;
+        if value <= 0.04045 {
+            value / 12.92
+        } else {
+            ((value + 0.055) / 1.055).powf(2.4)
+        }
+    });
+    channels[0] * 0.2126 + channels[1] * 0.7152 + channels[2] * 0.0722
 }
 
 /// Typography values expressed without platform font measurement.
@@ -514,6 +908,148 @@ mod tests {
         assert_eq!(
             provider_schema["$id"],
             "https://raw.githubusercontent.com/stack-sh/theme/main/schemas/provider-pack.schema.json"
+        );
+        let theme_overrides_schema: serde_json::Value =
+            serde_json::from_str(theme_overrides_schema_json()).unwrap();
+        assert_eq!(
+            theme_overrides_schema["$id"],
+            "https://raw.githubusercontent.com/stack-sh/theme/main/schemas/theme-overrides.schema.json"
+        );
+    }
+
+    #[test]
+    fn configured_themes_override_builtins_without_recursive_extends() {
+        let overrides: ThemeOverrides = serde_json::from_str(
+            r##"{
+                "custom-theme":{"extends":"light","palette":{"accent":"#005DBB","connector":"#334155"}},
+                "default":{"extends":"default","palette":{"canvas":"#F7F8FA"}}
+            }"##,
+        )
+        .unwrap();
+        let resolved = resolve_theme_overrides(catalog(), CATALOG_REVISION, &overrides).unwrap();
+
+        let default = resolved
+            .catalog
+            .themes
+            .iter()
+            .find(|theme| theme.id == "default")
+            .unwrap();
+        let original_default = catalog()
+            .themes
+            .iter()
+            .find(|theme| theme.id == "default")
+            .unwrap();
+        assert_eq!(default.palette.canvas, "#F7F8FA");
+        assert_eq!(default.typography, original_default.typography);
+        assert_eq!(
+            default.node_kind_fallbacks,
+            original_default.node_kind_fallbacks
+        );
+
+        let custom = resolved
+            .catalog
+            .themes
+            .iter()
+            .find(|theme| theme.id == "custom-theme")
+            .unwrap();
+        let original_light = catalog()
+            .themes
+            .iter()
+            .find(|theme| theme.id == "light")
+            .unwrap();
+        assert_eq!(custom.name, "custom-theme");
+        assert_eq!(custom.palette.accent, "#005DBB");
+        assert_eq!(custom.palette.canvas, original_light.palette.canvas);
+        assert_eq!(custom.typography, original_light.typography);
+        assert_ne!(resolved.revision, CATALOG_REVISION);
+        assert!(resolved.revision.starts_with("sha256:"));
+    }
+
+    #[test]
+    fn effective_revision_uses_normalized_definition_order_and_colors() {
+        let left: ThemeOverrides = serde_json::from_str(
+            r##"{
+                "z_theme": {"extends":"dark","palette":{"accent":"#aabbcc"}},
+                "a_theme": {"extends":"light","palette":{"canvas":"#123456"}}
+            }"##,
+        )
+        .unwrap();
+        let right: ThemeOverrides = serde_json::from_str(
+            r##"{
+                "a_theme": {"extends":"light","palette":{"canvas":"#123456"}},
+                "z_theme": {"extends":"dark","palette":{"accent":"#AABBCC"}}
+            }"##,
+        )
+        .unwrap();
+
+        let left = resolve_theme_overrides(catalog(), CATALOG_REVISION, &left).unwrap();
+        let right = resolve_theme_overrides(catalog(), CATALOG_REVISION, &right).unwrap();
+        assert_eq!(left.revision, right.revision);
+        assert_eq!(left.catalog, right.catalog);
+    }
+
+    #[test]
+    fn empty_overrides_preserve_the_base_catalog_identity() {
+        let resolved =
+            resolve_theme_overrides(catalog(), CATALOG_REVISION, &ThemeOverrides::default())
+                .unwrap();
+        assert_eq!(resolved.catalog, *catalog());
+        assert_eq!(resolved.revision, CATALOG_REVISION);
+        assert!(resolved.warnings.is_empty());
+    }
+
+    #[test]
+    fn invalid_theme_definitions_fail_before_resolution() {
+        for (source, expected) in [
+            (
+                r##"{"invalid--name":{"extends":"default","palette":{"accent":"#000000"}}}"##,
+                "identifier",
+            ),
+            (
+                r##"{"empty":{"extends":"default","palette":{}}}"##,
+                "at least one",
+            ),
+            (
+                r##"{"bad_color":{"extends":"default","palette":{"accent":"red"}}}"##,
+                "hexadecimal color",
+            ),
+        ] {
+            let overrides: ThemeOverrides = serde_json::from_str(source).unwrap();
+            let error =
+                resolve_theme_overrides(catalog(), CATALOG_REVISION, &overrides).unwrap_err();
+            assert!(error.reason().contains(expected), "{}", error.reason());
+        }
+    }
+
+    #[test]
+    fn configured_palette_concerns_are_warnings_and_colors_are_unchanged() {
+        let overrides: ThemeOverrides = serde_json::from_str(
+            r##"{
+                "soft":{"extends":"light","palette":{"text":"#ffffff"}},
+                "glass":{"extends":"dark","palette":{"canvas":"#11223380"}}
+            }"##,
+        )
+        .unwrap();
+        let resolved = resolve_theme_overrides(catalog(), CATALOG_REVISION, &overrides).unwrap();
+
+        assert!(
+            resolved.warnings.iter().any(|warning| {
+                warning.theme_id == "soft" && warning.code == "theme-low-contrast"
+            })
+        );
+        assert!(resolved.warnings.iter().any(|warning| {
+            warning.theme_id == "glass" && warning.code == "theme-transparent-color"
+        }));
+        assert_eq!(
+            resolved
+                .catalog
+                .themes
+                .iter()
+                .find(|theme| theme.id == "soft")
+                .unwrap()
+                .palette
+                .text,
+            "#FFFFFF"
         );
     }
 

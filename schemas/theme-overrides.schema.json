@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/stack-sh/theme/main/schemas/theme-overrides.schema.json",
+  "title": "Stack Theme Overrides",
+  "description": "Palette-only user theme definitions applied over built-in Stack themes.",
+  "type": "object",
+  "maxProperties": 32,
+  "propertyNames": {
+    "$ref": "#/$defs/identifier"
+  },
+  "additionalProperties": {
+    "$ref": "#/$defs/themeOverride"
+  },
+  "$defs": {
+    "identifier": {
+      "type": "string",
+      "pattern": "^(?!.*--)[a-z][a-z0-9_-]{0,63}$"
+    },
+    "color": {
+      "type": "string",
+      "pattern": "^#[0-9A-Fa-f]{6}([0-9A-Fa-f]{2})?$"
+    },
+    "themeOverride": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["extends", "palette"],
+      "properties": {
+        "extends": {
+          "enum": ["default", "light", "dark"]
+        },
+        "palette": {
+          "$ref": "#/$defs/paletteOverride"
+        }
+      }
+    },
+    "paletteOverride": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "properties": {
+        "canvas": { "$ref": "#/$defs/color" },
+        "surface": { "$ref": "#/$defs/color" },
+        "surfaceMuted": { "$ref": "#/$defs/color" },
+        "text": { "$ref": "#/$defs/color" },
+        "textMuted": { "$ref": "#/$defs/color" },
+        "border": { "$ref": "#/$defs/color" },
+        "accent": { "$ref": "#/$defs/color" },
+        "danger": { "$ref": "#/$defs/color" },
+        "connector": { "$ref": "#/$defs/color" }
+      }
+    }
+  }
+}

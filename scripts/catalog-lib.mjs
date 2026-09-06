@@ -430,6 +430,22 @@ export async function validateCatalog(
   return catalog;
 }
 
+export async function validateThemeOverrides(themeOverrides) {
+  const schema = await readJson(
+    path.join(repositoryRoot, "schemas/theme-overrides.schema.json"),
+  );
+  const ajv = new Ajv2020({ allErrors: true, strict: true });
+  const validate = ajv.compile(schema);
+  if (!validate(themeOverrides)) {
+    const details = validate.errors
+      .map((error) => `${error.instancePath || "/"} ${error.message}`)
+      .join("; ");
+    fail(`theme overrides schema validation failed: ${details}`);
+  }
+
+  return themeOverrides;
+}
+
 export async function validateProviderPack(
   providerPack,
   { root = repositoryRoot, validateAssets = true } = {},
