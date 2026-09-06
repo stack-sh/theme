@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/stack-sh/theme/main/schemas/catalog.schema.json",
   "schemaVersion": "1.0",
-  "catalogVersion": "0.5.0",
+  "catalogVersion": "0.6.0",
   "reservedThemeIds": [],
   "fallbacks": {
     "missingThemeId": "default",
@@ -179,12 +179,12 @@
           "fallbackIconId": "kind-worker"
         },
         "database": {
-          "shape": "cylinder",
+          "shape": "rounded-rectangle",
           "fill": "surface",
           "stroke": "accent",
           "text": "text",
           "accent": "accent",
-          "cornerRadiusMilliPx": 0,
+          "cornerRadiusMilliPx": 8000,
           "fallbackIconId": "kind-database"
         },
         "cache": {
@@ -1386,12 +1386,12 @@
           "fallbackIconId": "kind-worker"
         },
         "database": {
-          "shape": "cylinder",
+          "shape": "rounded-rectangle",
           "fill": "surface",
           "stroke": "accent",
           "text": "text",
           "accent": "accent",
-          "cornerRadiusMilliPx": 0,
+          "cornerRadiusMilliPx": 8000,
           "fallbackIconId": "kind-database"
         },
         "cache": {
@@ -2593,12 +2593,12 @@
           "fallbackIconId": "kind-worker"
         },
         "database": {
-          "shape": "cylinder",
+          "shape": "rounded-rectangle",
           "fill": "surface",
           "stroke": "accent",
           "text": "text",
           "accent": "accent",
-          "cornerRadiusMilliPx": 0,
+          "cornerRadiusMilliPx": 8000,
           "fallbackIconId": "kind-database"
         },
         "cache": {

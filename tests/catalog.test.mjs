@@ -26,6 +26,33 @@ test("the complete contract fixture is valid", async () => {
   await validateCatalog(fixture);
 });
 
+test("database fallbacks use cards with their existing database icons", async () => {
+  const sourceCatalog = await readJson(
+    path.join(repositoryRoot, "catalog/catalog.json"),
+  );
+  for (const theme of sourceCatalog.themes) {
+    const database = theme.nodeKindFallbacks.database;
+    assert.equal(
+      database.shape,
+      "rounded-rectangle",
+      `${theme.id} database shape`,
+    );
+    assert.equal(database.cornerRadiusMilliPx, 8000, `${theme.id} database radius`);
+    assert.equal(
+      database.cornerRadiusMilliPx,
+      theme.nodeKindFallbacks.service.cornerRadiusMilliPx,
+    );
+    assert.equal(database.fallbackIconId, "kind-database");
+    assert.deepEqual(
+      [database.fill, database.stroke, database.text, database.accent],
+      ["surface", "accent", "text", "accent"],
+    );
+    assert.ok(theme.icons.some((icon) => icon.id === database.fallbackIconId));
+    assert.equal(theme.nodeKindFallbacks.cache.shape, "cylinder");
+    assert.equal(theme.nodeKindFallbacks.cache.cornerRadiusMilliPx, 0);
+  }
+});
+
 const providerPackRoot = path.join(
   repositoryRoot,
   "tests/fixtures/provider-pack",
