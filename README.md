@@ -2,7 +2,7 @@
 
 `stack-sh/theme` is the canonical public contract for Stack diagram themes, icons, font metrics, and local provider icon packs.
 
-The draft core catalog contract is defined by [`CONTRACT.md`](./CONTRACT.md) and [`schemas/catalog.schema.json`](./schemas/catalog.schema.json). The separate local-only provider-pack contract is defined by [`PROVIDER_PACKS.md`](./PROVIDER_PACKS.md) and [`schemas/provider-pack.schema.json`](./schemas/provider-pack.schema.json). The canonical core source is [`catalog/catalog.json`](./catalog/catalog.json); Cargo and npm artifacts are generated from that source with one content revision.
+The core catalog contract is defined by [`CONTRACT.md`](./CONTRACT.md) and [`schemas/catalog.schema.json`](./schemas/catalog.schema.json). The separate local-only provider-pack contract is defined by [`PROVIDER_PACKS.md`](./PROVIDER_PACKS.md) and [`schemas/provider-pack.schema.json`](./schemas/provider-pack.schema.json). The canonical core source is [`catalog/catalog.json`](./catalog/catalog.json); Rust and JavaScript package trees are generated from that source with one content revision.
 
 The current `0.6.0` catalog contains the core `default`, `light`, and `dark` themes, repository-authored fallbacks for every Stack 1.0 node kind, 30 provider-neutral explicit icons, and versioned host-independent font metrics. The explicit icon catalog covers clients and compute, networking and delivery, data and events, development workflows, security, general collaboration tools, and AI systems. Its identifiers are `api`, `web`, `mobile`, `desktop`, `server`, `container`, `cluster`, `cloud`, `scheduler`, `webhook`, `identity`, `observability`, `gateway`, `load-balancer`, `dns`, `cdn`, `firewall`, `network`, `event`, `stream`, `search`, `analytics`, `repository`, `pipeline`, `secret`, `document`, `task`, `chat`, `email`, and `ai`.
 
@@ -18,14 +18,32 @@ cargo add stack-theme@0.6.0
 
 The package supports Rust 1.85 or newer and includes only the generated catalog API, repository-authored SVG assets, public schemas, package documentation, and the Apache-2.0 license.
 
+Read a core theme and its semantic color tokens without filesystem or network access:
+
+```rust
+fn main() {
+    let catalog = stack_theme::catalog();
+    let default_theme = catalog.themes.iter().find(|theme| theme.id == "default");
+
+    assert_eq!(catalog.catalog_version, stack_theme::CATALOG_VERSION);
+    assert!(default_theme.is_some());
+}
+```
+
+See the complete [`stack-theme` API documentation](https://docs.rs/stack-theme).
+
+## Distribution
+
+`stack-theme` is published on crates.io. The repository also generates `packages/theme` to verify Rust/JavaScript semantic parity and to supply the browser Engine build, but `@stack-sh/theme` is not currently published as a standalone npm package. Browser applications should normally install [`@stack-sh/engine`](https://www.npmjs.com/package/@stack-sh/engine), which embeds the matching catalog.
+
 ## Scope
 
-This repository will own:
+This repository owns:
 
 - the versioned core theme catalog;
 - icon metadata and SVG-safe icon assets;
 - deterministic font metrics used by the layout engine;
-- equivalent Rust and npm artifacts generated from the same catalog data.
+- equivalent Rust and JavaScript package trees generated from the same catalog data;
 - a provider-neutral manifest and validation contract for user-imported vendor icons.
 
 It does not own the Stack language, compilation, layout, SVG rendering, user authentication, billing, entitlement checks, or paid-theme delivery.
