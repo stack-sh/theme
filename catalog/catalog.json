@@ -82,7 +82,7 @@
         "function": { "shape": "hexagon", "fill": "surfaceMuted", "stroke": "accent", "text": "text", "accent": "accent", "cornerRadiusMilliPx": 0, "fallbackIconId": "kind-function" },
         "worker": { "shape": "capsule", "fill": "surface", "stroke": "border", "text": "text", "accent": "accent", "cornerRadiusMilliPx": 16000, "fallbackIconId": "kind-worker" },
         "database": { "shape": "rounded-rectangle", "fill": "surface", "stroke": "accent", "text": "text", "accent": "accent", "cornerRadiusMilliPx": 8000, "fallbackIconId": "kind-database" },
-        "cache": { "shape": "cylinder", "fill": "surfaceMuted", "stroke": "border", "text": "text", "accent": "accent", "cornerRadiusMilliPx": 0, "fallbackIconId": "kind-cache" },
+        "cache": { "shape": "rounded-rectangle", "fill": "surfaceMuted", "stroke": "border", "text": "text", "accent": "accent", "cornerRadiusMilliPx": 8000, "fallbackIconId": "kind-cache" },
         "queue": { "shape": "capsule", "fill": "surfaceMuted", "stroke": "accent", "text": "text", "accent": "accent", "cornerRadiusMilliPx": 16000, "fallbackIconId": "kind-queue" },
         "storage": { "shape": "rounded-rectangle", "fill": "surface", "stroke": "border", "text": "text", "accent": "accent", "cornerRadiusMilliPx": 4000, "fallbackIconId": "kind-storage" },
         "external": { "shape": "hexagon", "fill": "surfaceMuted", "stroke": "border", "text": "text", "accent": "accent", "cornerRadiusMilliPx": 0, "fallbackIconId": "kind-external" }
@@ -144,7 +144,7 @@
         "function": { "shape": "hexagon", "fill": "surfaceMuted", "stroke": "accent", "text": "text", "accent": "accent", "cornerRadiusMilliPx": 0, "fallbackIconId": "kind-function" },
         "worker": { "shape": "capsule", "fill": "surface", "stroke": "border", "text": "text", "accent": "accent", "cornerRadiusMilliPx": 16000, "fallbackIconId": "kind-worker" },
         "database": { "shape": "rounded-rectangle", "fill": "surface", "stroke": "accent", "text": "text", "accent": "accent", "cornerRadiusMilliPx": 8000, "fallbackIconId": "kind-database" },
-        "cache": { "shape": "cylinder", "fill": "surfaceMuted", "stroke": "border", "text": "text", "accent": "accent", "cornerRadiusMilliPx": 0, "fallbackIconId": "kind-cache" },
+        "cache": { "shape": "rounded-rectangle", "fill": "surfaceMuted", "stroke": "border", "text": "text", "accent": "accent", "cornerRadiusMilliPx": 8000, "fallbackIconId": "kind-cache" },
         "queue": { "shape": "capsule", "fill": "surfaceMuted", "stroke": "accent", "text": "text", "accent": "accent", "cornerRadiusMilliPx": 16000, "fallbackIconId": "kind-queue" },
         "storage": { "shape": "rounded-rectangle", "fill": "surface", "stroke": "border", "text": "text", "accent": "accent", "cornerRadiusMilliPx": 4000, "fallbackIconId": "kind-storage" },
         "external": { "shape": "hexagon", "fill": "surfaceMuted", "stroke": "border", "text": "text", "accent": "accent", "cornerRadiusMilliPx": 0, "fallbackIconId": "kind-external" }
@@ -206,7 +206,7 @@
         "function": { "shape": "hexagon", "fill": "surfaceMuted", "stroke": "accent", "text": "text", "accent": "accent", "cornerRadiusMilliPx": 0, "fallbackIconId": "kind-function" },
         "worker": { "shape": "capsule", "fill": "surface", "stroke": "border", "text": "text", "accent": "accent", "cornerRadiusMilliPx": 16000, "fallbackIconId": "kind-worker" },
         "database": { "shape": "rounded-rectangle", "fill": "surface", "stroke": "accent", "text": "text", "accent": "accent", "cornerRadiusMilliPx": 8000, "fallbackIconId": "kind-database" },
-        "cache": { "shape": "cylinder", "fill": "surfaceMuted", "stroke": "border", "text": "text", "accent": "accent", "cornerRadiusMilliPx": 0, "fallbackIconId": "kind-cache" },
+        "cache": { "shape": "rounded-rectangle", "fill": "surfaceMuted", "stroke": "border", "text": "text", "accent": "accent", "cornerRadiusMilliPx": 8000, "fallbackIconId": "kind-cache" },
         "queue": { "shape": "capsule", "fill": "surfaceMuted", "stroke": "accent", "text": "text", "accent": "accent", "cornerRadiusMilliPx": 16000, "fallbackIconId": "kind-queue" },
         "storage": { "shape": "rounded-rectangle", "fill": "surface", "stroke": "border", "text": "text", "accent": "accent", "cornerRadiusMilliPx": 4000, "fallbackIconId": "kind-storage" },
         "external": { "shape": "hexagon", "fill": "surfaceMuted", "stroke": "border", "text": "text", "accent": "accent", "cornerRadiusMilliPx": 0, "fallbackIconId": "kind-external" }
