@@ -2,7 +2,7 @@
 
 ## Status
 
-This document defines the draft `1.0` core catalog document shape. Catalog and package version `0.6.0` remain pre-1.0 and may change incompatibly before a stable release. The Rust catalog is distributed on crates.io; generated npm artifacts are maintained in this repository. User-imported provider packs use the separate contract in [`PROVIDER_PACKS.md`](./PROVIDER_PACKS.md); their custom-term assets never enter this core catalog.
+This document defines the draft `1.0` core catalog document shape. Catalog and package version `0.7.0` remain pre-1.0 and may change incompatibly before a stable release. The Rust catalog is distributed on crates.io; generated npm artifacts are maintained in this repository. User-imported provider packs use the separate contract in [`PROVIDER_PACKS.md`](./PROVIDER_PACKS.md); their custom-term assets never enter this core catalog.
 
 The JSON Schema at [`schemas/catalog.schema.json`](./schemas/catalog.schema.json) is the machine-readable source of truth. [`catalog/catalog.json`](./catalog/catalog.json) is the only source catalog. Generated Cargo and npm copies must not be edited directly. The schema is copied into both packages; `$schema` is an editor-facing canonical repository URL and runtime consumers do not fetch it.
 

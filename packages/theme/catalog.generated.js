@@ -2,7 +2,7 @@
 const catalogData = {
   "$schema": "https://raw.githubusercontent.com/stack-sh/theme/main/schemas/catalog.schema.json",
   "schemaVersion": "1.0",
-  "catalogVersion": "0.6.0",
+  "catalogVersion": "0.7.0",
   "reservedThemeIds": [],
   "fallbacks": {
     "missingThemeId": "default",
@@ -189,12 +189,12 @@ const catalogData = {
           "fallbackIconId": "kind-database"
         },
         "cache": {
-          "shape": "cylinder",
+          "shape": "rounded-rectangle",
           "fill": "surfaceMuted",
           "stroke": "border",
           "text": "text",
           "accent": "accent",
-          "cornerRadiusMilliPx": 0,
+          "cornerRadiusMilliPx": 8000,
           "fallbackIconId": "kind-cache"
         },
         "queue": {
@@ -1396,12 +1396,12 @@ const catalogData = {
           "fallbackIconId": "kind-database"
         },
         "cache": {
-          "shape": "cylinder",
+          "shape": "rounded-rectangle",
           "fill": "surfaceMuted",
           "stroke": "border",
           "text": "text",
           "accent": "accent",
-          "cornerRadiusMilliPx": 0,
+          "cornerRadiusMilliPx": 8000,
           "fallbackIconId": "kind-cache"
         },
         "queue": {
@@ -2603,12 +2603,12 @@ const catalogData = {
           "fallbackIconId": "kind-database"
         },
         "cache": {
-          "shape": "cylinder",
+          "shape": "rounded-rectangle",
           "fill": "surfaceMuted",
           "stroke": "border",
           "text": "text",
           "accent": "accent",
-          "cornerRadiusMilliPx": 0,
+          "cornerRadiusMilliPx": 8000,
           "fallbackIconId": "kind-cache"
         },
         "queue": {
@@ -4260,8 +4260,8 @@ function deepFreeze(value) {
 
 export const catalog = deepFreeze(catalogData);
 export const providerPackSchema = deepFreeze(providerPackSchemaData);
-export const catalogVersion = "0.6.0";
-export const catalogRevision = "sha256:4d4e9dcda36bf2a5187a233c0be74c9e9302f41d5021e1fa2a73712837ff55c1";
+export const catalogVersion = "0.7.0";
+export const catalogRevision = "sha256:4a8b94b746c6b120998bfbe701edd722449a28c89c424b0a33f67561756ded5a";
 export const iconAssets = deepFreeze(iconAssetsData);
 export function iconSvg(assetPath) {
   return iconAssets[assetPath];

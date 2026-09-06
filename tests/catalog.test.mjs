@@ -26,7 +26,7 @@ test("the complete contract fixture is valid", async () => {
   await validateCatalog(fixture);
 });
 
-test("database fallbacks use cards with their existing database icons", async () => {
+test("database and cache fallbacks use cards with their existing icons", async () => {
   const sourceCatalog = await readJson(
     path.join(repositoryRoot, "catalog/catalog.json"),
   );
@@ -48,8 +48,19 @@ test("database fallbacks use cards with their existing database icons", async ()
       ["surface", "accent", "text", "accent"],
     );
     assert.ok(theme.icons.some((icon) => icon.id === database.fallbackIconId));
-    assert.equal(theme.nodeKindFallbacks.cache.shape, "cylinder");
-    assert.equal(theme.nodeKindFallbacks.cache.cornerRadiusMilliPx, 0);
+    const cache = theme.nodeKindFallbacks.cache;
+    assert.equal(cache.shape, "rounded-rectangle", `${theme.id} cache shape`);
+    assert.equal(cache.cornerRadiusMilliPx, 8000, `${theme.id} cache radius`);
+    assert.equal(
+      cache.cornerRadiusMilliPx,
+      theme.nodeKindFallbacks.service.cornerRadiusMilliPx,
+    );
+    assert.equal(cache.fallbackIconId, "kind-cache");
+    assert.deepEqual(
+      [cache.fill, cache.stroke, cache.text, cache.accent],
+      ["surfaceMuted", "border", "text", "accent"],
+    );
+    assert.ok(theme.icons.some((icon) => icon.id === cache.fallbackIconId));
   }
 });
 
