@@ -22,5 +22,6 @@ Write repository content, code comments, commit messages, issues, and pull reque
 ## Delivery
 
 - Use a topic branch and pull request; squash merge after approval.
+- Write pull request titles and bodies in English, and follow `.github/pull_request_template.md` without removing or renaming its sections.
 - Add the smallest relevant formatting, validation, test, and build gates when source or package files are introduced.
 - Keep credentials, tokens, private keys, signing material, and customer data out of Git.
